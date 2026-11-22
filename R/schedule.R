@@ -382,11 +382,13 @@ session_table <- function(program) {
   .brc_table(c("Date", "Time"), cbind(.brc_cell(s$dates), .brc_cell(s$time)))
 }
 
-#' One bold link per session: "<dates>, sessions run from <time> (<price>)".
-session_links <- function(program) {
+#' One bold line per session: "<dates>, sessions run from <time> (<price>)".
+#' Each line links to its sign-up page; links = FALSE shows plain bold text
+#' (e.g. after the season, when sign-up has closed).
+session_links <- function(program, links = TRUE) {
   s <- .brc_rows("sessions", program)
   for (i in seq_len(nrow(s))) {
-    for (col in c("price", "link")) {
+    for (col in if (links) c("price", "link") else "price") {
       if (is.na(s[[col]][i])) {
         .brc_stop("- Tab 'sessions', row ", s$.row[i], ": the '", col, "' cell is empty. ",
                   "Sessions for ", program, " are shown as links with their price, so they need a ", col, ".")
@@ -394,8 +396,9 @@ session_links <- function(program) {
     }
   }
   one_line <- function(x) gsub("\n", " ", x, fixed = TRUE)
-  lines <- paste0("**[", .brc_md(one_line(s$dates)), ", sessions run from ", .brc_md(one_line(s$time)),
-                  " (", .brc_md(one_line(s$price)), ")](", s$link, ")**")
+  text <- paste0(.brc_md(one_line(s$dates)), ", sessions run from ", .brc_md(one_line(s$time)),
+                 " (", .brc_md(one_line(s$price)), ")")
+  lines <- if (links) paste0("**[", text, "](", s$link, ")**") else paste0("**", text, "**")
   knitr::asis_output(paste(c("", lines, ""), collapse = "\n\n"))
 }
 

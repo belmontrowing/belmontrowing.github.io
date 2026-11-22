@@ -142,7 +142,7 @@ or `source("R/schedule.R")` on the home page). Chunk options (`echo`, `warning`,
 | `season_summary(program)` | Season / Days / Times table (narrow) | adult ×2 |
 | `regatta_table(program)` | Date / Regatta / Location | youth (`youth`), adult (`masters`) |
 | `session_table(program)` | Date / Time | adult (`adult-learn-to-row`) |
-| `session_links(program)` | Bold links "dates, sessions run from time (price)" | youth (`youth-learn-to-row`, `youth-development`) |
+| `session_links(program, links = TRUE)` | Bold lines "dates, sessions run from time (price)", each linking to its sign-up; `links = FALSE` shows them as plain bold text (no `link` needed) | youth (`youth-learn-to-row`, `youth-development`; currently `links = FALSE` because the 2026 summer season is over) |
 | `price_table(table)` | Pricing table (headers set in `.brc_price_tables` in `R/schedule.R`) | other ×3 |
 | `home_events()` | The Upcoming Events blocks | home |
 

@@ -111,10 +111,10 @@ Rowing is a great team-oriented sport that is low-impact, provides a full-body w
 
 #### Learn-To-Row:
 
-For Youth age 12 and older, these sessions will focus on teaching the fundamentals of rowing techniques, boat handling, and water safety. The camp provides a safe, supportive environment where students can develop their skills, build teamwork, and enhance their physical fitness. This program not only introduces the sport, but also encourages a love for outdoor activities and nurtures a sense of accomplishment among the young athletes.  Click on below links to register.
+For Youth age 12 and older, these sessions will focus on teaching the fundamentals of rowing techniques, boat handling, and water safety. The camp provides a safe, supportive environment where students can develop their skills, build teamwork, and enhance their physical fitness. This program not only introduces the sport, but also encourages a love for outdoor activities and nurtures a sense of accomplishment among the young athletes.
 
 ```{r}
-session_links("youth-learn-to-row")
+session_links("youth-learn-to-row", links = FALSE)
 ```
 
 #### Development Program:
@@ -122,7 +122,7 @@ session_links("youth-learn-to-row")
 This is a more specialized program designed to refine LTR and experienced Youth’s skills and push their limits. The camps focus on advanced rowing techniques, race strategy, and endurance training. Participants will engage in more rigorous on-water practices, complemented by strength conditioning and technical drills to enhance their overall performance. The program also includes video analysis sessions to help rowers analyze their technique and make precise adjustments. Ideal for those who have previously rowed at BRC or want to row in the fall season, these camps aim to prepare young rowes for competitive rowing, fostering both individual prowess and team cohesion (and we’ll also have fun!).
 
 ```{r}
-session_links("youth-development")
+session_links("youth-development", links = FALSE)
 ```
 :::
 
