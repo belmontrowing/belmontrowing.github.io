@@ -112,8 +112,8 @@ website in the same order as in the tab. Fully blank rows are ignored.
 
 Allowed names (the workbook has dropdowns with exactly these; `R/schedule.R` lists them in `.brc_tabs`):
 
-- `seasons.program`: youth, youth-winter, masters-training, masters-skills, masters (regatta heading only), adult-learn-to-row, youth-summer, collegiate, independent
-- `practices.program`: youth, youth-winter, masters-training, masters-skills; `practices.day`: Sunday … Saturday
+- `seasons.program`: youth, youth-winter, masters-training, masters-skills, masters-winter, masters (regatta heading only), adult-learn-to-row, youth-summer, collegiate, independent
+- `practices.program`: youth, youth-winter, masters-training, masters-skills, masters-winter; `practices.day`: Sunday … Saturday
 - `regattas.program`: youth, masters
 - `sessions.program`: adult-learn-to-row, youth-learn-to-row, youth-development
 - `prices.table`: collegiate, private-lessons, independent

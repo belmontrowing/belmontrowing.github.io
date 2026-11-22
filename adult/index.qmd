@@ -46,11 +46,28 @@ Masters Training team members can also row outside of structured practices as lo
 All Masters Training Team lineups (practice and racing) are determined by the Head Coach. Masters Training Team members must hold an active [USRowing membership](https://membership.usrowing.org/).
 :::
 
+<!-- WINTER TRAINING: facts and table from the masters-winter rows of schedule.xlsx -->
+::: {.centered}
+### `r season("masters-winter", "year")` Masters Team - `r season("masters-winter", "term")`
+
+::: {.btn-row}
+[Register](`r season("masters-winter", "register_link")`){.btn-brc}
+:::
+:::
+
+Welcome to the Masters Winter Training team for `r season("masters-winter", "months")` `r season("masters-winter", "year")`.  Practices will be held at 6:45PM on Tuesday, Wednesday and Friday, and at 6PM on Thursday.  Weekend practices will be on Saturday and Sunday at 7:30AM.
+
+```{r}
+weekly_table("masters-winter")
+```
+
+\*Weekend practices will be on the water, weather permitting.
+
 ::: {.centered}
 ### `r season("masters-training", "year")` Master Training Team - `r season("masters-training", "term")` Season
 
-::: {.btn-row}
-[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+::: {.status-note}
+The season has completed. Please stay tuned for 2027 scheduling.
 :::
 :::
 
@@ -97,8 +114,8 @@ Masters Skills Team is open to recent Learn To Row participants and those with l
 ::: {.centered}
 ### `r season("masters-skills", "year")` Master Skills Team - `r season("masters-skills", "term")` Season
 
-::: {.btn-row}
-[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+::: {.status-note}
+The season has completed. Please stay tuned for 2027 scheduling.
 :::
 :::
 
@@ -130,15 +147,15 @@ Most participants have never set foot in a rowing shell before their first class
 
 ### `r season("adult-learn-to-row", "term")` `r season("adult-learn-to-row", "year")` Learn To Row Schedule
 
+::: {.status-note}
+The season has completed. Please stay tuned for 2027 scheduling.
+:::
+
 **This `r season("adult-learn-to-row", "term", case = "lower")`, we are offering `r session_count("adult-learn-to-row")` alternative Learn To Row Sessions.  Each session runs 3 days.  Choose one of the sessions in either `r season("adult-learn-to-row", "months")`.**
 
 ```{r}
 session_table("adult-learn-to-row")
 ```
-
-::: {.btn-row}
-[Register](`r season("adult-learn-to-row", "register_link")`){.btn-brc}
-:::
 
 ### There are 2 styles of rowing, Sculling and Sweep.
 
