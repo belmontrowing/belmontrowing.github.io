@@ -59,10 +59,11 @@ A render must finish with no errors before anything is committed.
 2. Commit **both** the changed source files and `docs/`, then push.
 3. GitHub Pages (Settings → Pages → "Deploy from a branch", folder `/docs`) publishes it.
 
-`docs/.nojekyll` is created by Quarto; keep it. `site-url` in `_quarto.yml` is still a
-commented placeholder: set it to the real address (e.g. `https://user.github.io/repo/`)
-once the GitHub repository exists. Until then `docs/404.html` uses root-relative links,
-which only work when the site is served at the root of a domain.
+The repository is `belmontrowing/belmontrowing.github.io` on GitHub and the site is
+published at https://belmontrowing.github.io (set as `site-url` in `_quarto.yml`).
+`docs/.nojekyll` is created by Quarto; keep it. If the site later moves to its own
+domain (e.g. belmontrowing.org), update `site-url` and add a `CNAME` file; `docs/404.html`
+uses root-relative links, which is correct while the site is served at the root of a domain.
 
 ## Rules
 
