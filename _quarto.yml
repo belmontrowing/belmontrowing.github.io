@@ -41,20 +41,30 @@ website:
         href: contact/index.qmd
       - text: BRC Swag
         href: "https://teamlocker.squadlocker.com/#/lockers/belmont-rowing-center-313909?_k=cnluax"
+        target: _blank
+        rel: noopener
       - text: Social
         menu:
           - text: Instagram
             icon: instagram
             href: https://www.instagram.com/belmontrowing
+            target: _blank
+            rel: noopener
           - text: Facebook
             icon: facebook
             href: https://www.facebook.com/BelmontRowing/
+            target: _blank
+            rel: noopener
           - text: YouTube
             icon: youtube
             href: https://www.youtube.com/channel/UCXFYUbRCOyXJPg2Ow2NLszQ
+            target: _blank
+            rel: noopener
           - text: Concept 2
             icon: activity
             href: https://log.concept2.com/team/8472
+            target: _blank
+            rel: noopener
 
   page-footer:
     left:
@@ -72,17 +82,25 @@ website:
         href: contact/index.qmd
       - text: BRC Swag
         href: "https://teamlocker.squadlocker.com/#/lockers/belmont-rowing-center-313909?_k=cnluax"
+        target: _blank
+        rel: noopener
     center: |
-      [Donate To Support Our Growth](https://www.zeffy.com/donation-form/support-the-growing-sport-of-rowing-at-belmont-rowing-center){.footer-donate}
+      [Donate To Support Our Growth](https://www.zeffy.com/donation-form/support-the-growing-sport-of-rowing-at-belmont-rowing-center){.footer-donate target="_blank" rel="noopener"}
     right:
       - icon: instagram
         href: https://www.instagram.com/belmontrowing
+        target: _blank
+        rel: noopener
         aria-label: Instagram
       - icon: facebook
         href: https://www.facebook.com/belmontrowing
+        target: _blank
+        rel: noopener
         aria-label: Facebook
       - icon: youtube
         href: https://www.youtube.com/channel/UCXFYUbRCOyXJPg2Ow2NLszQ
+        target: _blank
+        rel: noopener
         aria-label: YouTube
 
 # R code in pages (the seasonal tables read from schedule.xlsx via R/schedule.R):

@@ -42,61 +42,20 @@ Belmont, NC 28012
 ::: {.divider}
 :::
 
-<!-- CONTACT FORM -->
+<!-- CONTACT US -->
 ::: {.band .band-panel .band-tight}
-## Contact Us Using the Form Below
+## Contact Us
 :::
 
-::: {.band .band-light}
-```{=html}
-<!--
-  This form opens the visitor's own email program, addressed to info@belmontrowing.org.
-  To send it through a form service instead (Formspree or Web3Forms), follow
-  "Contact form" in CLAUDE.md: it changes the <form ...> line below.
--->
-<form class="site-form" action="mailto:info@belmontrowing.org" method="post" enctype="text/plain">
-<fieldset class="form-field">
-<legend>Name <span class="form-required" aria-hidden="true">*</span></legend>
-<div class="form-row">
-<div class="form-field">
-<input type="text" id="contact-first" name="First name" autocomplete="given-name" required>
-<label class="form-sublabel" for="contact-first">First</label>
-</div>
-<div class="form-field">
-<input type="text" id="contact-last" name="Last name" autocomplete="family-name" required>
-<label class="form-sublabel" for="contact-last">Last</label>
-</div>
-</div>
-</fieldset>
-<div class="form-field">
-<label for="contact-email">Email <span class="form-required" aria-hidden="true">*</span></label>
-<input type="email" id="contact-email" name="Email" autocomplete="email" spellcheck="false" required>
-</div>
-<fieldset class="form-field form-choices">
-<legend>Is there a specific program you are interested in?</legend>
-<div class="form-check">
-<input type="checkbox" id="contact-program-youth" name="Program" value="Youth Rowing">
-<label for="contact-program-youth">Youth Rowing</label>
-</div>
-<div class="form-check">
-<input type="checkbox" id="contact-program-masters" name="Program" value="Masters (Adult) Rowing">
-<label for="contact-program-masters">Masters (Adult) Rowing</label>
-</div>
-<div class="form-check">
-<input type="checkbox" id="contact-program-events" name="Program" value="Events and Programming">
-<label for="contact-program-events">Events and Programming</label>
-</div>
-</fieldset>
-<div class="form-field">
-<label for="contact-message">Comment or Message <span class="form-required" aria-hidden="true">*</span></label>
-<textarea id="contact-message" name="Message" rows="6" required></textarea>
-</div>
-<div class="form-actions">
-<button type="submit" class="btn-brc">Submit</button>
-</div>
-</form>
-```
+:::: {.band .band-light}
+::: {.centered}
+Email us at [info@belmontrowing.org](mailto:info@belmontrowing.org)
+
+::: {.btn-row}
+[Email Us](mailto:info@belmontrowing.org){.btn-brc}
 :::
+:::
+::::
 
 ::: {.divider}
 :::

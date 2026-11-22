@@ -527,7 +527,7 @@ Add `.align-top` to top-align instead of centring, and `.text-center` to centre 
 
 ### Embedded map
 
-The only raw HTML in the pages besides the contact form. Copy the `src` from Google Maps
+Raw HTML is allowed only for this (and a future form; see "Contact form"). Copy the `src` from Google Maps
 (Share → Embed a map) and keep a `title`:
 
 ```markdown
@@ -579,34 +579,48 @@ Small print, e.g. the iCrew registration note on the Adult page.
 Note: a class on a heading is also copied onto the section around it, so in SCSS
 always style heading classes as `h2.my-class`, never `.my-class` alone.
 
-## Contact form
+## Contact form (none at the moment)
 
-`contact/index.qmd` holds the form as raw HTML inside a ```` ```{=html} ```` block,
-styled by `.site-form` in `theme.scss`. Right now it **submits by `mailto:`**: pressing
-Submit opens the visitor's own email app with the answers pasted into a new message to
-info@belmontrowing.org. Nothing is stored or sent automatically, and visitors without
-an email app set up (common on shared and work computers) can't use it.
+The site has **no contact form**. The Contact page's "Contact Us" section is one centred
+line linking to info@belmontrowing.org plus a green "Email Us" button, both plain
+`mailto:` links (ordinary markdown, no raw HTML).
 
-To switch to a form service, change only the `<form …>` line. It is currently:
+The form styling is kept in `theme.scss` (section 12, `.site-form`) in case a form is
+wanted later. A form needs a form service so messages arrive without the visitor's own
+email app: **Web3Forms** (web3forms.com; get an access key for info@belmontrowing.org,
+which is meant to be public) or **Formspree** (formspree.io; create a form and use its
+endpoint as `action="https://formspree.io/f/YOUR_FORM_ID"` and drop the `access_key` line).
+Put this raw HTML block inside the Contact page's content band, render, and send a test
+message:
 
-```html
-<form class="site-form" action="mailto:info@belmontrowing.org" method="post" enctype="text/plain">
+````markdown
+```{=html}
+<form class="site-form" action="https://api.web3forms.com/submit" method="post">
+<input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+<div class="form-field">
+<label for="contact-name">Name <span class="form-required" aria-hidden="true">*</span></label>
+<input type="text" id="contact-name" name="name" autocomplete="name" required>
+</div>
+<div class="form-field">
+<label for="contact-email">Email <span class="form-required" aria-hidden="true">*</span></label>
+<input type="email" id="contact-email" name="email" autocomplete="email" spellcheck="false" required>
+</div>
+<div class="form-field">
+<label for="contact-message">Message <span class="form-required" aria-hidden="true">*</span></label>
+<textarea id="contact-message" name="message" rows="6" required></textarea>
+</div>
+<div class="form-actions">
+<button type="submit" class="btn-brc">Submit</button>
+</div>
+</form>
 ```
+````
 
-- **Formspree** (formspree.io): create a form, copy its endpoint, and replace the line with
-  ```html
-  <form class="site-form" action="https://formspree.io/f/YOUR_FORM_ID" method="post">
-  ```
-- **Web3Forms** (web3forms.com): get an access key for info@belmontrowing.org, replace the
-  line with the two lines below (the access key is meant to be public):
-  ```html
-  <form class="site-form" action="https://api.web3forms.com/submit" method="post">
-  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
-  ```
-
-In both cases `enctype="text/plain"` must be removed (it only works with `mailto:`).
-Keep the field `name="…"` attributes: they become the labels in the email you receive.
-Also update the HTML comment above the form, render, and send a test message.
+- The `name="…"` attributes become the labels in the email you receive; `email` also
+  lets you press Reply.
+- Other helpers in `theme.scss`: `.form-row` (side-by-side fields), `.form-sublabel`,
+  `.form-check` (checkbox + label), `fieldset.form-field` with a `<legend>` for groups.
+- Do not use `action="mailto:…"`: it only works for visitors with an email app set up.
 
 ## Where to change common things
 
@@ -616,10 +630,10 @@ Also update the HTML comment above the form, render, and send a test message.
 | Season dates, fees, practice times, regattas, sessions, prices | `schedule.xlsx` (see "Updating the schedule each season") |
 | How a seasonal table looks / is built | `R/schedule.R` (styling: `.schedule` in `theme.scss`) |
 | Coach / board bios and photos | `about/index.qmd` (`.person` cards, `.person-tile`s) + `images/staff/` |
-| Navbar, Social menu, footer links | `_quarto.yml` (`navbar:` and `page-footer:`) |
+| Navbar, Social menu, footer links | `_quarto.yml` (`navbar:` and `page-footer:`). Links to other websites there carry `target: _blank` and `rel: noopener` so they open in a new tab; copy those two lines onto any new outside link (the footer Donate line uses `{.footer-donate target="_blank" rel="noopener"}`). Our own pages leave them out. |
 | Registration link (iCrew) | Search all `.qmd` files for `icrew.club` |
 | Donate link (Zeffy) | Search for `zeffy.com` (home, about, and the footer in `_quarto.yml`) |
-| Contact form destination | `contact/index.qmd`, the `<form …>` line (see "Contact form") |
+| Contact email address | `contact/index.qmd`, the "Contact Us" section (see "Contact form") |
 | Colours and fonts | Variables at the top of `theme.scss` |
 | Logo / favicon | `images/logo.jpg`, `images/favicon.png` (set in `_quarto.yml`) |
 

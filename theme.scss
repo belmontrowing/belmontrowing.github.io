@@ -354,7 +354,7 @@ img { max-width: 100%; height: auto; }
   box-shadow: inset 0 0 10px rgba(0, 0, 0, .25);
   &:hover, &:focus-visible { background-color: $brc-green-dark; color: $brc-white !important; }
 }
-// .btn-brc is also used on real <button>s (the contact form's Submit).
+// .btn-brc also works on real <button>s (e.g. a form's Submit).
 button.btn-brc { cursor: pointer; }
 
 .btn-brc-outline {
@@ -783,7 +783,7 @@ h1.display-heading, h2.display-heading {
 
 
 // =============================================================================
-// 12. FORMS (the contact form; written in raw HTML inside the page)
+// 12. FORMS (not used right now; kept for a future form written in raw HTML)
 //    <form class="site-form" ...>
 //      .form-field      one label + input (or a <fieldset> group)
 //      .form-row        side-by-side fields (First / Last); stacks on phones
@@ -791,7 +791,7 @@ h1.display-heading, h2.display-heading {
 //      .form-check      one checkbox + its label
 //      .form-required   the red "*"
 //      .form-actions    the submit button row
-//    See "Contact form" in CLAUDE.md for the full markup.
+//    See "Contact form" in CLAUDE.md for a ready-to-use snippet.
 // =============================================================================
 .site-form {
   max-width: $brc-narrow-width;
