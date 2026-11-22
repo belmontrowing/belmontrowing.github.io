@@ -932,8 +932,9 @@ Plain JavaScript, about 50 commented lines, no libraries. `_filters/season-colla
 adds `<script src="…/scripts/site.js" defer>` to every page with the right relative path,
 and `resources:` in `_quarto.yml` copies `scripts/` into `docs/`. It does exactly two things:
 
-1. **Current section in the jump-link bar**: watches the sections the bar links to (an
-   `IntersectionObserver` on a thin line just below the header and bar) and sets
+1. **Current section in the jump-link bar**: as the page scrolls it checks the sections the
+   bar links to (the current one is the last whose top has passed a line a little above
+   the middle of the window; at the very bottom of the page, the last section) and sets
    `aria-current="true"` on the link of the section in view; on phones it also scrolls the
    bar sideways to keep that link visible (never the page). Pages without a bar: nothing.
 2. **Space opens the header dropdowns** (Programs, Social), like Enter.

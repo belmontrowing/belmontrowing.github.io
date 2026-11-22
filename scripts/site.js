@@ -6,18 +6,18 @@
   var bar = document.querySelector("#main-content > .pill-nav");
   var links = bar ? [].slice.call(bar.querySelectorAll('a[href^="#"]')) : [];
   var targets = links.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
-  if (links.length && targets.every(Boolean) && "IntersectionObserver" in window) {
+  if (links.length && targets.every(Boolean)) {
     var row = bar.querySelector("p") || bar;
-    // The "reading line": just below the header (and the bar, where it sticks).
-    var lineY = function () {
-      var h = document.getElementById("quarto-header");
-      var sticky = getComputedStyle(bar).position === "sticky";
-      return (h ? h.offsetHeight : 0) + (sticky ? bar.offsetHeight : 0) + 25;   // = scroll-padding-top + 1
-    };
+    // The current section is the last one whose top has passed a "reading line" a little
+    // above the middle of the window. (A jump link lands its section well above that line,
+    // so the link just clicked is always the one marked.) At the very bottom of the page the
+    // last section counts, even if it is too short to reach the line.
     var last = null;
     var update = function () {
-      var line = lineY(), i = -1;
+      var line = window.innerHeight * 0.45, i = -1;
       targets.forEach(function (t, k) { if (t.getBoundingClientRect().top <= line) i = k; });
+      var doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) i = targets.length - 1;
       links.forEach(function (a, k) {
         if (k === i) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
       });
@@ -27,17 +27,17 @@
       }
       last = cur;
     };
-    // Watch a 1px strip at the reading line: a callback fires whenever a section crosses it.
-    var io;
-    var watch = function () {
-      if (io) io.disconnect();
-      var line = lineY();
-      io = new IntersectionObserver(update, { rootMargin: -line + "px 0px " + -(innerHeight - line - 1) + "px 0px" });
-      targets.forEach(function (t) { io.observe(t); });
-      update();
+    // Re-check on scroll (at most once per frame), on resize, and once the page has loaded.
+    var queued = false;
+    var onScroll = function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; update(); });
     };
-    addEventListener("resize", watch);
-    watch();
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    addEventListener("load", update);
+    update();
   }
 
   // 2. Header dropdowns (Programs, Social): Space opens them, like Enter does.
