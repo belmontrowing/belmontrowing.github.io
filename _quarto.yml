@@ -102,6 +102,9 @@ format:
     toc: false
     anchor-sections: false
     link-external-newwindow: true
+    # Links to our own site (http or https, with or without www, or the github.io
+    # address) are NOT external, so they open in the same tab.
+    link-external-filter: '^(?:http:|https:)\/\/(?:www\.)?belmontrowing\.(?:org|github\.io)'
     lang: en
     filters:
       - _filters/main-landmark.lua
