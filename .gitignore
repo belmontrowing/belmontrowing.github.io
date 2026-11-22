@@ -22,3 +22,5 @@
 
 # Office temp files
 ~$*
+
+**/*.quarto_ipynb
