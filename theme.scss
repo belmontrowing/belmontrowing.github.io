@@ -1,253 +1,683 @@
 /*-- scss:defaults --*/
 
 // =============================================================================
-// BELMONT ROWING CENTER: SITE THEME
+// BELMONT ROWING CENTER: SITE THEME  ("early water")
 // Layered on Bootstrap's "cosmo" theme (see _quarto.yml).
-// To change a colour or font across the whole site, edit the variables below.
+//
+// HOW THIS FILE IS ORGANISED
+//   Design tokens (this "defaults" part): colours, fonts, type sizes, spacing,
+//   radii, shadows. Change a token here and it changes everywhere.
+//   Then the rules, numbered:
+//      1  Base typography            11  Season card (+ status note)
+//      2  Header (navbar)            12  Schedule / pricing tables (+ phones)
+//      3  Footer                     13  Price card
+//      4  Bands + section headings   14  Location: address cards, maps
+//      5  Heroes / page headers      15  People (coaches, board)
+//      6  Sub-navigation             16  Upcoming events (home)
+//      7  Buttons                    17  Call to action (band + card)
+//      8  Photo cards (home)         18  Text helpers
+//      9  Cards (tiles, value cards) 19  Forms (unused for now)
+//     10  Callouts, notes and lists  20  Page-specific files (styles/_<page>.scss)
+//   Full copy-paste snippets for every component are in CLAUDE.md.
+//
+//   THREE kinds of box, no more:
+//     Card     white, hairline, one soft shadow (paper + no shadow on a white band);
+//              titled groups get the blue-to-green top rule  -> .tile, .person,
+//              .price-card, .event, .letter
+//     Callout  pale blue -> .info-box
+//     Feature  navy head -> .season-card (and the Contact page's .cta-card)
+//
+//   PANDOC GOTCHA: a fenced div that STARTS WITH A HEADING becomes that heading's
+//   <section>, carrying the div's classes. So style `section.x` or `.x`, never
+//   `.x > section`. (e.g. ::: {.season-head} ### ... ::: becomes <section class="season-head">)
 // =============================================================================
 
-// ---- Palette (measured from the original WordPress site) --------------------
-$brc-blue:        #045CB4;  // primary blue: headings, links
-$brc-blue-dark:   #034A91;  // link hover
-$brc-blue-bright: #046BD2;  // original "link blue" (only used on white)
-$brc-text:        #334155;  // body text
-$brc-ink:         #1E293B;  // darkest text; also the navy band colour
-$brc-navy:        #1E293B;  // "CLUB PROGRAMMING" band
-$brc-page-bg:     #DBE3E7;  // light grey-blue page background
-$brc-panel:       #A3B5C7;  // grey-blue content boxes on the inner pages
-$brc-panel-link:  #0B3D75;  // links inside grey-blue boxes (darker = readable)
-$brc-white:       #FFFFFF;
-$brc-muted:       #54595F;  // grey for italic taglines
-$brc-green-orig:  #61CE70;  // original button green (too light for white text)
-$brc-green:       #2A8436;  // button green, darkened so white text passes WCAG AA
-$brc-green-dark:  #226E2C;  // button hover
+// ---- Colour tokens ------------------------------------------------------------
+$brc-navy-900:    #0A1F3C;  // footer, navy bands, photo overlays, season-card heads
+$brc-navy-800:    #10305A;  // secondary dark (gradients on navy)
+$brc-blue:        #045CB4;  // brand blue (from the logo): links, labels, focus rings
+$brc-blue-700:    #034A91;  // link hover
+$brc-blue-50:     #EEF4FB;  // pale blue tint (callouts, table header)
+$brc-sky:         #9CC9F5;  // links on navy
+$brc-green:       #2A8436;  // action green: primary buttons (white text passes AA)
+$brc-green-700:   #226E2C;  // button hover
+$brc-green-accent:#7DBA3F;  // logo's light green: thin rules and dots ONLY (never text, never behind text)
+$brc-paper:       #F6F7F4;  // page background
+$brc-white:       #FFFFFF;  // cards, alternate bands
+$brc-ink:         #14202E;  // headings, strong text
+$brc-text:        #33414F;  // body text
+$brc-muted:       #5B6B7C;  // secondary text (roles, captions, notes)
+$brc-hairline:    rgba(10, 31, 60, .12);  // borders and dividers
 
-// ---- Fonts -------------------------------------------------------------------
-// Headings: Roboto (Google Fonts). Body: the device's own clean sans-serif.
-$web-font-path: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap";
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-$brc-heading-font: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+// ---- Type tokens --------------------------------------------------------------
+// Two families from Google Fonts, only the weights used:
+//   Barlow Condensed 600/700: display and headings (boat-lettering / regatta signage)
+//   Inter 400/500/600 (+400 italic): everything else
+$web-font-path: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap";
+$brc-font-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+$brc-font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-// ---- Layout --------------------------------------------------------------------
-$brc-content-width: 1140px;  // max width of text inside full-width bands
-$brc-narrow-width:  820px;   // max width of .narrow / .centered text blocks
-$brc-radius:        10px;
+$brc-size-hero:    clamp(2.75rem, 6vw, 5rem);       // home hero headline
+$brc-size-page:    clamp(2.5rem, 5vw, 4.25rem);     // inner page title (h1 over the photo)
+$brc-size-h2:      clamp(2rem, 3.5vw, 3rem);        // section headings
+$brc-size-h3:      clamp(1.45rem, 2vw, 1.75rem);
+$brc-size-h4:      1.125rem;
+$brc-size-card:    1.5rem;                          // titles inside cards
+$brc-size-lead:    clamp(1.125rem, 1.6vw, 1.25rem); // lead paragraph (first paragraph only)
+$brc-size-eyebrow: .8125rem;                        // small uppercase labels
+$brc-size-small:   .9375rem;
+
+// ---- Space, layout, shape -----------------------------------------------------
+// 8px spacing scale (1rem = 16px): .5rem 1rem 1.5rem 2rem 3rem 4rem 6rem
+$brc-section-pad: clamp(3.5rem, 8vw, 7rem);   // top/bottom padding of a band
+$brc-gutter:      clamp(1.25rem, 4vw, 2.5rem); // left/right page margin
+$brc-container:   1180px;                      // content width inside bands
+$brc-measure:     68ch;                        // longest comfortable line of text
+$brc-narrow-width: 760px;                      // .centered blocks
+$brc-card-pad:    clamp(1.25rem, 3vw, 2rem);   // inside cards
+$brc-radius:      12px;                        // cards, photos, tables
+$brc-radius-sm:   8px;                         // buttons, small things
+$brc-shadow:      0 1px 2px rgba(10, 31, 60, .06), 0 8px 24px rgba(10, 31, 60, .08);
+$brc-shadow-lift: 0 2px 4px rgba(10, 31, 60, .08), 0 16px 36px rgba(10, 31, 60, .16);
+$brc-rule:        linear-gradient(to right, $brc-blue, $brc-blue 70%, $brc-green-accent); // card top rule
+$brc-ease:        .18s ease;                   // every hover/colour/zoom transition
+$brc-header-h:    76px;                        // header height on computers
+$brc-header-h-sm: 64px;                        // header height on phones/tablets
+$brc-subnav-h:    52px;                        // sticky sub-navigation height
 
 // ---- Bootstrap / Quarto variables ---------------------------------------------
-$body-bg: $brc-page-bg;
+$font-family-sans-serif: $brc-font-body;
+$font-size-root: 16px;
+$font-size-base: 1.0625rem;   // 17px body text
+$line-height-base: 1.65;
+$body-bg: $brc-paper;
 $body-color: $brc-text;
 $link-color: $brc-blue;
-$link-hover-color: $brc-blue-dark;
-$headings-font-family: $brc-heading-font;
-$headings-font-weight: 600;
-$headings-color: $brc-blue;
+$link-hover-color: $brc-blue-700;
+$headings-font-family: $brc-font-display;
+$headings-font-weight: 700;
+$headings-color: $brc-ink;
 $primary: $brc-blue;
 $success: $brc-green;
+$border-radius: $brc-radius-sm;
 $navbar-bg: $brc-white;
 $navbar-fg: $brc-ink;
 $navbar-hl: $brc-blue;
-$footer-bg: $brc-white;
-$footer-fg: $brc-text;
-$font-size-root: 16px;
-$line-height-base: 1.65;
+$footer-bg: $brc-navy-900;
+$footer-fg: rgba(255, 255, 255, .78);
 
 
 /*-- scss:rules --*/
 
-// =============================================================================
-// 1. BASE TYPOGRAPHY
-// =============================================================================
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+// The header and sub-nav heights as CSS variables (used for sticky offsets).
+:root {
+  --brc-header-h: #{$brc-header-h-sm};
+  --brc-subnav-h: 0px;                 // the sub-nav only sticks on computers
+  @media (min-width: 992px) {
+    --brc-header-h: #{$brc-header-h};
+    --brc-subnav-h: #{$brc-subnav-h};
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: $brc-heading-font;
-  font-weight: 600;
-  color: $brc-blue;
-  line-height: 1.2;
+// Mixins ---------------------------------------------------------------------------
+// Keep a full-width block's contents inside the 1180px container.
+@mixin brc-container-padding {
+  padding-left:  max(#{$brc-gutter}, calc((100% - #{$brc-container}) / 2));
+  padding-right: max(#{$brc-gutter}, calc((100% - #{$brc-container}) / 2));
 }
-
-h1 {
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  text-align: center;            // page titles are centred
-  margin-bottom: 1rem;
+// Keyboard focus ring: solid brand blue on light surfaces (3:1+), white on dark ones.
+@mixin brc-focus-ring($color: $brc-blue) {
+  outline: 3px solid $color;
+  outline-offset: 3px;
 }
-h2 {
-  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
-  text-align: center;            // section titles are centred, as on the old site
-  margin-top: 0;
-  margin-bottom: 1.25rem;
-}
-h3 { font-size: 1.45rem; margin-top: 1.75rem; margin-bottom: .6rem; }
-h4 { font-size: 1.2rem;  margin-top: 1.25rem; margin-bottom: .5rem; }
-h5, h6 { font-size: 1.05rem; color: $brc-ink; }
-
-strong { font-weight: 600; color: $brc-ink; }
-
-a {
-  text-underline-offset: .18em;
-  text-decoration-thickness: 1px;
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid rgba($brc-ink, .25);
-  opacity: 1;
-  margin: 2rem 0;
-}
-
-img { max-width: 100%; height: auto; }
-
-// Page content sits in <div id="main-content"> (added by _filters/main-landmark.lua).
-// Remove Quarto's default top padding so heroes sit flush under the navbar.
-#quarto-content > #main-content { padding-top: 0; }
-// Each page shows its own heading (in a hero or band), so Quarto's automatic
-// title block is hidden. The page `title:` still sets the browser-tab title.
-#title-block-header { display: none; }
-// Quarto wraps each heading and the text under it in a <section>.
-// Space between two ## sections that sit inside the same band:
-#main-content section.level2:not(.band) + section.level2:not(.band) { margin-top: 2.5rem; }
-#quarto-content #main-content h2 { margin-top: 0; }
-
-// Visually hidden but readable by screen readers.
-.visually-hidden-text {
+// Hidden on screen, still read by screen readers.
+@mixin brc-visually-hidden {
   position: absolute !important;
   width: 1px; height: 1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+// The Card: white, hairline, one shadow. On a white band: paper, no shadow.
+@mixin brc-card {
+  background-color: $brc-white;
+  border: 1px solid $brc-hairline;
+  border-radius: $brc-radius;
+  box-shadow: $brc-shadow;
+  .band-white & { background-color: $brc-paper; box-shadow: none; }
+}
+// The blue-to-green rule across the top of a titled card.
+@mixin brc-card-rule {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 4px;
+    background: $brc-rule;
+  }
+}
+// Uppercase condensed card title.
+@mixin brc-card-title {
+  font-family: $brc-font-display;
+  font-weight: 700;
+  font-size: $brc-size-card;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  margin: 0 0 1rem;
+}
+// Green-dot bullets (nested items: small muted dashes).
+@mixin brc-dot-list {
+  ul { list-style: none; padding: 0; margin-bottom: 0; }
+  li { position: relative; padding-left: 1.1rem; }
+  li + li { margin-top: .55rem; }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .62em;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background-color: $brc-green-accent;
+  }
+  li ul { margin: .45rem 0 .2rem; }
+  li li { font-size: $brc-size-small; color: $brc-muted; padding-left: 1rem; }
+  li li + li { margin-top: .2rem; }
+  li li::before { width: 8px; height: 1.5px; border-radius: 0; top: .78em; background-color: $brc-muted; opacity: .6; }
+}
+// An icon from Bootstrap Icons as generated content, hidden from screen readers
+// (the "/ ''" part is its empty alt text, so it never joins a link's name).
+@mixin brc-icon($glyph) {
+  content: $glyph / "";
+  font-family: "bootstrap-icons";
+  font-weight: 400;
+  font-style: normal;
+}
 
 
 // =============================================================================
-// 2. NAVBAR AND FOOTER
+// 1. BASE TYPOGRAPHY
 // =============================================================================
+// Jump links land below the fixed header AND the sticky sub-nav (computers);
+// on phones the sub-nav doesn't stick, so --brc-subnav-h is 0 there.
+html { scroll-padding-top: calc(var(--brc-header-h) + var(--brc-subnav-h) + 1.5rem); }
+
+body {
+  font-family: $brc-font-body;
+  color: $brc-text;
+  background-color: $brc-paper;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv11", "ss01";   // Inter: single-storey a, open digits
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $brc-ink;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+// Display headings: Barlow Condensed, uppercase, slightly tracked.
+h1, h2 {
+  font-family: $brc-font-display;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+h1 { font-size: $brc-size-page; margin: 0 0 1rem; }
+h2 { font-size: $brc-size-h2;  margin: 0 0 1.5rem; }
+// Quarto draws a grey line under every h2; this theme uses a short accent rule instead.
+h1, h2, .h1, .h2 { border-bottom: 0 !important; padding-bottom: 0 !important; }
+h3 {
+  font-family: $brc-font-display;
+  font-weight: 600;
+  font-size: $brc-size-h3;
+  letter-spacing: .005em;
+  margin: 3rem 0 1rem;
+}
+h4 {
+  font-family: $brc-font-body;
+  font-weight: 600;
+  font-size: $brc-size-h4;
+  line-height: 1.35;
+  margin: 2rem 0 .5rem;
+}
+h5, h6 { font-family: $brc-font-body; font-weight: 600; font-size: 1rem; }
+
+p, li { text-wrap: pretty; }
+strong, b { font-weight: 600; color: $brc-ink; }
+
+a {
+  text-underline-offset: .2em;
+  text-decoration-thickness: 1px;
+  transition: color $brc-ease;
+  &:focus-visible { @include brc-focus-ring; border-radius: 2px; }
+}
+// Dark surfaces: white focus rings.
+:is(.hero, .band-navy, .season-head, .cta-card, .footer) :focus-visible { outline-color: $brc-white !important; }
+
+hr { border: 0; border-top: 1px solid $brc-hairline; opacity: 1; margin: 3rem 0; }
+img { max-width: 100%; height: auto; }
+
+// Lists in page content (:where() keeps them weak, so components can override).
+:where(#main-content) {
+  :where(ul, ol) { padding-left: 1.25rem; }
+  :where(li + li) { margin-top: .35rem; }
+  :where(li)::marker { color: $brc-muted; }
+}
+
+// Page content sits in <div id="main-content"> (added by _filters/main-landmark.lua).
+#quarto-content > #main-content { padding-top: 0; }
+// Each page shows its own heading (in a hero), so Quarto's title block is hidden.
+#title-block-header { display: none; }
+
+// Keep a short token on one line: [501(c)(3)]{.nowrap}
+.nowrap { white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+// =============================================================================
+// 2. HEADER (navbar): white, slim, always visible. Logo left, links right,
+//    and ONE green "Register" button at the far right (the navbar item whose
+//    address is the iCrew registration link; see _quarto.yml).
+// =============================================================================
+#quarto-header.headroom--unpinned { transform: none !important; }   // never hide on scroll
+
 .navbar {
   background-color: $brc-white !important;
-  box-shadow: 0 1px 0 rgba($brc-ink, .08), 0 2px 10px rgba($brc-ink, .06);
-  padding-top: .4rem;
-  padding-bottom: .4rem;
+  border-bottom: 1px solid $brc-hairline;
+  box-shadow: 0 1px 12px rgba($brc-navy-900, .04);
+  min-height: var(--brc-header-h);
+  padding-top: 0;
+  padding-bottom: 0;
 }
+.navbar, #quarto-header > nav { padding-left: 0; padding-right: 0; }
+.navbar > .navbar-container {
+  @include brc-container-padding;
+  min-height: var(--brc-header-h);
+}
+.navbar .navbar-brand-container { min-height: var(--brc-header-h); }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  min-height: 48px;           // tap target
+  padding: 0;
+  margin-right: 1.5rem;
+  &:focus-visible { @include brc-focus-ring; border-radius: 4px; }
+}
 .navbar-brand img,
 .navbar .navbar-logo {
-  max-height: 58px;
-  height: 58px;
+  height: 46px;
+  max-height: 46px;
   width: auto;
+  @media (max-width: 991.98px) { height: 38px; max-height: 38px; }
 }
 
+.navbar .navbar-nav { align-items: center; gap: .125rem; }
 .navbar .navbar-nav .nav-link {
-  font-family: $brc-heading-font;
+  position: relative;
+  font-family: $brc-font-body;
   font-weight: 500;
-  font-size: .98rem;
+  font-size: .9375rem;
   color: $brc-ink !important;
-  padding-left: .7rem !important;
-  padding-right: .7rem !important;
-
-  &:hover, &:focus { color: $brc-blue !important; }
+  padding: .5rem .7rem !important;
+  border-radius: 6px;
+  transition: color $brc-ease, background-color $brc-ease;
+  &:hover { color: $brc-blue !important; }
+  &:focus-visible { @include brc-focus-ring; }
+  // Active page: brand blue with a short accent bar under the word.
   &.active {
     color: $brc-blue !important;
-    box-shadow: inset 0 -2px 0 $brc-blue;
+    &::after {
+      content: "";
+      position: absolute;
+      left: .7rem; right: .7rem; bottom: .1rem;
+      height: 2px;
+      border-radius: 2px;
+      background-color: $brc-green-accent;
+    }
   }
+}
+.navbar .dropdown-toggle::after { vertical-align: .15em; margin-left: .35em; }
+
+// Programs dropdown (Youth / Adult / Other): Quarto marks the current page on top-level
+// links only, so on the three programme pages the theme marks it from the page's body
+// class: the Programs item gets the same green underline as a current page (drawn with
+// ::before, because ::after is the dropdown caret), and the page's own row in the panel
+// is highlighted. The :has() line also covers a dropdown item Quarto marks .active.
+:is(.page-youth, .page-adult, .page-other) .navbar #nav-menu-programs,
+.navbar .nav-item.dropdown:has(.dropdown-item.active) > .nav-link {
+  color: $brc-blue !important;
+  &::before {
+    content: "";
+    position: absolute;
+    left: .7rem; right: 1.55rem; bottom: .1rem;
+    height: 2px;
+    border-radius: 2px;
+    background-color: $brc-green-accent;
+  }
+}
+.page-youth .navbar .dropdown-item[href$="youth/index.html"],
+.page-adult .navbar .dropdown-item[href$="adult/index.html"],
+.page-other .navbar .dropdown-item[href$="other/index.html"],
+.navbar .dropdown-item.active {
+  color: $brc-blue;
+  font-weight: 600;
+  background-color: $brc-blue-50;
+  box-shadow: inset 3px 0 0 $brc-green-accent;
+}
+
+// The Donate button (the Zeffy link in the navbar): outlined and quieter, just before Register.
+.navbar .navbar-nav .nav-link[href*="zeffy.com"] {
+  margin-left: .75rem;
+  padding: .5rem 1.05rem !important;
+  border: 1.5px solid rgba($brc-green, .6);
+  border-radius: $brc-radius-sm;
+  color: $brc-green !important;
+  font-family: $brc-font-display;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  line-height: 1.2;
+  &:hover { background-color: rgba($brc-green, .08); border-color: $brc-green; color: $brc-green-700 !important; }
+}
+.navbar .nav-item:has(> .nav-link[href*="zeffy.com"]) + .nav-item > .nav-link[href*="icrew.club/register"] { margin-left: .5rem; }
+
+// The Register button (the iCrew link in the navbar).
+.navbar .navbar-nav .nav-link[href*="icrew.club/register"] {
+  margin-left: .75rem;
+  padding: .6rem 1.25rem !important;
+  border-radius: $brc-radius-sm;
+  background-color: $brc-green;
+  color: $brc-white !important;
+  font-family: $brc-font-display;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  line-height: 1.2;
+  &:hover { background-color: $brc-green-700; color: $brc-white !important; }
 }
 
 .navbar .dropdown-menu {
-  border: 0;
-  border-radius: 8px;
+  border: 1px solid $brc-hairline;
+  border-radius: $brc-radius;
   background-color: $brc-white;
-  box-shadow: 0 8px 24px rgba($brc-ink, .15);
+  box-shadow: $brc-shadow-lift;
+  padding: .5rem;
   .dropdown-item {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     color: $brc-ink;
-    &:hover, &:focus { color: $brc-blue; background: rgba($brc-blue, .07); }
-    .bi { margin-right: .4rem; }
+    border-radius: 6px;
+    padding: .6rem .85rem;
+    font-size: .9375rem;
+    &:hover, &:focus { color: $brc-blue; background: $brc-blue-50; }
+    &:focus-visible { @include brc-focus-ring; outline-offset: 0; }
+    .bi { margin-right: .5rem; color: $brc-muted; }
   }
 }
 
-.navbar-toggler { border-color: rgba($brc-ink, .25); }
-
+.navbar-toggler {
+  border: 1px solid $brc-hairline;
+  border-radius: $brc-radius-sm;
+  padding: .55rem .7rem;
+  &:focus { box-shadow: none; }
+  &:focus-visible { @include brc-focus-ring; }
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2314202E' stroke-linecap='round' stroke-width='2.2' d='M5 8h20M5 15h20M5 22h20'/%3e%3c/svg%3e") !important;
+}
 // Quarto always marks the navbar "dark"; this site's navbar is white.
 .navbar[data-bs-theme="dark"] { color-scheme: light; }
-// Keep the logo at the left edge on phones too (Quarto centres it).
-.navbar-brand-container.mx-auto { margin-left: 0 !important; margin-right: auto !important; }
+// Phones: logo at the left, menu button at the right (Quarto's default is the reverse).
+.navbar .navbar-container > .navbar-brand-container { order: 1; margin-right: auto !important; }
+.navbar .navbar-container > .navbar-toggler { order: 2; margin: 0; }
 
-// Footer: nav links (left), donate link (centre), social icons (right).
-.nav-footer {
-  background-color: $brc-white;
-  border-top: 0;
-  box-shadow: 0 -1px 0 rgba($brc-ink, .08);
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  font-size: .95rem;
-  align-items: center;
+// Small laptops (992-1199px): tighter spacing so the whole menu, Donate and Register
+// stay on one line beside the logo.
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navbar-brand { margin-right: .75rem; }
+  .navbar .navbar-nav .nav-link { padding-left: .5rem !important; padding-right: .5rem !important; font-size: .9rem; }
+  .navbar .navbar-nav .nav-link.active::after { left: .5rem; right: .5rem; }
+  .navbar .navbar-nav .nav-link[href*="zeffy.com"] { margin-left: .4rem; padding-left: .8rem !important; padding-right: .8rem !important; }
+  .navbar .navbar-nav .nav-link[href*="icrew.club/register"] { padding-left: .9rem !important; padding-right: .9rem !important; }
+}
 
-  a { color: $brc-ink; }
-  a:hover { color: $brc-blue; }
-  .nav-link { padding: .25rem .55rem; }
-  .bi { font-size: 1.35rem; }
+// Phones and tablets: the menu opens as a tidy list under the header.
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    margin: 0 calc(-1 * #{$brc-gutter});
+    padding: .5rem $brc-gutter 1.25rem;
+    border-top: 1px solid $brc-hairline;
+    max-height: calc(100svh - var(--brc-header-h));
+    overflow-y: auto;
+  }
+  .navbar .navbar-nav { align-items: stretch; gap: 0; }
+  .navbar .navbar-nav .nav-link {
+    padding: .8rem 0 !important;          // 48px tap targets
+    font-size: 1.0625rem;
+    border-bottom: 1px solid $brc-hairline;
+    border-radius: 0;
+    &.active::after { left: 0; right: auto; top: .8rem; bottom: .8rem; width: 3px; height: auto; }
+    &.active { padding-left: .9rem !important; }
+  }
+  .navbar .navbar-nav .nav-link[href*="zeffy.com"] {
+    margin: 1.25rem 0 0;
+    justify-content: center;
+    text-align: center;
+    padding: .8rem 1rem !important;
+    border-bottom: 1.5px solid rgba($brc-green, .6);
+    border-radius: $brc-radius-sm;
+  }
+  .navbar .navbar-nav .nav-link[href*="icrew.club/register"] {
+    margin: .75rem 0 0 !important;
+    text-align: center;
+    padding: .85rem 1rem !important;
+    border-radius: $brc-radius-sm;
+    border-bottom: 0;
+  }
+  // Dropdowns open in place, their items indented under the parent (48px rows).
+  .navbar .dropdown-menu { box-shadow: none; border: 0; border-radius: 0; padding: .25rem 0 .5rem 1rem; margin: 0; }
+  .navbar .dropdown-menu .dropdown-item { min-height: 48px; font-size: 1rem; border-radius: 6px; }
+  :is(.page-youth, .page-adult, .page-other) .navbar #nav-menu-programs,
+  .navbar .nav-item.dropdown:has(.dropdown-item.active) > .nav-link {
+    padding-left: .9rem !important;
+    &::before { left: 0; right: auto; top: .8rem; bottom: .8rem; width: 3px; height: auto; }
+  }
+  .navbar-nav-scroll { max-height: none; }
+}
 
-  .footer-donate {
-    font-family: $brc-heading-font;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: $brc-blue;
+
+// =============================================================================
+// 3. FOOTER (navy). Content is set in _quarto.yml under page-footer:
+//    left = club name, motto, 501(c)(3) line, Donate button
+//    center = two columns: [Visit] addresses + email, [Explore] page links
+//    right = [Follow] social links
+// =============================================================================
+.footer { background-color: $brc-navy-900; }
+
+footer.footer .nav-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 2fr) minmax(0, .9fr);
+  gap: 3rem clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  text-align: left;
+  background-color: $brc-navy-900;
+  color: rgba($brc-white, .78);
+  border-top: 3px solid $brc-green-accent;
+  @include brc-container-padding;
+  padding-top: clamp(3.5rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 5vw, 4.5rem);
+  font-size: .9375rem;
+  line-height: 1.6;
+
+  > div { margin: 0 !important; min-height: 0 !important; text-align: left !important; font-size: inherit !important; order: 0 !important; }
+  p { margin: 0 0 1rem; }
+  a { color: $brc-white; text-decoration: none; transition: color $brc-ease; }
+  a:hover { color: $brc-sky; text-decoration: underline; }
+  strong { color: $brc-white; font-weight: 600; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  // Links: 44px tall tap targets (they sit flush, so the list keeps its rhythm).
+  li a, p > a:only-child:not(.footer-donate) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
+  li + li { margin-top: 0; }
+  .bi { margin-right: .5rem; font-size: 1.05rem; color: $brc-sky; }
+
+  .nav-footer-center {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 2rem clamp(2rem, 4vw, 3.5rem);
+  }
+  // Tablets: club block on top, then Visit | Explore | Follow.
+  // Phones: club block, Visit, then Explore | Follow side by side.
+  @media (max-width: 991.98px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+    .nav-footer-left { grid-column: 1 / -1; }
+    .nav-footer-center { display: contents; }
+  }
+  @media (max-width: 575.98px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    .footer-col:first-child { grid-column: 1 / -1; }
   }
 }
+.footer-brand {
+  display: block;
+  font-family: $brc-font-display;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  color: $brc-white;
+}
+.footer-motto {
+  display: block;
+  font-family: $brc-font-display;
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: $brc-green-accent;
+  margin-top: -.25rem;
+}
+// Small uppercase column labels ("Visit", "Explore", "Follow").
+.footer-label {
+  display: block;
+  font-weight: 600;
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba($brc-white, .6);
+}
+.nav-footer a.footer-donate {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: .5rem;
+  padding: .7rem 1.25rem;
+  border: 1.5px solid rgba($brc-white, .55);
+  border-radius: $brc-radius-sm;
+  font-family: $brc-font-display;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  transition: background-color $brc-ease, color $brc-ease, border-color $brc-ease;
+  &:hover { background-color: $brc-white; color: $brc-navy-900; border-color: $brc-white; text-decoration: none; }
+}
+// A page that already ends with the Donate band: the footer's Donate is a plain link.
+body:has(.band-cta) .nav-footer a.footer-donate {
+  min-height: 44px;
+  margin-top: 0;
+  padding: 0;
+  border: 0;
+  font-family: $brc-font-body;
+  font-weight: 600;
+  font-size: .9375rem;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: underline;
+  text-decoration-color: $brc-green-accent;
+  text-underline-offset: .25em;
+  &:hover { background: none; color: $brc-sky; }
+}
 
 
 // =============================================================================
-// 3. FULL-WIDTH SECTION BANDS
+// 4. FULL-WIDTH BANDS AND SECTION HEADINGS
+//    One band per section, alternating:
+//    ::: {.band .band-light}   paper (the page colour)
 //    ::: {.band .band-white}   white
-//    ::: {.band .band-light}   light grey-blue (page colour)
-//    ::: {.band .band-panel}   darker grey-blue
-//    ::: {.band .band-navy}    dark navy, white text
-//    Content inside a band is kept to a readable width automatically.
+//    ::: {.band .band-navy}    deep navy, white text (with .band-cta: the Donate band)
+//    The section's ## comes first in the band and is STACKED above its content
+//    (heading, short green rule, content). Content is kept to the 1180px
+//    container; running text to 68ch.
 // =============================================================================
 .band {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  padding-left:  max(1.25rem, calc((100% - #{$brc-content-width}) / 2));
-  padding-right: max(1.25rem, calc((100% - #{$brc-content-width}) / 2));
-
-  // No extra gap at the bottom of a band (the band's padding is enough)...
+  padding-top: $brc-section-pad;
+  padding-bottom: $brc-section-pad;
+  @include brc-container-padding;
   > :last-child, > section > :last-child { margin-bottom: 0; }
-  // ...except a button row that ends a block in the MIDDLE of a band
-  // (e.g. ::: {.centered} heading + Register :::, followed by more text).
-  > section:not(:last-child) > .btn-row:last-child { margin-bottom: 1.5rem; }
+  // Running text keeps a comfortable line length; grids, tables and cards use the full width.
+  > p, > ul, > ol, > section > p, > section > ul, > section > ol,
+  > section > section > p, > section > section > ul { max-width: $brc-measure; }
 }
-.band-tight { padding-top: 1.75rem; padding-bottom: 1.75rem; }
+.band-light { background-color: $brc-paper; }
 .band-white { background-color: $brc-white; }
-.band-light { background-color: $brc-page-bg; }
-.band-panel {
-  background-color: $brc-panel;
-  color: $brc-ink;
-  h1, h2, h3, h4, h5, h6 { color: $brc-panel-link; }   // darker blue for contrast
-  a:not([class*="btn-brc"]) { color: $brc-panel-link; }
-}
 .band-navy {
-  background-color: $brc-navy;
-  color: $brc-white;
+  background-color: $brc-navy-900;
+  color: rgba($brc-white, .86);
   h1, h2, h3, h4, h5, h6, strong { color: $brc-white; }
-  a:not([class*="btn-brc"]) { color: #9CC9F5; }
+  a:not([class*="btn-brc"]) { color: $brc-sky; }
 }
 
+// Section heading: a short light-green rule under every ## in a band.
+.band h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 1rem;
+  border-radius: 2px;
+  background-color: $brc-green-accent;
+}
+.centered h2::after, .band-cta h2::after { margin-left: auto; margin-right: auto; }
+// Sub-heads inside a section (### Expectations, ### What To Bring ...) sit stacked above
+// their content; the first one right under the section heading needs less space.
+.band section.level2 > h2 + h3 { margin-top: 0; }
+
 
 // =============================================================================
-// 4. HERO BANNERS (photo + dark overlay + optional text)
-//    ::: {.hero}               tall home-page hero
-//    ::: {.hero .hero-short}   photo-only banner for inner pages
-//    The FIRST thing inside must be the photo:  ![](/images/x.jpg){.bg}
+// 5. HEROES / PAGE HEADERS (photo + navy gradient + text)
+//    The FIRST line inside must be the photo:  ![](/images/x.jpg){.bg alt=""}
+//    ::: {.hero}               tall home-page hero (eyebrow, # headline, line, buttons)
+//    ::: {.hero .hero-short}   inner-page header: # title (+ [subtitle]{.subheading})
 // =============================================================================
-
-// Any image with class .bg fills its parent like a background photo.
-// Works inside .hero and .photo-card. Use style="object-position: top"
-// on the image to choose which part of the photo stays visible.
+// Any image with class .bg fills its parent like a background photo
+// (inside .hero and .photo-card). Choose the visible part with
+// style="object-position: center 30%" on the image (0% = top, 100% = bottom).
 .hero, .photo-card {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-
   img.bg {
     position: absolute;
     inset: 0;
@@ -258,561 +688,1459 @@ img { max-width: 100%; height: auto; }
     object-position: center;
     z-index: -2;
   }
-  // Pandoc wraps the image in a <p>; make that wrapper take no space.
-  p:has(> img.bg) { margin: 0; height: 0; }
+  p:has(> img.bg) { margin: 0; height: 0; }   // Pandoc wraps the image in a <p>
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: clamp(340px, 62vh, 640px);
-  padding: 4rem 1.25rem;
+  justify-content: flex-end;     // content sits low
+  align-items: flex-start;       // and left
+  text-align: left;
+  min-height: clamp(520px, calc(88svh - var(--brc-header-h)), 720px);
+  @include brc-container-padding;
+  padding-top: 6rem;
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  background-color: $brc-navy-900;   // shows while the photo loads
   color: $brc-white;
-
-  // Dark overlay so white text is always readable.
-  &::before {
+  &::before {                        // navy gradient, strongest bottom-left where the text is
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(rgba(0, 0, 0, .30), rgba(0, 0, 0, .45));
+    background:
+      linear-gradient(to top, rgba($brc-navy-900, .92) 0%, rgba($brc-navy-900, .7) 40%, rgba($brc-navy-900, .2) 75%, rgba($brc-navy-900, .3) 100%),
+      linear-gradient(to right, rgba($brc-navy-900, .6) 0%, rgba($brc-navy-900, 0) 70%);
   }
-
-  h1, h2 {
+  > section, > p, > div { max-width: 64rem; }
+  h1 {
     color: $brc-white;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, .6);
-    margin: 0 0 .75rem;
+    font-size: $brc-size-hero;
+    line-height: .95;
+    letter-spacing: .005em;
+    margin: 0 0 1rem;
   }
-  h1 { font-size: clamp(2.1rem, 5.5vw, 3.6rem); }
   p {
-    font-family: $brc-heading-font;
+    font-family: $brc-font-display;
     font-weight: 600;
-    font-size: clamp(1.35rem, 3.2vw, 2.4rem);
-    line-height: 1.25;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, .6);
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: .01em;
+    color: $brc-white;
     margin: 0;
   }
+  .btn-row { margin: 2rem 0 0; }
+  .btn-row > p { justify-content: flex-start; font-size: 1rem; }
 }
 
-// Inner-page banner: photo only. Height follows the window width
-// (about 420px on a laptop, 220px on a phone) so group photos keep their heads.
-// Choose which part of the photo stays in view per page with
-// style="object-position: center 30%" on the image (0% = top, 100% = bottom).
+// Home hero only. The club's photo is 1200px wide, so it is held to a modest height,
+// darkened a touch, and its crop moves per screen size so the headline never sits
+// on the rowers (they are about 62% down the photo).
+.hero:not(.hero-short) {
+  img.bg { filter: saturate(.9); object-position: center 100%; }
+  // Below 1200px the photo is zoomed (its box is taller than the hero and anchored
+  // at the bottom) so the boat sits above the words instead of behind them.
+  @media (min-width: 576px) and (max-width: 1199.98px) {
+    img.bg { top: auto; bottom: 0; height: max(100%, 66rem); object-position: center 100%; }
+  }
+}
+// Phones: the photo sits on top uncovered, the words below on navy.
+@media (max-width: 575.98px) {
+  .hero:not(.hero-short) {
+    min-height: 0;
+    padding-top: calc(66vw + 1.5rem);
+    img.bg { height: 70vw; object-position: center 65%; }
+    &::before {
+      background: linear-gradient(to bottom, rgba($brc-navy-900, 0) 0, rgba($brc-navy-900, 0) calc(70vw - 9rem), $brc-navy-900 70vw);
+    }
+    .btn-row .btn-brc-lg { width: 100%; }
+  }
+}
+
+// Inner-page header: shorter, title bottom-left.
 .hero-short {
-  min-height: clamp(220px, 33vw, 460px);
-  padding: 2.5rem 1.25rem;
-  &::before { background: rgba(0, 0, 0, .15); }   // lighter overlay, usually no text
+  min-height: clamp(300px, 36vw, 500px);
+  padding-top: 4rem;
+  padding-bottom: clamp(2rem, 4.5vw, 3.5rem);
+  &::before {
+    background:
+      linear-gradient(to top, rgba($brc-navy-900, .88) 0%, rgba($brc-navy-900, .45) 45%, rgba($brc-navy-900, .05) 80%),
+      linear-gradient(to right, rgba($brc-navy-900, .35) 0%, rgba($brc-navy-900, 0) 60%);
+  }
+  h1 { font-size: $brc-size-page; line-height: .95; margin-bottom: .75rem; }
+  h1:last-child { margin-bottom: 0; }
+  .subheading { color: rgba($brc-white, .9); }
+}
+
+// Home hero eyebrow line:  [LOCATED ON THE CALM WATERS ...]{.tagline}
+.tagline {
+  display: flex;
+  align-items: baseline;
+  gap: .75rem;
+  max-width: 46rem;
+  margin-bottom: 1.25rem;
+  font-family: $brc-font-body;
+  font-weight: 600;
+  font-size: $brc-size-eyebrow;
+  line-height: 1.6;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: rgba($brc-white, .92);
+  &::before {
+    content: "";
+    flex: none;
+    width: 1.5rem;
+    height: 2px;
+    transform: translateY(-.3em);
+    background-color: $brc-green-accent;
+  }
+  @media (max-width: 575.98px) { font-size: .75rem; letter-spacing: .04em; &::before { display: none; } }
 }
 
 
 // =============================================================================
-// 5. COXSWAIN DIVIDER STRIP (rowing-shell silhouettes between sections)
-//    ::: {.divider}
+// 6. SUB-NAVIGATION (in-page jump links). The class is still called .pill-nav.
+//    Straight after the page header, links on ONE line:
+//    ::: {.pill-nav role="navigation" aria-label="On this page"}
+//    [COACHES](#coaches) [BOARD MEMBERS](#boardmembers)
 //    :::
+//    A white bar: sticky under the header on computers, sideways-scrolling with
+//    a fade at the right edge on phones.
 // =============================================================================
-.divider {
-  height: 56px;
-  background-color: $brc-white;
-  // Path is relative to this theme file; Quarto copies the image for us.
-  background-image: url("images/coxswain-divider.png");
-  background-repeat: repeat-x;
-  background-position: center;
-  background-size: auto 100%;
+#main-content > .pill-nav {
+  position: sticky;
+  top: var(--brc-header-h);
+  z-index: 900;
+  background-color: rgba($brc-white, .97);
+  border-bottom: 1px solid $brc-hairline;
+  box-shadow: 0 6px 16px -12px rgba($brc-navy-900, .25);
+  @include brc-container-padding;
+  > p {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0 2rem;
+    margin: 0;
+    min-height: $brc-subnav-h;
+    overflow-x: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+  a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    min-height: $brc-subnav-h;
+    font-weight: 600;
+    font-size: .875rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: rgba($brc-ink, .7);
+    transition: color $brc-ease;
+    &::after {                      // the green rule used in the main nav, on hover/focus
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 2px;
+      border-radius: 2px;
+      background-color: $brc-green-accent;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform $brc-ease;
+    }
+    &:hover, &:focus-visible { color: $brc-ink; &::after { transform: scaleX(1); } }
+    // The section in view (set by scripts/site.js): the same green rule, kept on.
+    &[aria-current] { color: $brc-ink; &::after { transform: scaleX(1); } }
+    &:focus-visible { @include brc-focus-ring; outline-offset: -3px; }
+  }
+  @media (max-width: 991.98px) {
+    position: static;
+    > p {
+      min-height: 48px;
+      padding-right: 3rem;          // the last link can scroll clear of the fade
+      mask-image: linear-gradient(to right, #000 calc(100% - 3.5rem), transparent);
+    }
+    a { min-height: 48px; }
+  }
 }
 
 
 // =============================================================================
-// 6. BUTTONS
-//    [Register Today!](https://...){.btn-brc}           green
-//    [Register Today!](https://...){.btn-brc .btn-brc-lg} big green
-//    [Learn more](page.qmd){.btn-brc-outline}           blue outline
-//    ::: {.btn-row}  ...one or more buttons...  :::      centred row
+// 7. BUTTONS
+//    [Register](https://...){.btn-brc}                     green (primary action)
+//    [DONATE TODAY](https://...){.btn-brc .btn-brc-lg}    bigger: ONLY in heroes and CTA bands
+//    [About Us](/about/index.qmd){.btn-brc-outline}       outline (secondary)
+//    ::: {.btn-row}  ...one or more buttons...  :::         a row of buttons
 // =============================================================================
 %brc-button-base {
-  display: inline-block;
-  font-family: $brc-heading-font;
-  font-weight: 500;
-  font-size: 1.15rem;
-  line-height: 1.3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 48px;
+  font-family: $brc-font-display;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.15;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   text-align: center;
   text-decoration: none;
-  padding: .65rem 1.6rem;
-  border-radius: 9px;
+  padding: .75rem 1.6rem;
+  border-radius: $brc-radius-sm;
   border: 2px solid transparent;
-  transition: background-color .15s, color .15s, border-color .15s, transform .15s;
-  &:hover, &:focus-visible { text-decoration: none; transform: translateY(-1px); }
-  &:focus-visible { outline: 3px solid rgba($brc-blue, .55); outline-offset: 2px; }
+  cursor: pointer;
+  transition: background-color $brc-ease, color $brc-ease, border-color $brc-ease, transform $brc-ease, box-shadow $brc-ease;
+  &:hover { text-decoration: none; transform: translateY(-1px); }
+  &:focus-visible { @include brc-focus-ring; }
+  &:active { transform: none; }
 }
-
 .btn-brc {
   @extend %brc-button-base;
   background-color: $brc-green;
   color: $brc-white !important;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, .25);
-  &:hover, &:focus-visible { background-color: $brc-green-dark; color: $brc-white !important; }
+  box-shadow: 0 1px 2px rgba($brc-navy-900, .15), 0 6px 16px -6px rgba($brc-green, .6);
+  &:hover { background-color: $brc-green-700; color: $brc-white !important; }
 }
-// .btn-brc also works on real <button>s (e.g. a form's Submit).
 button.btn-brc { cursor: pointer; }
-
 .btn-brc-outline {
   @extend %brc-button-base;
   background-color: transparent;
   color: $brc-blue !important;
-  border-color: $brc-blue;
-  &:hover, &:focus-visible { background-color: $brc-blue; color: $brc-white !important; }
+  border-color: rgba($brc-blue, .55);
+  &:hover { background-color: $brc-blue; border-color: $brc-blue; color: $brc-white !important; }
 }
-.band-navy .btn-brc-outline {
+// On photos and navy: a white "ghost" outline.
+.hero .btn-brc-outline, .band-navy .btn-brc-outline {
   color: $brc-white !important;
-  border-color: $brc-white;
-  &:hover, &:focus-visible { background-color: $brc-white; color: $brc-navy !important; }
+  border-color: rgba($brc-white, .7);
+  &:hover { background-color: $brc-white; border-color: $brc-white; color: $brc-navy-900 !important; }
 }
+.hero .btn-brc-outline { backdrop-filter: blur(2px); background-color: rgba($brc-navy-900, .15); }
+.btn-brc-lg { font-size: 1.3125rem; padding: .95rem 2.25rem; min-height: 56px; }
 
-.btn-brc-lg { font-size: clamp(1.3rem, 2.6vw, 1.85rem); padding: .75rem 2.2rem; }
-
-// Clear space above and below so the button never touches the text around it.
 .btn-row {
-  text-align: center;
-  margin: 1.5rem 0;
-  > p {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: .75rem 1rem;
-    margin: 0;
-  }
+  margin: 2rem 0;
+  > p { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; margin: 0; }
 }
+.centered .btn-row > p, .band-cta .btn-row > p { justify-content: center; }
+@media (max-width: 575.98px) { .btn-row .btn-brc-lg { width: 100%; } }
 
 
 // =============================================================================
-// 7. IN-PAGE JUMP LINKS ("pill" nav)
-//    ::: {.pill-nav}
-//    [COACHES](#coaches) [BOARD MEMBERS](#boardmembers)
-//    :::
-// =============================================================================
-.pill-nav {
-  margin: 1.25rem 0 .5rem;
-  > p {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: .6rem .75rem;
-    margin: 0;
-  }
-  a {
-    display: inline-block;
-    font-family: $brc-heading-font;
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: .02em;
-    text-decoration: none;
-    color: $brc-white !important;
-    background-color: $brc-green;
-    padding: .4rem 1.4rem;
-    border-radius: 999px;
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, .2);
-    transition: background-color .15s;
-    &:hover, &:focus-visible { background-color: $brc-green-dark; }
-  }
-}
-
-// Leave room for the sticky navbar when jumping to an anchor.
-section[id], [id] { scroll-margin-top: 90px; }
-
-
-// =============================================================================
-// 8. PHOTO CARD GRID (home page "Club Programming")
+// 8. PHOTO CARD GRID (home page programmes)
 //    :::: {.card-grid}
 //    ::: {.photo-card}
-//    ![](/images/home-card-youth.jpg){.bg}
-//    [Youth Programs](/youth/index.qmd){.btn-brc}
+//    ![](/images/home-card-youth.jpg){.bg alt=""}
+//
+//    [Youth Programs](/youth/index.qmd)
 //    :::
-//    ...more cards...
 //    ::::
-//    The whole card is clickable (it follows the card's link).
+//    4 across on computers, 2 across on tablets and phones. The whole card is the link.
 // =============================================================================
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
-  @media (max-width: 767.98px) { grid-template-columns: 1fr; }
+  @media (max-width: 991.98px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 575.98px) { gap: .75rem; }
 }
-
 .photo-card {
   display: flex;
   align-items: flex-end;
-  justify-content: center;
-  min-height: clamp(240px, 32vw, 380px);
+  aspect-ratio: 4 / 5;
   padding: 1.5rem;
   border-radius: $brc-radius;
-  box-shadow: 0 6px 20px rgba($brc-ink, .18);
-
-  // Gentle dark fade at the bottom so the button stands out.
+  background-color: $brc-navy-900;
+  box-shadow: $brc-shadow;
+  transition: transform $brc-ease, box-shadow $brc-ease;
   &::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, .45));
-    transition: background-color .2s;
+    background: linear-gradient(to top, rgba($brc-navy-900, .88) 0%, rgba($brc-navy-900, .35) 42%, rgba($brc-navy-900, 0) 68%);
   }
-  img.bg { transition: transform .4s ease; }
+  img.bg { transition: transform $brc-ease; }
+  &:hover { transform: translateY(-3px); box-shadow: $brc-shadow-lift; }
   &:hover img.bg { transform: scale(1.04); }
+  &:has(a:focus-visible) { @include brc-focus-ring; }
 
   p { margin: 0; }
-  a {
-    font-size: clamp(1.2rem, 2.4vw, 1.75rem);
-    // Stretch the link over the whole card so the card is clickable.
-    &::after { content: ""; position: absolute; inset: 0; }
+  a, a.btn-brc {
+    all: unset;
+    display: block;
+    padding-right: 3rem;            // room for the arrow
+    cursor: pointer;
+    font-family: $brc-font-display;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.1vw, 1.9rem);
+    line-height: 1.05;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: $brc-white !important;
+    &::before {                     // round arrow, bottom-right
+      @include brc-icon("\F138");   // bi-arrow-right
+      font-size: 1.1rem;
+      position: absolute;
+      right: 1.25rem;
+      bottom: 1.4rem;
+      display: grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 1.5px solid rgba($brc-white, .6);
+      transition: transform $brc-ease, background-color $brc-ease, border-color $brc-ease, color $brc-ease;
+    }
+    &::after { content: ""; position: absolute; inset: 0; }   // the whole card is clickable
+  }
+  &:hover a::before { transform: translateX(3px); background-color: $brc-white; border-color: $brc-white; color: $brc-navy-900 !important; }
+
+  // Phones: 2 x 2 squares so all four programmes fit in one swipe.
+  @media (max-width: 575.98px) {
+    aspect-ratio: 1 / 1;
+    padding: .9rem;
+    a, a.btn-brc {
+      font-size: 1.15rem;
+      padding-right: 0;
+      padding-bottom: 2.25rem;
+      &::before { width: 1.9rem; height: 1.9rem; font-size: .9rem; left: .9rem; right: auto; bottom: .9rem; }
+    }
   }
 }
 
 
 // =============================================================================
-// 9. CONTENT BOXES AND TEXT LAYOUTS
+// 9. CARDS: tiles and value cards
+//    :::: {.tile-grid}
+//    ::: {.tile}
+//    ### Required Gear
+//    - ...
+//    :::
+//    ::::
+//    A tile is the site's Card: white, hairline, shadow, blue-to-green top rule,
+//    uppercase condensed title, green-dot bullets. Paper with no shadow on a white band.
+//    Two tiles share the row; three or more wrap at 260px.
 // =============================================================================
-
-// Grey-blue content box (used under most section titles on inner pages).
-//   ::: {.panel}  ...text...  :::
-.panel {
-  background-color: $brc-panel;
-  color: $brc-ink;
-  border-radius: $brc-radius;
-  padding: clamp(1.25rem, 3vw, 2.25rem);
-  margin-bottom: 1.5rem;
-  h2, h3, h4, h5, h6 { color: $brc-ink; }
-  a:not([class*="btn-brc"]) { color: $brc-panel-link; }
-  > :last-child { margin-bottom: 0; }
-}
-
-// Highlighted note, e.g. "Financial Aid Available".
-//   ::: {.info-box}
-//   ### Financial Aid Available
-//   ...text...
-//   :::
-.info-box {
-  background-color: $brc-white;
-  border-left: 6px solid $brc-green;
-  border-radius: $brc-radius;
-  padding: 1.25rem 1.5rem;
-  margin: 1.5rem 0;
-  box-shadow: 0 2px 10px rgba($brc-ink, .08);
-  h3, h4 { margin-top: 0; color: $brc-blue; }
-  > :last-child { margin-bottom: 0; }
-}
-
-// Centred text block (narrow, centred lines).   ::: {.centered}
-.centered {
-  max-width: $brc-narrow-width;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-// Narrow block with normal left-aligned text.   ::: {.narrow}
-.narrow {
-  max-width: $brc-narrow-width;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-// Small uppercase line under a big heading, and an italic motto line.
-//   [LOCATED ON THE CALM WATERS...]{.tagline}
-//   [Charlotte Rowing At It's Best]{.motto}
-.tagline {
-  display: block;
-  font-family: $brc-heading-font;
-  font-size: clamp(.85rem, 1.6vw, 1.05rem);
-  font-weight: 500;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: $brc-ink;
-}
-.motto {
-  display: block;
-  font-family: $brc-heading-font;
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
-  color: $brc-muted;
-  margin-top: 1rem;
-}
-
-// Dark subtitle line under an inner page's # title (a paragraph, not a heading,
-// so it doesn't count as a section in the page outline).
-//   [Belmont Rowing Center - Youth Programs]{.subheading}
-.subheading {
-  display: block;
-  font-family: $brc-heading-font;
-  font-weight: 600;
-  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
-  line-height: 1.25;
-  text-align: center;
-  color: $brc-ink;
-}
-
-// Extra-large heading (home page "Belmont Rowing Center").
-//   ## Belmont Rowing Center {.display-heading}
-// (Heading classes are also copied onto the surrounding <section>, so always
-//  style them as h1.class / h2.class, never just .class.)
-h1.display-heading, h2.display-heading {
-  font-size: clamp(2.3rem, 6.5vw, 4.2rem);
-  font-weight: 600;
-  color: $brc-blue;
-  margin-bottom: .75rem;
-}
-
-// Two or three columns side by side (they stack on phones).
-//   :::: {.two-col}          (or {.three-col})
-//   ::: {}
-//   left column
-//   :::
-//   ::: {}
-//   right column
-//   :::
-//   ::::
-// Add .align-top to line columns up at the top instead of the middle.
-.two-col, .three-col {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
-  align-items: center;
-  margin: 1.5rem 0;
-  > div > :first-child { margin-top: 0; }
-  > div > :last-child { margin-bottom: 0; }
-  img { border-radius: $brc-radius; }
-  @media (max-width: 767.98px) { grid-template-columns: 1fr; gap: 1.5rem; }
-}
-.three-col {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  @media (max-width: 767.98px) { grid-template-columns: 1fr; }
-}
-.two-col.align-top, .three-col.align-top { align-items: start; }
-
-// Embedded Google map (or any <iframe>): fills its column, keeps a 4:3 shape.
-//   ::: {.map-embed}
-//   <iframe src="https://maps.google.com/maps?q=...&output=embed" title="..."></iframe>
-//   :::
-.map-embed iframe {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border: 0;
-  border-radius: 8px;
-}
-
-// Grid of small white boxes (e.g. "Our Values", "What To Bring").
-//   :::: {.tile-grid}
-//   ::: {.tile}
-//   ### Education
-//   - ...
-//   :::
-//   ::::
 .tile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 .tile {
-  background-color: $brc-white;
-  border-radius: $brc-radius;
-  padding: 1.25rem 1.4rem;
-  box-shadow: 0 2px 10px rgba($brc-ink, .08);
-  h3, h4 { margin-top: 0; }
-  ul { padding-left: 1.15rem; margin-bottom: 0; }
-  li + li { margin-top: .35rem; }
+  @include brc-card;
+  @include brc-card-rule;
+  @include brc-dot-list;
+  padding: 1.9rem $brc-card-pad $brc-card-pad;
+  h3, h4 { @include brc-card-title; }
   > :last-child { margin-bottom: 0; }
 }
 
-// Featured tile grid (home page "Our Values"): add .tile-grid-featured to the grid.
-//   :::: {.tile-grid .tile-grid-featured}
+// Value cards (home page "Our Values"): :::: {.tile-grid .tile-grid-featured}
 // Three equal cards per row; a shorter last row is centred (5 cards = 3 + 2).
-// Each card gets a blue stripe on top, a centred heading and slightly larger text.
-// Two per row on tablets, one per row on phones.
 .tile-grid.tile-grid-featured {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
-  > .tile {
-    flex: 0 1 calc((100% - 3rem) / 3);   // 3 across (two 1.5rem gaps)
-    border-top: 5px solid $brc-blue;
-    padding: 1.5rem 1.6rem 1.6rem;
-    font-size: 1rem;
-    line-height: 1.6;
-    h3, h4 {
-      text-align: center;
-      font-size: 1.4rem;
-      padding-bottom: .65rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid rgba($brc-ink, .1);
-    }
-    li + li { margin-top: .5rem; }
-  }
+  > .tile { flex: 0 1 calc((100% - 3rem) / 3); font-size: .9875rem; line-height: 1.6; }
   @media (max-width: 991.98px) { > .tile { flex-basis: calc((100% - 1.5rem) / 2); } }
   @media (max-width: 767.98px) { > .tile { flex-basis: 100%; } }
 }
 
-// Upcoming events list (home page; content comes from the home_events tab of schedule.xlsx).
-.events {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem 2rem;
-  text-align: center;
-  h3 { margin-top: 0; font-size: 1.35rem; }
-  p { margin-bottom: 0; line-height: 1.8; }
+
+// =============================================================================
+// 10. CALLOUTS, NOTES AND LISTS
+// =============================================================================
+
+// Callout (pale blue, info mark), e.g. "Financial Aid Available".
+//   ::: {.info-box}
+//   ### Financial Aid Available
+//   ...
+//   :::
+.info-box {
+  position: relative;
+  background-color: $brc-blue-50;
+  border: 1px solid rgba($brc-blue, .16);
+  border-radius: $brc-radius;
+  padding: 1.5rem 1.75rem 1.5rem 4.25rem;
+  margin: 2rem 0;
+  max-width: 52rem;
+  &::before {
+    @include brc-icon("\F430");     // bi-info-circle-fill
+    position: absolute;
+    left: 1.5rem;
+    top: 1.45rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: $brc-blue;
+  }
+  h3, h4 { margin-top: 0; margin-bottom: .35rem; color: $brc-ink; }
+  > :last-child { margin-bottom: 0; }
+  @media (max-width: 575.98px) { padding: 1.25rem 1.25rem 1.25rem 3.5rem; &::before { left: 1.1rem; top: 1.25rem; } }
+}
+
+// Lead: the FIRST paragraph of a section only, and only when it is 4 lines or
+// fewer on a laptop. Everything else is body size.
+//   ::: {.lead}
+//   Our mission is to ...
+//   :::
+div.lead {
+  font-size: $brc-size-lead;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $brc-ink;
+  max-width: 60ch;
+  margin-bottom: 1.5rem;
+  p { margin-bottom: 1rem; }
+  > :last-child { margin-bottom: 0; }
+}
+
+// Note: a short line that must stand out (green rule at the left).
+//   ::: {.note}
+//   **New rowers at this level are welcome to join the team at any point during the season!**
+//   :::
+.note {
+  max-width: $brc-measure;
+  margin: 1.5rem 0;
+  padding: .15rem 0 .15rem 1.1rem;
+  border-left: 3px solid $brc-green-accent;
+  p { margin: 0; }
+  p + p { margin-top: .5rem; font-size: $brc-size-small; color: $brc-muted; }
+}
+
+// Fine print: small muted text under a hairline (e.g. the iCrew registration note).
+//   ::: {.fine-print}
+//   BRC uses the iCrew team management platform ...
+//   :::
+.fine-print {
+  max-width: $brc-measure;
+  margin: 2rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid $brc-hairline;
+  font-size: $brc-size-small;
+  line-height: 1.6;
+  color: $brc-muted;
+  p { margin: 0; }
+  em { color: $brc-text; }
+}
+
+// Table note: small muted caption UNDER a table (regattas, race weeks, footnotes).
+//   ::: {.table-note}
+//   Above schedule are potential regattas ...
+//   :::
+.table-note {
+  max-width: $brc-measure;
+  margin: .9rem 0 0;
+  font-size: $brc-size-small;
+  line-height: 1.55;
+  color: $brc-muted;
+  p { margin: 0; }
+}
+
+// Checklist: a markdown list with green check marks; two columns on wide screens.
+// Add .checklist-1col to keep one column.
+//   ::: {.checklist}
+//   - First item
+//   :::
+.checklist {
+  margin: 2rem 0;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2 22rem;
+    column-gap: 3rem;
+  }
+  li {
+    position: relative;
+    break-inside: avoid;
+    padding: .9rem 0 .9rem 2.25rem;
+    margin: 0;
+    border-top: 1px solid $brc-hairline;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.05rem;
+      width: 1.375rem;
+      height: 1.375rem;
+      border-radius: 50%;
+      background-color: rgba($brc-green, .12);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3e%3cpath d='M6.5 11.5l3 3 6-7' fill='none' stroke='%232A8436' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+      background-size: 100% 100%;
+    }
+  }
+  &.checklist-1col ul { columns: 1; max-width: $brc-measure; }
+}
+
+// Document links (e.g. policies): full-width rows with a file icon.
+//   ::: {.doc-list}
+//   - [BRC Safety Policy](https://...)
+//   :::
+// (One bold link per paragraph works too.)
+.doc-list {
+  margin: 2rem 0;
+  ul { list-style: none; padding: 0; margin: 0; }
+  li, > p { margin: 0; }
+  li + li, > p + p { margin-top: .75rem; }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 64px;
+    padding: 1rem 1.25rem;
+    background-color: $brc-white;
+    border: 1px solid $brc-hairline;
+    border-radius: $brc-radius;
+    color: $brc-ink;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color $brc-ease, box-shadow $brc-ease, color $brc-ease;
+    &::before { @include brc-icon("\F38B"); font-size: 1.35rem; color: $brc-blue; flex: none; }          // bi-file-earmark-text
+    &::after { @include brc-icon("\F1C5"); font-size: .9rem; color: $brc-muted; margin-left: auto; flex: none; } // bi-box-arrow-up-right
+    &:hover { border-color: rgba($brc-blue, .45); box-shadow: $brc-shadow; color: $brc-blue; }
+  }
+  strong { font-weight: inherit; color: inherit; }
+}
+.band-white .doc-list a { background-color: $brc-paper; }
+
+// Date list: plain (not clickable) lines of dates and prices, one per row,
+// with a calendar mark. Wraps the output of session_links(..., links = FALSE).
+//   ::: {.date-list}
+//   ```{r}
+//   session_links("youth-learn-to-row", links = FALSE)
+//   ```
+//   :::
+.date-list {
+  margin: 1.25rem 0 0;
+  > p {
+    position: relative;
+    margin: 0;
+    padding: .75rem 0 .75rem 2rem;
+    border-top: 1px solid $brc-hairline;
+    font-size: $brc-size-small;
+    line-height: 1.5;
+    text-wrap: balance;
+    &::before { @include brc-icon("\F1E8"); position: absolute; left: 0; top: .8rem; color: $brc-blue; }  // bi-calendar-event
+  }
+  strong { font-weight: 500; color: $brc-ink; }
+}
+
+// FAQ: each paragraph is **Question?:** answer. Questions bold on their own line,
+// hairlines between, a question mark at the left.
+//   ::: {.faq}
+//   **Do I need prior rowing experience?:** No experience is required...
+//   :::
+.faq {
+  max-width: $brc-measure;
+  margin: 1.5rem 0 0;
+  > p {
+    position: relative;
+    margin: 0;
+    padding: 1.25rem 0 1.25rem 2.25rem;
+    border-top: 1px solid $brc-hairline;
+    &::before {
+      @include brc-icon("\F505");   // bi-question-circle
+      position: absolute;
+      left: 0;
+      top: 1.3rem;
+      font-size: 1.15rem;
+      line-height: 1.4;
+      color: $brc-green;
+    }
+  }
+  strong { display: block; font-size: 1.0625rem; line-height: 1.45; margin-bottom: .3rem; }
+  @media (max-width: 575.98px) { > p { padding-left: 1.85rem; } }
 }
 
 
 // =============================================================================
-// 10. PERSON / BIO CARD (coaches and board members)
+// 11. SEASON CARD (Feature): a programme's season with its Register button.
+//    :::: {.season-card}
+//    ::: {.season-head}
+//    ### 2026 Youth Team - Winter Training
+//
+//    ::: {.btn-row}
+//    [Register](...){.btn-brc}
+//    :::
+//    :::
+//
+//    The season sentence...
+//
+//    ```{r}
+//    weekly_table("youth-winter")
+//    ```
+//    ::::
+//    Navy head (heading + Register at the right), then the text, then any tables:
+//    a season_summary() sits beside the text on computers; a weekly grid fills the
+//    bottom of the card; a session_table() sits inset; a ::: {.table-note} closes it.
+//    A Register button that comes AFTER the text in the markup is shown in the head.
+//
+//    COMPLETED SEASON: put a ::: {.status-note} in the head instead of the button.
+//    The card turns quiet by itself (paper head, ink heading, no shadow) and the note
+//    becomes a "season completed" status line where the button was.
+// =============================================================================
+// The inside of a season card (text and tables). Used by the card itself and, for a
+// completed season, by its fold (<details class="season-more">).
+@mixin brc-season-body {
+  // Text.
+  > p {
+    margin: 0;
+    padding: $brc-card-pad $brc-card-pad 0;
+    max-width: calc(#{$brc-measure} + 4rem);
+    line-height: 1.7;
+  }
+  > p + p { padding-top: 1rem; }
+  > p strong { font-weight: 500; }
+  // Weekly grid (5+ columns): flush across the bottom of the card.
+  > .schedule:has(tr > :nth-child(5)) {
+    margin: $brc-card-pad 0 0;
+    border: 0;
+    border-top: 1px solid $brc-hairline;
+    border-radius: 0;
+    box-shadow: none;
+    th:first-child, td:first-child { padding-left: $brc-card-pad; }
+    th:last-child, td:last-child { padding-right: $brc-card-pad; }
+  }
+  // Other tables (sessions): inset.
+  > .schedule:not(:has(tr > :nth-child(5))):not(.schedule-narrow) {
+    margin: $brc-card-pad $brc-card-pad 0;
+    box-shadow: none;
+  }
+  > .schedule:not(:has(tr > :nth-child(5))):last-child { margin-bottom: $brc-card-pad; }
+  > p:last-child { padding-bottom: $brc-card-pad; }
+  > .table-note { margin: 0; padding: 1rem $brc-card-pad $brc-card-pad; max-width: none; border-top: 1px solid $brc-hairline; }
+
+  // With a Season / Days / Times summary: text left, summary right (computers).
+  &:has(> .schedule-narrow) {
+    @media (min-width: 992px) {
+      grid-template-columns: minmax(0, 1fr) max-content;
+      column-gap: clamp(1.5rem, 3vw, 2.5rem);
+      > p { grid-column: 1; padding-right: 0; padding-bottom: $brc-card-pad; }
+      > .schedule-narrow { grid-column: 2; grid-row: 2; align-self: center; margin: $brc-card-pad $brc-card-pad $brc-card-pad 0; }
+    }
+  }
+  > .schedule-narrow {
+    margin: $brc-card-pad $brc-card-pad 0;
+    max-width: none;
+    box-shadow: none;
+    background-color: $brc-paper;
+    thead th { background-color: transparent; color: $brc-muted; padding-top: 1rem; padding-bottom: .6rem; }
+    td { font-size: 1.0625rem; color: $brc-ink; font-weight: 500; white-space: nowrap; }
+    td:first-child { font-family: $brc-font-display; font-weight: 700; font-size: 1.35rem; line-height: 1.2; letter-spacing: .02em; text-transform: uppercase; }
+    tbody tr td { background-color: transparent !important; }
+  }
+}
+
+.season-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: clamp(2rem, 4vw, 3rem) 0;
+  @include brc-card;
+  overflow: hidden;
+  .band-white & { background-color: $brc-white; }     // stays white: it's the feature
+  > * { grid-column: 1 / -1; min-width: 0; }
+
+  // Head (Pandoc turns the ::: {.season-head} div into the h3's <section>).
+  > .season-head {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    background-color: $brc-navy-900;
+    padding: 1.35rem $brc-card-pad;
+    &::after {                       // thin blue-to-green rule along the bottom
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      background: $brc-rule;
+    }
+    h3 {
+      margin: 0;
+      color: $brc-white;
+      font-weight: 700;
+      font-size: clamp(1.45rem, 2.1vw, 1.85rem);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+    .btn-row { margin: 0; flex: none; }
+  }
+  // A trailing Register (after the text in the markup) is shown in the head.
+  > .btn-row {
+    grid-row: 1;
+    align-self: center;
+    justify-self: end;
+    z-index: 1;
+    margin: 0 $brc-card-pad;
+  }
+  &:has(> .btn-row) > .season-head { padding-right: 12rem; }
+
+  @include brc-season-body;
+
+  // Phones: the head stacks (heading, then button); a trailing button sits under the text.
+  @media (max-width: 575.98px) {
+    > .btn-row { grid-row: auto; justify-self: start; margin: 1.25rem $brc-card-pad $brc-card-pad; }
+    &:has(> .btn-row) > .season-head { padding-right: $brc-card-pad; }
+    > .season-head .btn-row { width: 100%; }
+  }
+
+  // ---- Completed season: quiet card that folds up ----
+  // _filters/season-collapse.lua turns a card whose head holds a .status-note into:
+  //   head (heading) + <details class="season-more"><summary>status note</summary> body </details>
+  // Collapsed it shows the heading and the status line with a chevron; click / tap /
+  // Enter / Space opens it. The body is one step quieter than an open season.
+  &.is-complete {
+    box-shadow: none;
+    background-color: $brc-white;
+    > .season-head {
+      background-color: $brc-paper;
+      padding-top: 1.1rem;
+      padding-bottom: .2rem;
+      &::after { display: none; }
+      h3 { color: $brc-text; font-size: clamp(1.3rem, 1.8vw, 1.6rem); }
+    }
+  }
+  > details.season-more {
+    display: block;                 // (browsers wrap a <details>' content in their own box,
+    margin: 0;                      //  so the fold stacks: text, summary table, weekly grid)
+    > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 52px;
+      padding: .5rem $brc-card-pad .95rem;
+      background-color: $brc-paper;
+      cursor: pointer;
+      list-style: none;
+      &::-webkit-details-marker { display: none; }
+      .status-note { margin: 0; padding: 0; border: 0; background: none; width: auto; transition: color $brc-ease; }
+      &::after {                    // round chevron at the right; turns over when open
+        @include brc-icon("\F282"); // bi-chevron-down
+        flex: none;
+        display: grid;
+        place-items: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        border: 1px solid $brc-hairline;
+        background-color: $brc-white;
+        color: $brc-blue;
+        font-size: .9rem;
+        transition: transform $brc-ease, border-color $brc-ease;
+      }
+      &:hover { .status-note { color: $brc-ink; } &::after { border-color: rgba($brc-blue, .5); } }
+      &:focus-visible { outline: 3px solid $brc-blue; outline-offset: -3px; }
+    }
+    &:first-child > summary { padding-top: .95rem; }   // no heading above (Youth summer)
+    &[open] > summary { border-bottom: 1px solid $brc-hairline; &::after { transform: rotate(180deg); } }
+
+    @include brc-season-body;
+    // Body one step quieter (muted text stays above 4.5:1 on white and paper),
+    // slightly tighter, table headers on paper instead of blue.
+    > p { color: $brc-muted; padding-top: 1.25rem; line-height: 1.65; }
+    > p:last-child, &:has(> .schedule-narrow) > p { padding-bottom: 1.25rem; }
+    > .schedule {
+      td, td:first-child { color: $brc-muted !important; }
+      tbody tr:first-child td:not(:empty)::first-line { font-weight: 500; }
+      thead th { background-color: $brc-paper; color: $brc-muted; border-bottom-color: $brc-hairline; }
+    }
+    > .schedule:has(tr > :nth-child(5)) { margin-top: 1.25rem; }
+    > .schedule-narrow {
+      background-color: $brc-paper;
+      max-width: 560px;
+      margin: 0 $brc-card-pad !important;
+      td:first-child { color: $brc-text !important; }
+    }
+    &:has(> .schedule-narrow) > p { padding-right: $brc-card-pad !important; padding-bottom: 1.25rem; }
+    > .table-note { padding-top: .75rem; padding-bottom: 1.25rem; }
+    // Other content in a fold (the Youth summer camps): normal flow, card padding.
+    > section, > div:not(.schedule):not(.table-note) { padding: 0 $brc-card-pad; }
+    > section { padding-bottom: $brc-card-pad; }
+    > section > h3 { margin-top: 1.5rem; }
+  }
+}
+
+// Printing: folded seasons print open (browsers that support ::details-content).
+@media print {
+  details.season-more::details-content { content-visibility: visible; display: contents; }
+  details.season-more > summary::after { display: none; }
+}
+
+// Status note: "The season has completed. Please stay tuned for 2027 scheduling."
+// Inside a season-card head it replaces the Register button; on its own (e.g. under a
+// section heading) it is a small status line.
+//   ::: {.status-note}
+//   The season has completed. Please stay tuned for 2027 scheduling.
+//   :::
+.status-note {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 1.5rem;
+  padding: .65rem 1rem;
+  font-size: $brc-size-small;
+  font-style: italic;
+  line-height: 1.5;
+  color: $brc-text;
+  background-color: $brc-white;
+  border: 1px solid $brc-hairline;
+  border-radius: $brc-radius-sm;
+  &::before { @include brc-icon("\F26B"); font-style: normal; color: $brc-muted; line-height: 1.5; }   // bi-check-circle
+  p { margin: 0; }
+  .band-white & { background-color: $brc-paper; }
+  .season-head & { margin: 0; background-color: $brc-white; }
+}
+
+
+// =============================================================================
+// 12. SCHEDULE / PRICING TABLES (generated by R/schedule.R, or hand-written)
+//    ::: {.schedule}
+//    | Season  | Fall        |
+//    |---------|-------------|
+//    | Tue/Thu | 6:00p-8:00p |
+//    :::
+//    ::: {.schedule .schedule-narrow} for the small Season / Days / Times summary.
+//    PHONES (shared by every page, no sideways scrolling):
+//      weekly grid  -> a list of practice days (empty days hidden; a second row,
+//                      e.g. Youth age groups, shows under each day's time)
+//      3 columns    -> stacked rows: small blue date, bold name, muted place
+//      2 columns    -> stacked rows: bold first cell, muted second
+//      summary      -> season on top, Days | Times side by side
+//    The real header row stays in the page for screen readers.
+// =============================================================================
+.schedule {
+  overflow-x: auto;
+  margin: 2rem 0;
+  max-width: 100%;
+  border: 1px solid $brc-hairline;
+  border-radius: $brc-radius;
+  background-color: $brc-white;
+  box-shadow: $brc-shadow;
+  table {
+    width: 100%;
+    margin: 0;
+    background-color: transparent;
+    border-collapse: collapse;
+    font-size: .9875rem;
+    line-height: 1.5;
+  }
+  thead th {
+    background-color: $brc-blue-50;
+    color: $brc-ink;
+    font-family: $brc-font-body;
+    font-weight: 600;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    border: 0;
+    border-bottom: 1px solid rgba($brc-blue, .18);
+    padding: .9rem 1.25rem;
+    white-space: nowrap;
+  }
+  td {
+    padding: .9rem 1.25rem;
+    border: 0;
+    border-top: 1px solid $brc-hairline;
+    color: $brc-text;
+    vertical-align: top;
+  }
+  tbody tr:first-child td { border-top: 0; }
+  tbody tr:nth-child(even) td { background-color: rgba($brc-paper, .7); }
+  td:first-child { color: $brc-ink; font-weight: 500; }
+  table > :not(caption) > * > * { box-shadow: none; }
+  // Pandoc sets column widths from the dashes in the |----|----| row when a line
+  // is long. Ignore them: columns size to their text.
+  col { width: auto !important; }
+
+  // Regattas (3 columns): the regatta name is the emphasis, the date stays regular.
+  table:has(tr > :nth-child(3)):not(:has(tr > :nth-child(4))) {
+    td:first-child { font-weight: 400; color: $brc-text; white-space: nowrap; }
+    td:nth-child(2) { font-weight: 600; color: $brc-ink; }
+  }
+
+  // Weekly tables (5+ columns, Sunday ... Saturday): equal columns, hairline between
+  // days, empty days a flat paper tint.
+  table:has(tr > :nth-child(5)) {
+    table-layout: fixed;
+    min-width: 48rem;
+    th, td { padding-left: .8rem; padding-right: .8rem; }
+    td + td, th + th { border-left: 1px solid $brc-hairline; }
+    td { font-weight: 400; color: $brc-ink; }
+    tbody tr:first-child td:not(:empty)::first-line { font-weight: 600; }
+    tbody tr + tr td { font-size: .875rem; color: $brc-muted; background-color: transparent; padding-top: 0; border-top: 0; }
+    td:empty { background-color: $brc-paper !important; }
+    @media (min-width: 768px) and (max-width: 1199.98px) {
+      min-width: 0;
+      font-size: .875rem;
+      th, td { padding-left: .55rem; padding-right: .55rem; }
+      thead th { font-size: .6875rem; letter-spacing: .08em; }
+    }
+  }
+}
+.schedule-narrow { max-width: 560px; }
+.band-white .schedule { box-shadow: none; }
+
+// ---- Phones and small tablets: the weekly grid becomes a list of practice days ----
+// COUPLING: the day names below rely on weekly_table() always writing the columns
+// Sunday -> Saturday in that order (R/schedule.R, .brc_days). If that ever changes,
+// change this list too. (See CLAUDE.md, "Tables on phones".)
+$brc-days: "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday";
+@media (max-width: 767.98px) {
+  .schedule:has(tr > :nth-child(5)) {
+    overflow: visible;
+    table { display: block; min-width: 0 !important; table-layout: auto !important; }
+    thead { @include brc-visually-hidden; }
+    tbody { display: grid; grid-template-columns: minmax(0, 1fr); }
+    tr { display: contents; }
+    td {
+      display: block;
+      position: relative;
+      min-height: 3rem;
+      padding: .85rem 1.25rem .85rem 8.25rem !important;
+      border: 0 !important;
+      border-top: 1px solid $brc-hairline !important;
+      background: none !important;
+    }
+    td:empty { display: none; }
+    tbody tr:first-child td::before {
+      position: absolute;
+      left: 1.25rem;
+      top: .9rem;
+      font-family: $brc-font-display;
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: $brc-blue;
+    }
+    tbody tr + tr td { min-height: 0; border-top: 0 !important; padding-top: 0 !important; margin-top: -.35rem; }
+    @for $i from 1 through 7 {
+      tbody tr:first-child td:nth-child(#{$i}) { grid-row: #{2 * $i - 1}; }
+      tbody tr:first-child td:nth-child(#{$i})::before { content: nth($brc-days, $i); }
+      tbody tr:nth-child(2) td:nth-child(#{$i}) { grid-row: #{2 * $i}; }
+    }
+  }
+  :is(.season-card, .season-more) > .schedule:has(tr > :nth-child(5)) td {
+    padding-left: calc(#{$brc-card-pad} + 7rem) !important;
+    &::before { left: $brc-card-pad !important; }
+  }
+}
+
+// ---- Phones: other tables become stacked rows ----
+@media (max-width: 575.98px) {
+  // Regattas (3 columns) and sessions (2 columns), but not price tables or the summary.
+  .schedule:not(.schedule-narrow):not(.price-card .schedule):not(:has(tr > :nth-child(4))) {
+    overflow: visible;
+    table, tbody, tr, td { display: block; width: 100%; }
+    thead { @include brc-visually-hidden; }
+    tr { padding: .9rem 1.1rem; background-color: transparent; }
+    tr + tr { border-top: 1px solid $brc-hairline; }
+    td { padding: 0 !important; border: 0 !important; background-color: transparent !important; }
+    td:first-child { font-weight: 600; color: $brc-ink; }
+    td:last-child { color: $brc-muted; font-size: $brc-size-small; }
+  }
+  .schedule:not(.schedule-narrow):not(.price-card .schedule):has(tr > :nth-child(3)):not(:has(tr > :nth-child(4))) {
+    td:nth-child(1) {
+      font-size: $brc-size-eyebrow;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: $brc-blue;
+    }
+    td:nth-child(2) { font-size: 1.0625rem; margin: .1rem 0; }
+  }
+  // Season / Days / Times summary: the season on top, days | times side by side.
+  .schedule-narrow {
+    thead { @include brc-visually-hidden; }
+    table, tbody { display: block; }
+    tr { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1.25rem; padding: .9rem 1rem; }
+    td { padding: 0 !important; border: 0 !important; white-space: normal !important; }
+    td:first-child { grid-column: 1 / -1; margin-bottom: .35rem; }
+  }
+}
+
+
+// =============================================================================
+// 13. PRICE CARD: a pricing heading + an R price table, prices large.
+//    ::: {.price-card}
+//    ### Collegiate Summer Pricing
+//
+//    ```{r}
+//    price_table("collegiate")
+//    ```
+//
+//    ::: {.price-note}
+//    Pricing is for 1 rower in a sculling boat. ...
+//    :::
+//    :::
+//    A .price-note placed FIRST becomes a small pale-blue period line with a calendar mark.
+// =============================================================================
+.price-card {
+  @include brc-card;
+  @include brc-card-rule;
+  padding: 1.9rem $brc-card-pad $brc-card-pad;
+  h3 { @include brc-card-title; }
+  > :last-child { margin-bottom: 0; }
+  .schedule {
+    margin: 0;
+    max-width: none;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    table { font-size: 1rem; }
+    thead th { background: transparent; color: $brc-muted; border-bottom: 1px solid $brc-hairline; padding: .5rem 1rem .6rem 0; }
+    td { padding: 1rem 1rem 1rem 0; vertical-align: baseline; background: transparent !important; }
+    th:last-child, td:last-child { text-align: right; padding-right: 0; }
+    td:first-child { color: $brc-ink; font-weight: 500; white-space: normal !important; }  // names may wrap
+    td:first-child strong { font-weight: 600; }
+    td:nth-child(2):not(:last-child) { white-space: nowrap; font-weight: 400 !important; color: $brc-muted !important; }  // dates: regular, muted
+    td:nth-child(2):not(:last-child) { color: $brc-muted; }
+    td:last-child {                  // the price: large condensed figures
+      font-family: $brc-font-display;
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 1.1;
+      letter-spacing: .01em;
+      color: $brc-ink;
+      white-space: nowrap;
+    }
+  }
+  // Phones, 3 columns (Pass / Dates / Cost): name and dates stacked, price at the right.
+  @media (max-width: 575.98px) {
+    .schedule:has(tr > :nth-child(3)) {
+      thead { @include brc-visually-hidden; }
+      table, tbody { display: block; }
+      tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; padding: .9rem 0; border-top: 1px solid $brc-hairline; }
+      tr:first-child { border-top: 0; }
+      td { padding: 0 !important; border: 0 !important; }
+      td:nth-child(1) { grid-column: 1; grid-row: 1; }
+      td:nth-child(1) { white-space: normal; }
+      td:nth-child(2) { grid-column: 1; grid-row: 2; font-size: $brc-size-small; font-weight: 400; color: $brc-muted; white-space: normal; }
+      td:nth-child(3) { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: 1.35rem; }
+    }
+  }
+}
+.price-note {
+  font-size: $brc-size-small;
+  line-height: 1.5;
+  color: $brc-muted;
+  margin-top: 1.25rem;
+  p { margin: 0; }
+  &:first-child {
+    display: flex;
+    gap: .6rem;
+    align-items: flex-start;
+    margin: 0 0 1.25rem;
+    padding: .7rem .9rem;
+    border-radius: $brc-radius-sm;
+    background-color: $brc-blue-50;
+    color: $brc-ink;
+    font-weight: 500;
+    &::before { @include brc-icon("\F214"); color: $brc-blue; line-height: 1.5; flex: none; }  // bi-calendar3
+  }
+}
+
+
+// =============================================================================
+// 14. LOCATION: address cards beside a map (Home "Find Us", About "Location", Contact)
+//    :::: {.location}
+//    ::: {.address-card}
+//    **Physical Location:**
+//
+//    1500 River Drive\
+//    Belmont, NC 28012
+//    :::
+//
+//    ::: {.address-card .address-mailing}
+//    ...
+//    :::
+//
+//    ::: {.location-map .framed}
+//    ![](/images/location-map.png){fig-alt="..." width="726" height="490" loading="lazy"}
+//    :::
+//    ::::
+//    Cards on the left (stacked), the map on the right; on phones the cards come
+//    first, then the map. A first line that is only **bold** is the card's small label;
+//    a third line is a muted note; a button (Get Directions) sits at the bottom.
+// =============================================================================
+.location {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-auto-rows: auto;
+  gap: 1.25rem clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+  margin-top: 2rem;
+  > .address-card { grid-column: 1; }
+  > .location-map { grid-column: 2; grid-row: 1 / span 4; align-self: center; }
+  // Only one card (Home, About): centre it against the map instead of leaving a gap below.
+  &:not(:has(> .address-card ~ .address-card)) > .address-card { grid-row: 1 / span 4; align-self: center; }
+  @media (max-width: 767.98px) {
+    grid-template-columns: minmax(0, 1fr);
+    > .location-map { grid-column: 1; grid-row: auto; margin-top: .75rem; }
+  }
+}
+.address-card {
+  position: relative;
+  @include brc-card;
+  box-shadow: none;
+  padding: $brc-card-pad $brc-card-pad $brc-card-pad calc(#{$brc-card-pad} + 3.5rem);
+  color: $brc-ink;
+  font-size: 1.1875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  &::before {
+    @include brc-icon("\F3E7");     // bi-geo-alt-fill
+    position: absolute;
+    left: $brc-card-pad;
+    top: calc(#{$brc-card-pad} - .25rem);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 1.15rem;
+    color: $brc-blue;
+    background-color: $brc-blue-50;
+  }
+  &.address-mailing::before { @include brc-icon("\F47C"); }   // bi-mailbox
+  p { margin: 0 0 1rem; }
+  > :last-child { margin-bottom: 0; }
+  strong { font-weight: inherit; }
+  // The label line ("Physical Location:")
+  p:first-child:has(> strong:only-child) {
+    margin-bottom: .5rem;
+    padding-top: .55rem;
+    font-size: $brc-size-eyebrow;
+    line-height: 1.5;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: $brc-blue;
+    strong { font-weight: 600; color: inherit; }
+  }
+  // A plain first line (no label) lines up with the icon.
+  p:first-child:not(:has(> strong:only-child)) { padding-top: .3rem; }
+  p + p + p:not(:has(.btn-brc-outline)) { font-size: $brc-size-small; font-weight: 400; color: $brc-muted; }
+  .btn-brc-outline {
+    margin-top: .25rem;
+    font-size: 1rem;
+    padding: .6rem 1.25rem;
+    &::after { @include brc-icon("\F144"); font-size: .85em; }   // bi-arrow-up-right
+  }
+}
+
+// A framed image (a map, a logo): rounded, hairline, soft shadow. Never wider than its column.
+.framed img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid $brc-hairline;
+  border-radius: $brc-radius;
+  box-shadow: $brc-shadow;
+  background-color: $brc-white;
+}
+.framed p { margin: 0; }
+// Embedded Google map (or any <iframe>), 16:10, with a visible keyboard focus ring.
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid $brc-hairline;
+  border-radius: $brc-radius;
+  box-shadow: $brc-shadow;
+  &:focus, &:focus-visible { @include brc-focus-ring; }
+}
+
+
+// =============================================================================
+// 15. PEOPLE (coaches and board members)
+//    One wide card per person (portrait 4:5 left, text right; stacks on phones):
 //    ::: {.person}
-//    ![](/images/staff/kristin-sherman.jpg){.person-photo alt="Kristin Sherman"}
+//    ![](/images/staff/x.jpg){.person-photo alt="Name"}
 //
 //    ::: {.person-body}
-//    ### Kristin Sherman
-//    [Masters and DEVO Coach]{.role} [she/her]{.pronouns}
+//    ### Name
+//    [Role]{.role} [she/her]{.pronouns}
 //
-//    Bio text...
+//    Bio...
 //
-//    [Coach.Kristin@belmontrowing.org](mailto:Coach.Kristin@belmontrowing.org){.email}
+//    [Email](mailto:...){.email}
 //    :::
 //    :::
+//    Several at once: wrap them in :::: {.people-grid} for COMPACT cards two per row
+//    (small portrait beside name/role, bio below, email at the bottom).
+//    Name and role only: ::: {.tile .person-tile} inside a .tile-grid.
 // =============================================================================
+// Compact person card (used by .people-grid, and by every .person on phones).
+@mixin brc-person-compact {
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr auto;
+  column-gap: 1.5rem;
+  row-gap: 0;
+  > p:has(> img) { grid-column: 1; grid-row: 1 / span 2; align-self: center; margin-bottom: 1.25rem; }
+  .person-photo { max-width: none; width: 7.5rem; }
+  // Pandoc turns .person-body into a <section>: let its lines join the card's grid.
+  .person-body { display: contents; }
+  h3 { grid-column: 2; grid-row: 1; align-self: end; margin-bottom: .4rem; font-size: 1.6rem; }
+  h3 + p { grid-column: 2; grid-row: 2; align-self: start; margin-bottom: 1.25rem; }
+  h3 + p .pronouns { margin-bottom: 0; margin-top: .2rem; }
+  h3 ~ p:not(:first-of-type) { grid-column: 1 / -1; }
+  h3 ~ p:has(> .email) { align-self: end; margin: .5rem 0 0; padding-top: .75rem; border-top: 1px solid $brc-hairline; }
+  @media (max-width: 575.98px) {
+    grid-template-columns: 6rem minmax(0, 1fr);
+    column-gap: 1.1rem;
+    padding: 1.25rem;
+    .person-photo { width: 6rem; }
+  }
+}
 .person {
   display: grid;
-  grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
-  gap: clamp(1.25rem, 3vw, 2.25rem);
+  grid-template-columns: minmax(160px, 240px) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
   align-items: start;
-  background-color: $brc-panel;
-  color: $brc-ink;
-  border-radius: $brc-radius;
-  padding: clamp(1.25rem, 3vw, 2rem);
-  margin-bottom: 1.5rem;
-
+  @include brc-card;
+  padding: $brc-card-pad;
+  margin: 2rem 0 1.5rem;
   > p:has(> img) { margin: 0; }
   .person-photo {
+    display: block;
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center top;
-    border-radius: 8px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, .2);
+    border-radius: $brc-radius-sm;
+    background-color: $brc-paper;
   }
-
-  h3 { margin-top: 0; margin-bottom: .2rem; color: $brc-ink; font-size: 1.5rem; }
+  .person-body { max-width: $brc-measure; }
+  h3 { @include brc-card-title; font-size: clamp(1.6rem, 2.4vw, 2rem); margin-bottom: .35rem; }
   .person-body > :last-child { margin-bottom: 0; }
-
-  @media (max-width: 767.98px) {
-    grid-template-columns: 1fr;
-    .person-photo { max-width: 280px; }
-  }
+  @media (max-width: 767.98px) { @include brc-person-compact; }
 }
-// Person without a photo (but with a bio): ::: {.person .no-photo}
 .person.no-photo { grid-template-columns: 1fr; }
 
-// Name-and-role only (no photo, no bio): small tiles, three across.
-//   :::: {.tile-grid}
-//   ::: {.tile .person-tile}
-//   ### Clair Kettle
-//   [Secretary]{.role}
-//   :::
-//   ...more tiles...
-//   ::::
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 0;
+  @media (max-width: 767.98px) { grid-template-columns: 1fr; gap: 1rem; }
+  > .person { @include brc-person-compact; margin: 0; }
+}
+
+// Name-and-role only: compact Cards without the top rule.
 .tile.person-tile {
-  background-color: $brc-panel;
-  color: $brc-ink;
-  box-shadow: none;
-  h3 { font-size: 1.3rem; color: $brc-ink; margin-bottom: .2rem; }
+  padding: 1.1rem 1.35rem;
+  &::before { display: none; }
+  h3 { font-size: 1.375rem; margin: 0 0 .15rem; }
 }
 
 // Lines shared by .person and .person-tile.
 .person, .person-tile {
   .role {
     display: block;
-    font-family: $brc-heading-font;
     font-weight: 600;
-    font-size: 1.1rem;
-    color: $brc-panel-link;
+    font-size: .8125rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: $brc-blue;
   }
-  .pronouns {
-    display: block;
-    font-size: .95rem;
-    font-style: italic;
-    color: $brc-ink;
-    margin-bottom: .5rem;
+  .pronouns { display: block; font-size: $brc-size-small; color: $brc-muted; margin-bottom: .75rem; }
+  .email {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    min-height: 44px;               // tap target
+    font-weight: 600;
+    font-size: $brc-size-small;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+    &::before { @include brc-icon("\F32F"); }   // bi-envelope
+    &:hover { text-decoration: underline; }
   }
-  a { color: $brc-panel-link; }
-  .email { font-weight: 600; overflow-wrap: anywhere; }
 }
 
 
 // =============================================================================
-// 11. SCHEDULE / PRICING TABLES
-//    ::: {.schedule}
-//    | Season  | Fall        |
-//    |---------|-------------|
-//    | Tue/Thu | 6:00p-8:00p |
-//    :::
+// 16. UPCOMING EVENTS (home page; generated by home_events() from schedule.xlsx)
+//    One Card per ::: {.event} block, 2-3 across from tablets up.
 // =============================================================================
-.schedule {
-  overflow-x: auto;
-  margin: 1.5rem auto;
-  max-width: 100%;
+.events {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.event {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @include brc-card;
+  @include brc-card-rule;
+  padding: 1.9rem $brc-card-pad $brc-card-pad;
+  transition: box-shadow $brc-ease;
+  &:hover { box-shadow: $brc-shadow-lift; }
+  h3 {
+    margin: 0 0 .5rem;
+    font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      min-height: 44px;             // tap target
+      color: $brc-ink;
+      text-decoration: none;
+      &::after { @include brc-icon("\F138"); font-size: .6em; color: $brc-blue; transition: transform $brc-ease; }
+      &:hover { color: $brc-blue; &::after { transform: translateX(4px); } }
+    }
+  }
+  p { margin: 0; font-size: 1.0625rem; color: $brc-text; }
+  .btn-row { margin: auto 0 0; padding-top: 1.75rem; }
+}
 
-  table {
-    width: 100%;
+
+// =============================================================================
+// 17. CALLS TO ACTION
+//    Donate band (Home, About): ::: {.band .band-navy .band-cta}  centred, ## headline,
+//    an optional ### line, the text, a large green button. On these pages the
+//    footer's Donate turns into a plain link.
+//    CTA card (Contact): an inset navy card on a light band, heading + line left,
+//    button right:  :::: {.cta-card} ## Contact Us ... ::::
+// =============================================================================
+.band-cta {
+  text-align: center;
+  > *, > section > *, .centered > * { margin-left: auto; margin-right: auto; }
+  h2 { margin-bottom: 1.5rem; }
+  h3 { margin: 0 0 1rem; font-size: $brc-size-h3; color: rgba($brc-white, .92) !important; }
+  p { max-width: 46rem; margin-left: auto; margin-right: auto; }
+  // The button row spans the band and centres its buttons under the heading.
+  .btn-row { max-width: none; width: 100%; }
+  .btn-row > p { max-width: none; justify-content: center; }
+}
+
+// (Pandoc turns the ::: {.cta-card} div that starts with the ## into the section itself.)
+section.cta-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "heading button" "line button";
+  align-items: center;
+  gap: 0 clamp(2rem, 5vw, 4rem);
+  background-color: $brc-navy-900;
+  background-image: linear-gradient(115deg, rgba($brc-navy-800, 0) 35%, rgba($brc-blue, .35) 100%);
+  border-radius: $brc-radius;
+  box-shadow: $brc-shadow;
+  padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+  color: rgba($brc-white, .86);
+  h2 { grid-area: heading; color: $brc-white; margin: 0 0 1.25rem; }
+  > p {
+    grid-area: line;
+    max-width: none;
     margin: 0;
-    background-color: $brc-white;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: $brc-radius;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba($brc-ink, .08);
-    font-size: 1rem;
-    caption-side: top;
+    font-size: $brc-size-lead;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    a { color: $brc-white; font-weight: 600; text-decoration-color: $brc-green-accent; text-decoration-thickness: 2px; }
+    a:hover { color: $brc-sky; }
   }
-  caption { color: $brc-ink; font-weight: 600; text-align: center; }
-  thead th {
-    background-color: $brc-blue;
-    color: $brc-white;
-    font-family: $brc-heading-font;
-    font-weight: 600;
-    border: 0;
-    padding: .75rem 1rem;
+  .btn-row {
+    grid-area: button;
+    margin: 0;
+    .btn-brc::before { @include brc-icon("\F32F"); font-size: .9em; }   // bi-envelope
   }
-  td {
-    padding: .65rem 1rem;
-    border-top: 1px solid rgba($brc-ink, .1);
-    border-bottom: 0;
-    color: $brc-ink;
-    vertical-align: top;
-  }
-  tbody tr:nth-child(even) td { background-color: rgba($brc-page-bg, .55); }
-  table > :not(caption) > * > * { box-shadow: none; }
-
-  // Pandoc sets column widths from the dashes in the |----|----| row whenever
-  // a table line is long, which gives lopsided columns. Ignore those widths:
-  // short tables size their columns to fit the text instead.
-  col { width: auto !important; }
-
-  // Weekly tables (5 or more columns, e.g. Sunday ... Saturday): equal-width
-  // columns. On phones they keep a readable width and scroll sideways.
-  table:has(tr > :nth-child(5)) {
-    table-layout: fixed;
-    min-width: 44rem;
-    th, td { padding-left: .55rem; padding-right: .55rem; }
+  @media (max-width: 767.98px) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "heading" "line" "button";
+    text-align: center;
+    h2::after { margin-left: auto; margin-right: auto; }
+    .btn-row { margin-top: 2rem; }
+    .btn-row > p { justify-content: center; }
   }
 }
-// Narrower table, centred:  ::: {.schedule .schedule-narrow}
-.schedule-narrow { max-width: 560px; }
 
 
 // =============================================================================
-// 12. FORMS (not used right now; kept for a future form written in raw HTML)
+// 18. TEXT HELPERS AND LAYOUT
+// =============================================================================
+// Centred block, for SHORT text only (a heading + a button, a one-line note).
+.centered {
+  max-width: $brc-narrow-width;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  > p, > section > p { margin-left: auto; margin-right: auto; }
+}
+// Motto line (home page "Charlotte Rowing At It's Best").
+.motto {
+  display: block;
+  font-family: $brc-font-display;
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: $brc-blue;
+  margin-top: .5rem;
+}
+// Subtitle under an inner page's # title (a paragraph, not a heading).
+.subheading {
+  display: block;
+  font-weight: 500;
+  font-size: clamp(1.0625rem, 1.6vw, 1.3rem);
+  line-height: 1.4;
+  color: $brc-muted;
+}
+// Extra-large heading (home page "Belmont Rowing Center"). Style heading classes as
+// h2.class, never .class (the class is copied onto the surrounding <section>).
+h1.display-heading, h2.display-heading {
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: .92;
+  color: $brc-navy-900;
+  margin-bottom: .25rem;
+  &::after { display: none; }
+}
+// Two columns side by side (stack below 768px).
+//   :::: {.two-col}  ::: {} left :::  ::: {} right :::  ::::
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  margin: 2rem 0;
+  > * > :first-child { margin-top: 0; }
+  > * > :last-child { margin-bottom: 0; }
+  @media (max-width: 767.98px) { grid-template-columns: 1fr; gap: 2rem; }
+}
+// Split (HOME PAGE ONLY: its editorial sections): heading left (4), content right (8).
+.two-col.split {
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  align-items: start;
+  margin: 0;
+  + .two-col.split { margin-top: clamp(3rem, 6vw, 5rem); }
+  > * { margin-top: 0; margin-bottom: 0; }
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+    h2 { margin-bottom: 1.5rem; }
+  }
+}
+
+
+// =============================================================================
+// 19. FORMS (not used right now; kept for a future form written in raw HTML)
 //    <form class="site-form" ...>
 //      .form-field      one label + input (or a <fieldset> group)
 //      .form-row        side-by-side fields (First / Last); stacks on phones
@@ -824,88 +2152,60 @@ h1.display-heading, h2.display-heading {
 // =============================================================================
 .site-form {
   max-width: $brc-narrow-width;
-  margin: 1.5rem auto 0;
-
+  margin: 2rem 0 0;
   fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
-
   .form-field { margin-bottom: 1.25rem; }
   .form-row .form-field { margin-bottom: 0; }
-
   label, legend {
     display: block;
-    font-family: $brc-heading-font;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: .9375rem;
     color: $brc-ink;
-    margin-bottom: .35rem;
+    margin-bottom: .4rem;
     float: none;
     width: auto;
   }
-
   .form-required { color: #B42318; margin-left: .15rem; }
-
   .form-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     @media (max-width: 575.98px) { grid-template-columns: 1fr; }
   }
-
-  .form-sublabel {
-    font-family: inherit;
-    font-weight: 400;
-    font-size: .875rem;
-    color: $brc-text;
-    margin: .25rem 0 0;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  textarea {
+  .form-sublabel { font-weight: 400; font-size: .875rem; color: $brc-muted; margin: .25rem 0 0; }
+  input[type="text"], input[type="email"], input[type="tel"], textarea {
     display: block;
     width: 100%;
-    padding: .6rem .75rem;
+    min-height: 48px;
+    padding: .7rem .9rem;
     font: inherit;
     color: $brc-ink;
     background-color: $brc-white;
-    border: 1px solid rgba($brc-ink, .35);
-    border-radius: 6px;
-    transition: border-color .15s, box-shadow .15s;
-    &:focus {
-      outline: none;
-      border-color: $brc-blue;
-      box-shadow: 0 0 0 3px rgba($brc-blue, .25);
-    }
+    border: 1px solid rgba($brc-navy-900, .45);
+    border-radius: $brc-radius-sm;
+    transition: border-color $brc-ease, box-shadow $brc-ease;
+    &:focus { outline: 3px solid $brc-blue; outline-offset: 1px; border-color: $brc-blue; }
   }
   textarea { min-height: 9rem; resize: vertical; }
-
   .form-check {
     display: flex;
     align-items: center;
-    gap: .55rem;
+    gap: .6rem;
     margin-bottom: .4rem;
-    padding-left: 0;   // undo Bootstrap's .form-check indent
-    input[type="checkbox"] {
-      width: 1.15rem;
-      height: 1.15rem;
-      margin: 0;
-      flex: none;
-      accent-color: $brc-blue;
-    }
-    label { font-family: inherit; font-weight: 400; color: $brc-text; margin: 0; }
+    padding-left: 0;
+    input[type="checkbox"] { width: 1.15rem; height: 1.15rem; margin: 0; flex: none; accent-color: $brc-blue; }
+    label { font-weight: 400; color: $brc-text; margin: 0; }
   }
-
   .form-actions { margin-top: 1.5rem; }
 }
 
 
 // =============================================================================
-// 13. PAGE-SPECIFIC STYLES
-//    Each inner page has its own file in styles/. Rules there must be scoped
-//    to that page's body class (set with `body-classes:` in the page's
-//    front matter), e.g. `.page-about .something { ... }`.
+// 20. PAGE-SPECIFIC STYLES (small: only what one page can ever need)
+//    Rules there are scoped to the page's body class (`body-classes:` in the
+//    page's front matter), e.g. `.page-about .letter { ... }`.
 // =============================================================================
+@import "styles/home";
 @import "styles/about";
 @import "styles/youth";
 @import "styles/adult";

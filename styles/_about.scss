@@ -1,6 +1,40 @@
-// Page-specific styles for the about page ONLY.
+// Page-specific styles for the ABOUT page only.
 // Every rule here must start with .page-about so it cannot affect other pages.
-// (The page sets `body-classes: page-about` in its front matter.)
-// Shared looks belong in theme.scss; this file is usually empty.
-// Example:
-//   .page-about .my-thing { margin-top: 2rem; }
+// Shared looks belong in theme.scss.
+
+// The Board President's message, set as a letter: a Card with the top rule, a quiet
+// quotation mark above the heading, and the signature at the end.
+// (Pandoc turns the ::: {.letter} div into the h3's <section>.)
+.page-about .letter {
+  @include brc-card;
+  @include brc-card-rule;
+  max-width: 52rem;
+  margin: 2rem 0 3rem;
+  padding: clamp(2rem, 4.5vw, 3rem) clamp(1.5rem, 5vw, 3.5rem);
+  h3 {
+    @include brc-card-title;
+    font-size: clamp(1.45rem, 2.2vw, 1.75rem);
+    margin-bottom: 1.5rem;
+    &::before {
+      @include brc-icon("\F6B0");   // bi-quote
+      display: block;
+      font-size: 3rem;
+      line-height: .8;
+      margin: 0 0 .5rem -.3rem;
+      color: rgba($brc-blue, .25);
+    }
+  }
+  ul { padding-left: 1.25rem; }
+  li + li { margin-top: .6rem; }
+  .signature {
+    margin-top: 2rem;
+    p { margin: 0; }
+    p:first-child { font-style: italic; color: $brc-muted; }
+    p:last-child { @include brc-card-title; font-size: 1.6rem; margin: .15rem 0 0; color: $brc-navy-900; }
+  }
+}
+
+// Name-only board members: three in one row from tablets up.
+.page-about .tile-grid:has(> .person-tile) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}

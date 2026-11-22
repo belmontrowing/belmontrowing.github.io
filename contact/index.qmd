@@ -4,58 +4,52 @@ description: "BRC is located on the Catawba River in Belmont, NC. The site is an
 body-classes: page-contact
 ---
 
-<!-- HERO: the club's logo mark, as on the old site -->
+<!-- PAGE HEADER: photo of the river with the page title over it -->
 ::: {.hero .hero-short}
-![](/images/icrew-mark.jpg){.bg alt=""}
+![](/images/home-card-adult.jpg){.bg alt="" style="object-position: center 45%"}
+
+# Contact Information
 :::
 
-<!-- PAGE TITLE + ADDRESSES -->
-::: {.band .band-light}
-::: {.centered}
-# Contact Information
-
+<!-- LOCATION: intro, then the address cards beside the site map (shared .location) -->
+::: {.band .band-white}
+::: {.lead}
 BRC is located on the Catawba River in Belmont, NC. The site is an old mill property offering BRC use of the shoreline and river, grounds for boat storage, and indoor space for boat repair and erg training
 :::
 
-<!-- Three columns: address | map | mailing address (stacks on phones) -->
-:::: {.three-col .text-center}
-::: {}
-**Physical Location:**\
+:::: {.location}
+::: {.address-card}
+**Physical Location:**
+
 1500 River Drive\
-Belmont, NC 28012\
-[Get Directions](https://www.google.com/maps/dir//35.2373424,-81.0156972/@35.2366652,-81.0164385,17.49z/data=!4m2!4m1!3e0)
+Belmont, NC 28012
+
+[Get Directions](https://www.google.com/maps/dir//35.2373424,-81.0156972/@35.2366652,-81.0164385,17.49z/data=!4m2!4m1!3e0){.btn-brc-outline}
 :::
 
-::: {}
-![](/images/location-map.png){fig-alt="Map showing the location of Belmont Rowing Center at 1500 River Drive, Belmont, NC, on the Catawba River"}
-:::
+::: {.address-card .address-mailing}
+**Mailing Address:**
 
-::: {}
-**Mailing Address:**\
 Belmont Rowing Center\
 PO Box 1401\
 Belmont, NC 28012
 :::
+
+::: {.location-map .framed}
+![](/images/location-map.png){fig-alt="Map showing the location of Belmont Rowing Center at 1500 River Drive, Belmont, NC, on the Catawba River" width="726" height="490"}
+:::
 ::::
 :::
 
-::: {.divider}
-:::
-
-<!-- CONTACT US -->
-::: {.band .band-panel .band-tight}
+<!-- CONTACT US: the navy CTA card (shared .cta-card) -->
+::: {.band .band-light}
+:::: {.cta-card}
 ## Contact Us
-:::
 
-:::: {.band .band-light}
-::: {.centered}
 Email us at [info@belmontrowing.org](mailto:info@belmontrowing.org)
 
 ::: {.btn-row}
-[Email Us](mailto:info@belmontrowing.org){.btn-brc}
-:::
+[Email Us](mailto:info@belmontrowing.org){.btn-brc .btn-brc-lg}
 :::
 ::::
-
-::: {.divider}
 :::

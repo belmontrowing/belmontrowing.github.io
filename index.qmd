@@ -16,73 +16,69 @@ aliases:
 source("R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 ```
 
-<!-- HERO -->
+<!-- HERO: photo, eyebrow line, headline, sub-line, buttons -->
 ::: {.hero}
-![](/images/hero-home.jpg){.bg alt=""}
+![](/images/hero-home.jpg){.bg alt="" style="object-position: center 100%"}
+
+[LOCATED ON THE CALM WATERS OF THE CATAWBA RIVER, JUST 10 MILES WEST OF UPTOWN CHARLOTTE]{.tagline}
 
 # Row Together, Grow Together
 
 Your Seat Is Waiting!
+
+::: {.btn-row}
+[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc .btn-brc-lg} [About Us](/about/index.qmd){.btn-brc-outline .btn-brc-lg}
+:::
 :::
 
-<!-- INTRO -->
-::: {.band .band-light}
-::: {.centered}
+<!-- INTRO (club name + motto | one-line summary) and CLUB PROGRAMMING (four photo cards) -->
+::: {.band .band-white .home-intro}
+:::: {.two-col}
+::: {}
 ## Belmont Rowing Center {.display-heading}
-
-[LOCATED ON THE CALM WATERS OF THE CATAWBA RIVER, JUST 10 MILES WEST OF UPTOWN CHARLOTTE]{.tagline}
 
 [Charlotte Rowing At It's Best]{.motto}
 :::
-:::
 
-::: {.divider}
+::: {.lead}
+Belmont Rowing Center promotes the growing sport of rowing through educational, competitive, and inclusive programs.
 :::
+::::
 
-<!-- CLUB PROGRAMMING -->
-::: {.band .band-navy .band-tight}
+<!-- CLUB PROGRAMMING: four photo cards -->
 ## CLUB PROGRAMMING
 
-::: {.btn-row}
-[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc .btn-brc-lg}
-:::
-:::
-
-::: {.band .band-light}
 :::: {.card-grid}
 
 ::: {.photo-card}
 ![](/images/home-card-youth.jpg){.bg alt="" style="object-position: top"}
 
-[Youth Programs](/youth/index.qmd){.btn-brc}
+[Youth Programs](/youth/index.qmd)
 :::
 
 ::: {.photo-card}
 ![](/images/home-card-adult.jpg){.bg alt=""}
 
-[Adult Programs](/adult/index.qmd){.btn-brc}
+[Adult Programs](/adult/index.qmd)
 :::
 
 ::: {.photo-card}
 ![](/images/home-card-other.jpg){.bg alt=""}
 
-[Other Programs](/other/index.qmd){.btn-brc}
+[Other Programs](/other/index.qmd)
 :::
 
 ::: {.photo-card}
 ![](/images/home-card-about.jpg){.bg alt=""}
 
-[About Us](/about/index.qmd){.btn-brc}
+[About Us](/about/index.qmd)
 :::
 
 ::::
 :::
 
-::: {.divider}
-:::
-
 <!-- UPCOMING EVENTS: from the home_events tab of schedule.xlsx -->
-::: {.band .band-white}
+::: {.band .band-light}
 ## Upcoming Events
 
 ```{r}
@@ -90,24 +86,28 @@ home_events()
 ```
 :::
 
-::: {.divider}
-:::
-
-<!-- OUR CLUB -->
-::: {.band .band-light}
-::: {.centered}
+<!-- OUR CLUB: mission as a lead, offerings, core activities as a checklist -->
+::: {.band .band-white}
+:::: {.two-col .split}
+::: {}
 ## Our Club
-
-**Belmont Rowing Center promotes the growing sport of rowing through educational, competitive, and inclusive programs.**
-
-**Our mission is to offer affordable and inclusive rowing programs for youth and adults to encourage physical activity, support health and wellness, foster teamwork, and promote the sport of rowing**
-
-**We offer a variety of rowing opportunities for youth (12+) and adults, including Summer Camps, Learn to Scull/Sweep, Indoor Rowing and Strength Training, and year-round youth and adult rowing teams. Whether you are looking for competitive rowing opportunities, want to improve your skills and fitness at a recreational pace, or have no prior experience and would like to try something new, come experience the beauty of the Catawba River and the supportive community of BRC rowers!**
 :::
 
-::: {.narrow}
-## Our Core Activities
+::: {}
+::: {.lead}
+Our mission is to offer affordable and inclusive rowing programs for youth and adults to encourage physical activity, support health and wellness, foster teamwork, and promote the sport of rowing
+:::
 
+We offer a variety of rowing opportunities for youth (12+) and adults, including Summer Camps, Learn to Scull/Sweep, Indoor Rowing and Strength Training, and year-round youth and adult rowing teams. Whether you are looking for competitive rowing opportunities, want to improve your skills and fitness at a recreational pace, or have no prior experience and would like to try something new, come experience the beauty of the Catawba River and the supportive community of BRC rowers!
+:::
+::::
+
+:::: {.two-col .split}
+::: {}
+## Our Core Activities
+:::
+
+::: {.checklist .checklist-1col}
 - Provide educational rowing programs and training opportunities.
 - Serve youth and adults rowers.
 - Attract and retain high quality coaches.
@@ -115,11 +115,14 @@ home_events()
 - Demonstrate inclusivity – race, size, age, and economic background.
 - Support our rowers in the development of strength, endurance, improved health, injury recovery perseverance, leadership, grit, and teamwork.
 :::
+::::
+:::
 
+<!-- OUR VALUES: five cards, 3 + 2 -->
+::: {.band .band-light}
 ## Our Values
 
 :::: {.tile-grid .tile-grid-featured}
-
 ::: {.tile}
 ### Education
 
@@ -165,22 +168,30 @@ home_events()
 ::::
 :::
 
-::: {.divider}
-:::
-
-<!-- SUPPORT / FIND US -->
-::: {.band .band-white}
+<!-- SUPPORT OUR GROWTH: navy call-to-action band -->
+::: {.band .band-navy .band-cta}
 ::: {.centered}
 ## Support Our Growth
 
-Belmont Rowing Center is registered as a 501(c)(3) non-profit organization.  Contributions to the Belmont Rowing Centers are tax-deductible to the extent permitted by law.  Belmont Rowing Center tax identification number is 46-4057146.
+Belmont Rowing Center is registered as a [501(c)(3)]{.nowrap} non-profit organization.  Contributions to the Belmont Rowing Centers are tax-deductible to the extent permitted by law.  Belmont Rowing Center tax identification number is 46-4057146.
 
 ::: {.btn-row}
 [DONATE TODAY](https://www.zeffy.com/en-US/donation-form/support-the-growing-sport-of-rowing-at-belmont-rowing-center){.btn-brc .btn-brc-lg}
 :::
+:::
+:::
 
+<!-- FIND US: the address card beside the site map (shared .location, as on About and Contact) -->
+::: {.band .band-white}
 ## Find Us
 
-[1500 River Drive – Belmont, NC 20812](https://maps.apple.com/place?address=1500+River+Dr%2C+Belmont%2C+NC++28012%2C+United+States&coordinate=35.2364488%2C-81.0158554&name=1500+River+Dr)
+:::: {.location}
+::: {.address-card}
+[1500 River Drive – Belmont, NC 28012](https://maps.apple.com/place?address=1500+River+Dr%2C+Belmont%2C+NC++28012%2C+United+States&coordinate=35.2364488%2C-81.0158554&name=1500+River+Dr)
 :::
+
+::: {.location-map .framed}
+![](/images/location-map.png){fig-alt="Map showing the location of Belmont Rowing Center at 1500 River Drive, Belmont, NC, on the Catawba River" width="726" height="490" loading="lazy"}
+:::
+::::
 :::

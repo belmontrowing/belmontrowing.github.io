@@ -1,36 +1,29 @@
 ---
 title: "About Us"
-description: "Our amazing coaches are the heart of our family here at Belmont Rowing Center! They are passionate about rowing and committed to carrying out our mission to"
+description: "Our amazing coaches are the heart of our family here at Belmont Rowing Center! They are passionate about rowing and committed to carrying out our mission to promote the growing sport of rowing through educational, competitive, and inclusive programs."
 body-classes: page-about
 ---
 
-<!-- HERO -->
+<!-- PAGE HEADER: photo with the page title over it -->
 ::: {.hero .hero-short}
-![](/images/hero-about.jpg){.bg alt=""}
+![](/images/hero-about.jpg){.bg alt="" style="object-position: center 55%"}
+
+# ABOUT BELMONT ROWING CENTER
 :::
 
-<!-- PAGE TITLE + JUMP LINKS -->
-::: {.band .band-light}
-# ABOUT BELMONT ROWING CENTER
-
-::: {.pill-nav}
+<!-- SUB-NAVIGATION: jump links to the sections below -->
+::: {.pill-nav role="navigation" aria-label="On this page"}
 [COACHES](#coaches) [BOARD MEMBERS](#boardmembers) [HISTORY](#history1) [POLICIES](#policies) [LOCATION](#location) [DONATE](#donate)
 :::
-:::
 
-::: {.divider}
-:::
-
-<!-- COACHES -->
-::: {.band .band-panel .band-tight}
-## COACHES {#coaches}
-:::
-
+<!-- COACHES: the head coach as a wide card, then the other coaches two per row -->
 ::: {.band .band-light}
+## COACHES {#coaches}
+
 Our amazing coaches are the heart of our family here at Belmont Rowing Center! They are passionate about rowing and committed to carrying out our mission to promote the growing sport of rowing through educational, competitive, and inclusive programs. We are lucky to have coaches with a wide variety of experience and expertise who are ready to help you reach your goals!
 
 ::: {.person}
-![](/images/staff/johanna-niederbroker.jpg){.person-photo alt="Johanna Niederbroker"}
+![](/images/staff/johanna-niederbroker.jpg){.person-photo loading="lazy" alt="Johanna Niederbroker"}
 
 ::: {.person-body}
 ### Johanna Niederbroker
@@ -44,8 +37,9 @@ Apart from her qualifications as a coach, she holds a M.Ed. degree in Secondary 
 :::
 :::
 
+:::: {.people-grid}
 ::: {.person}
-![](/images/staff/kristin-sherman.jpg){.person-photo alt="Kristin Sherman"}
+![](/images/staff/kristin-sherman-portrait.jpg){.person-photo loading="lazy" alt="Kristin Sherman"}
 
 ::: {.person-body}
 ### Kristin Sherman
@@ -58,7 +52,7 @@ Kristin rowed for three years at UVA as part of their first women’s crew, rowi
 :::
 
 ::: {.person}
-![](/images/staff/patricia-stichnoth.jpg){.person-photo alt="Patricia Stichnoth"}
+![](/images/staff/patricia-stichnoth-portrait.jpg){.person-photo loading="lazy" alt="Patricia Stichnoth"}
 
 ::: {.person-body}
 ### Patricia Stichnoth
@@ -69,20 +63,19 @@ Patricia fell in love with the sport of rowing in 2016 when she started voluntee
 [Coach.Patricia@belmontrowing.org](mailto:Coach.Patricia@belmontrowing.org){.email}
 :::
 :::
+::::
 :::
 
-::: {.divider}
-:::
-
-<!-- BOARD MEMBERS -->
-::: {.band .band-panel .band-tight}
+<!-- BOARD MEMBERS: the President's letter, then the board bios two per row, then name-only members -->
+::: {.band .band-white}
 ## BOARD MEMBERS {#boardmembers}
-:::
 
-::: {.band .band-light}
+:::: {.letter}
 ### A Message From the Belmont Rowing Center Board of Directors President, Dan Hartley:
 
+::: {.lead}
 I am honored to serve as your Board President. My journey from a novice rower to helping with site planning has given me a deep appreciation for the effort it takes to keep our club afloat—both literally and figuratively.
+:::
 
 Looking ahead to 2026, my focus is two-fold:
 
@@ -92,12 +85,16 @@ Looking ahead to 2026, my focus is two-fold:
 
 I look forward to seeing you all at the boathouse and on the river.
 
+::: {.signature}
 Smooth Water,
 
 Dan Hartley
+:::
+::::
 
+:::: {.people-grid}
 ::: {.person}
-![](/images/staff/dan-hartley.jpg){.person-photo alt="Dan Hartley"}
+![](/images/staff/dan-hartley.jpg){.person-photo loading="lazy" alt="Dan Hartley"}
 
 ::: {.person-body}
 ### Dan Hartley
@@ -110,7 +107,7 @@ As a Charlotte native who called Belmont home starting in 2013, Dan has watched 
 :::
 
 ::: {.person}
-![](/images/staff/debbie-brown.jpg){.person-photo alt="Debbie is happy to be rowing!"}
+![](/images/staff/debbie-brown.jpg){.person-photo loading="lazy" alt="Debbie is happy to be rowing!"}
 
 ::: {.person-body}
 ### Debbie Brown
@@ -123,7 +120,7 @@ Debbie began rowing in 1981 with Navy Women’s Crew at the United States Naval 
 :::
 
 ::: {.person}
-![](/images/staff/david-yagnesak.jpg){.person-photo alt="David Yagnesak"}
+![](/images/staff/david-yagnesak.jpg){.person-photo loading="lazy" alt="David Yagnesak"}
 
 ::: {.person-body}
 ### David Yagnesak
@@ -136,7 +133,7 @@ David began sculling in the sometimes-frigid tidal waters of the Long Island Sou
 :::
 
 ::: {.person}
-![](/images/staff/glen-danziger.jpg){.person-photo alt="Glen Danziger"}
+![](/images/staff/glen-danziger.jpg){.person-photo loading="lazy" alt="Glen Danziger"}
 
 ::: {.person-body}
 ### Glen Danziger
@@ -147,6 +144,7 @@ Glen began rowing on the water at the Belmont Rowing Center in 2024, inspired by
 [Treasurer@belmontrowing.org](mailto:treasurer@belmontrowing.org){.email}
 :::
 :::
+::::
 
 :::: {.tile-grid}
 ::: {.tile .person-tile}
@@ -166,15 +164,10 @@ Glen began rowing on the water at the Belmont Rowing Center in 2024, inspired by
 ::::
 :::
 
-::: {.divider}
-:::
-
 <!-- HISTORY -->
-::: {.band .band-panel .band-tight}
-## HISTORY {#history1}
-:::
-
 ::: {.band .band-light}
+## HISTORY {#history1}
+
 Established in 2013, Belmont Rowing Center offers affordable and inclusive rowing programs to youth and adults to encourage physical activity, support health and wellness, foster teamwork and promote the sport of rowing. Located on the Catawba River in Belmont, NC, BRC provides a unique recreational opportunity for individuals of all body types and abilities of teens through seniors. Though most BRC rowers live in Gaston or Mecklenburg County, BRC draws participants from the entire Charlotte metropolitan region, which has a population of 2.2 million and growing (as of 2023).
 
 BRC program offerings have included:
@@ -209,60 +202,47 @@ BRC program offerings have included:
 Despite relocating twice and operating on a short-term lease, BRC has managed to grow and thrive, even with much of its energy focused on the search for a permanent home. That search culminated successtully in December 2017, when several rowers teamed up to purchase 13.6 acres of land on the Catawba River in Belmont, NC. BRC then donated approximately 3.4 acres to the City of Belmont for a municipal park, with the remainder to serve as a permanent home for BRC. This arrangement provides a significant site upgrade while providing a new waterfront park for public enjoyment
 :::
 
-::: {.divider}
-:::
-
 <!-- POLICIES -->
-::: {.band .band-panel .band-tight}
+::: {.band .band-white}
 ## POLICIES {#policies}
-:::
 
-::: {.band .band-light}
+::: {.doc-list}
 **[BRC Safety Policy](https://drive.google.com/file/d/1D4yfsQwteLG-jOoWZRWqejBiDfsj7Gzk/view?usp=share_link)**
 
 **[BRC Weather Policy](https://drive.google.com/file/d/1eCwa2g2AicR4t2Oy4iSEPZmJbJrAMTwS/view?usp=share_link)**
 
 **[BRC Private Boat Storage and Independent Rowing Policy](https://drive.google.com/file/d/1kbaUgsFeZPIZN3rmquECj1yPD0JuSj4d/view?usp=share_link)**
 :::
-
-::: {.divider}
 :::
 
-<!-- LOCATION -->
-::: {.band .band-panel .band-tight}
-## LOCATION {#location}
-:::
-
+<!-- LOCATION: the address card beside the map (shared .location component) -->
 ::: {.band .band-light}
-:::: {.two-col}
-::: {}
-**Address:\
+## LOCATION {#location}
+
+:::: {.location}
+::: {.address-card}
+**Address:**
+
 1500 River Drive\
-Belmont, NC 28012**
+Belmont, NC 28012
 
 We launch and have parking at Riverside Marina
 :::
 
-::: {.map-embed}
+::: {.location-map .map-embed}
 <!-- Google map of the address (same map as the old site) -->
 <iframe loading="lazy" src="https://maps.google.com/maps?q=1500%20river%20drive%20Belmont%2C%20nc%2028012&amp;t=m&amp;z=12&amp;output=embed&amp;iwloc=near" title="1500 river drive Belmont, nc 28012"></iframe>
 :::
 ::::
 :::
 
-::: {.divider}
-:::
-
-<!-- DONATE -->
-::: {.band .band-panel .band-tight}
+<!-- DONATE: the navy Donate band (shared .band-cta, as on the home page) -->
+::: {.band .band-navy .band-cta}
 ## DONATE {#donate}
-:::
 
-::: {.band .band-light}
-::: {.centered}
 ### Support Our Growth
 
-Belmont Rowing Center is registered as a 501(c)(3) non-profit organization.  Contributions to the Belmont Rowing Centers are tax-deductible to the extent permitted by law.  Belmont Rowing Center tax identification number is 46-4057146
+Belmont Rowing Center is registered as a [501(c)(3)]{.nowrap} non-profit organization.  Contributions to the Belmont Rowing Centers are tax-deductible to the extent permitted by law.  Belmont Rowing Center tax identification number is 46-4057146
 
 BRC is a registered 501c3 under the name\
 “North Charlotte Rowing”
@@ -270,8 +250,4 @@ BRC is a registered 501c3 under the name\
 ::: {.btn-row}
 [Donate Today](https://www.zeffy.com/en-US/donation-form/support-the-growing-sport-of-rowing-at-belmont-rowing-center){.btn-brc .btn-brc-lg}
 :::
-:::
-:::
-
-::: {.divider}
 :::

@@ -1,6 +1,29 @@
-// Page-specific styles for the other page ONLY.
+// Page-specific styles for the OTHER PROGRAMS page only.
 // Every rule here must start with .page-other so it cannot affect other pages.
-// (The page sets `body-classes: page-other` in its front matter.)
-// Shared looks belong in theme.scss; this file is usually empty.
-// Example:
-//   .page-other .my-thing { margin-top: 2rem; }
+// Shared looks belong in theme.scss.
+
+// Offer: the price card beside the "how to sign up" text (Collegiate, Private Lessons).
+.page-other .offer {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  margin-top: 2rem;
+  .price-card { max-width: none; }
+  .offer-body {
+    > p { max-width: $brc-measure; }
+    > :first-child { margin-top: 0; }
+    .btn-row { margin-bottom: 0; }
+  }
+  @media (max-width: 991.98px) { grid-template-columns: 1fr; }
+}
+
+// ROAR: the introduction beside the programme's logo.
+.page-other .roar-intro {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  .framed img { max-width: 420px; margin-left: auto; }
+  @media (max-width: 767.98px) {
+    grid-template-columns: 1fr;
+    .framed img { max-width: 320px; margin: 0; }
+  }
+}

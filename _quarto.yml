@@ -9,6 +9,7 @@ project:
     - "*.qmd"
   resources:
     - images/          # copy every image into docs/, even ones only used in CSS
+    - scripts/         # scripts/site.js (the one small script; see CLAUDE.md)
     - CNAME            # tells GitHub Pages the site's address is www.belmontrowing.org
 
 website:
@@ -19,30 +20,39 @@ website:
   favicon: images/favicon.png
   search: false
   page-navigation: false
+  # Sharing preview (Facebook, iMessage, Slack, X...): every page uses this picture.
+  image: images/share.jpg
+  image-alt: "A rower sculling on the Catawba River at sunrise, with mist on the water"
   open-graph: true
+  twitter-card: true
 
   navbar:
     logo: images/logo.jpg
     logo-alt: "Belmont Rowing Center home"
     title: false
     collapse-below: lg
+    # Header menu, left to right. Our own pages: `href: page/index.qmd`.
+    # A dropdown is an item with `text:` and a `menu:` list (Programs, Social).
+    # Outside links carry target/rel so they open in a new tab.
     right:
       - text: Home
         href: index.qmd
-      - text: About
+      - text: About Us
         href: about/index.qmd
-      - text: Youth
-        href: youth/index.qmd
-      - text: Adults
-        href: adult/index.qmd
-      - text: Other
-        href: other/index.qmd
-      - text: Contact
-        href: contact/index.qmd
+      - text: Programs
+        menu:
+          - text: Youth
+            href: youth/index.qmd
+          - text: Adult
+            href: adult/index.qmd
+          - text: Other
+            href: other/index.qmd
       - text: BRC Swag
         href: "https://teamlocker.squadlocker.com/#/lockers/belmont-rowing-center-313909?_k=cnluax"
         target: _blank
         rel: noopener
+      - text: Contact
+        href: contact/index.qmd
       - text: Social
         menu:
           - text: Instagram
@@ -65,43 +75,66 @@ website:
             href: https://log.concept2.com/team/8472
             target: _blank
             rel: noopener
+      # A quieter outlined "Donate" button, then the one green "Register" button
+      # at the far right. theme.scss styles both by their addresses (section 2).
+      - text: Donate
+        href: "https://www.zeffy.com/en-US/donation-form/support-the-growing-sport-of-rowing-at-belmont-rowing-center"
+        target: _blank
+        rel: noopener
+      # theme.scss styles it as a button by its iCrew address (section 2).
+      - text: Register
+        href: "https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980"
+        target: _blank
+        rel: noopener
 
+  # Navy footer in three slots (styled in theme.scss, section 3):
+  #   left = club name, 501(c)(3) line, Donate;  center = addresses + page links;
+  #   right = social links. Links to our own pages are written /page/index.qmd so
+  #   Quarto makes them work from every folder. Outside links carry
+  #   target="_blank" rel="noopener" so they open in a new tab.
   page-footer:
-    left:
-      - text: Home
-        href: index.qmd
-      - text: About
-        href: about/index.qmd
-      - text: Youth
-        href: youth/index.qmd
-      - text: Adults
-        href: adult/index.qmd
-      - text: Other
-        href: other/index.qmd
-      - text: Contact
-        href: contact/index.qmd
-      - text: BRC Swag
-        href: "https://teamlocker.squadlocker.com/#/lockers/belmont-rowing-center-313909?_k=cnluax"
-        target: _blank
-        rel: noopener
-    center: |
+    left: |
+      [Belmont Rowing Center]{.footer-brand}
+
+      [Charlotte Rowing At It's Best]{.footer-motto}
+
+      Belmont Rowing Center is registered as a [501(c)(3)]{.nowrap} non-profit organization.
+
       [Donate To Support Our Growth](https://www.zeffy.com/donation-form/support-the-growing-sport-of-rowing-at-belmont-rowing-center){.footer-donate target="_blank" rel="noopener"}
-    right:
-      - icon: instagram
-        href: https://www.instagram.com/belmontrowing
-        target: _blank
-        rel: noopener
-        aria-label: Instagram
-      - icon: facebook
-        href: https://www.facebook.com/belmontrowing
-        target: _blank
-        rel: noopener
-        aria-label: Facebook
-      - icon: youtube
-        href: https://www.youtube.com/channel/UCXFYUbRCOyXJPg2Ow2NLszQ
-        target: _blank
-        rel: noopener
-        aria-label: YouTube
+    center: |
+      ::: {.footer-col}
+      [Visit]{.footer-label}
+
+      **Physical Location:**\
+      1500 River Drive\
+      Belmont, NC 28012
+
+      **Mailing Address:**\
+      Belmont Rowing Center\
+      PO Box 1401\
+      Belmont, NC 28012
+
+      [info@belmontrowing.org](mailto:info@belmontrowing.org)
+      :::
+
+      ::: {.footer-col}
+      [Explore]{.footer-label}
+
+      - [Home](/index.qmd)
+      - [About Us](/about/index.qmd)
+      - [Youth](/youth/index.qmd)
+      - [Adult](/adult/index.qmd)
+      - [Other](/other/index.qmd)
+      - [Contact](/contact/index.qmd)
+      - [BRC Swag](https://teamlocker.squadlocker.com/#/lockers/belmont-rowing-center-313909?_k=cnluax){target="_blank" rel="noopener"}
+      :::
+    right: |
+      [Follow]{.footer-label}
+
+      - [[]{.bi .bi-instagram aria-hidden="true"} Instagram](https://www.instagram.com/belmontrowing){target="_blank" rel="noopener"}
+      - [[]{.bi .bi-facebook aria-hidden="true"} Facebook](https://www.facebook.com/belmontrowing){target="_blank" rel="noopener"}
+      - [[]{.bi .bi-youtube aria-hidden="true"} YouTube](https://www.youtube.com/channel/UCXFYUbRCOyXJPg2Ow2NLszQ){target="_blank" rel="noopener"}
+      - [[]{.bi .bi-activity aria-hidden="true"} Concept 2](https://log.concept2.com/team/8472){target="_blank" rel="noopener"}
 
 # R code in pages (the seasonal tables read from schedule.xlsx via R/schedule.R):
 # never show the code, warnings or messages; `output: asis` inserts the generated
@@ -126,3 +159,4 @@ format:
     lang: en
     filters:
       - _filters/main-landmark.lua
+      - _filters/season-collapse.lua   # completed season cards fold up; also loads scripts/site.js

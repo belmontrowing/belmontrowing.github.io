@@ -9,74 +9,73 @@ body-classes: page-other
 source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 ```
 
-<!-- HERO -->
+<!-- PAGE HEADER: photo with the page title over it -->
 ::: {.hero .hero-short}
-![](/images/hero-other.jpg){.bg alt=""}
+![](/images/hero-other.jpg){.bg alt="" style="object-position: center 60%"}
+
+# Other Programs
 :::
 
-<!-- PAGE TITLE + JUMP LINKS -->
-::: {.band .band-light}
-# Other Programs
-
-::: {.pill-nav}
+<!-- SUB-NAVIGATION: jump links to the sections below -->
+::: {.pill-nav role="navigation" aria-label="On this page"}
 [COLLEGIATE SUMMER](#collegiate) [ROWING FOR ACTIVE RECOVERY](#roar) [PRIVATE LESSONS](#private) [INDEPENDENT ROWING](#independent)
 :::
-:::
 
-::: {.divider}
-:::
-
-<!-- COLLEGIATE SUMMER ROWING -->
-::: {.band .band-panel .band-tight}
-## COLLEGIATE SUMMER ROWING {#collegiate}
-:::
-
+<!-- COLLEGIATE SUMMER ROWING
+     .offer = price card (left) beside "how to sign up" text and button (right). -->
 ::: {.band .band-light}
-::: {.centered}
-**For college rowers that are living in Charlotte for the summer and want to continue their training on and off the water, BRC offers summer rates for independent rowing or joining the Masters team to practice with our adult athletes.**
+## COLLEGIATE SUMMER ROWING {#collegiate}
 
-**Rates are set on a pro-rata basis to row from `r season("collegiate", "months")`**
+::: {.lead}
+For college rowers that are living in Charlotte for the summer and want to continue their training on and off the water, BRC offers summer rates for independent rowing or joining the Masters team to practice with our adult athletes.
+:::
+
+:::: {.offer}
+::: {.price-card}
+::: {.price-note}
+Rates are set on a pro-rata basis to row from `r season("collegiate", "months")`
+:::
 
 ### Collegiate Summer Pricing
 
 ```{r}
 price_table("collegiate")
 ```
-
-**BRC uses the iCrew team management platform to manage registrations, process payments, and obtain all required documentation. The link below will take you to directly to iCrew. Upon your first login you will be required to create a profile prior to registering for any BRC program.  Once registered, either select Independent Rowing or Masters Training and choose the collegiate payment options to make your payment.  Alternatively, you can choose the monthly payment option if rowing will be more or less than the full summer.  Prior to your first practice you will need to e-sign the *Participation Agreement* and *Code of Conduct* affidavits located in the “My Documents” section of your iCrew account.**
-
-**There may be coaching opportunities during the summer months for collegiate rowers with sufficient experience to help offset the cost of the summer program.**
-
-**Once you’ve created your iCrew account and registered, or at any time if you have questions, please contact [Info@BelmontRowing.org](mailto:Info@BelmontRowing.org) to find out more.**
 :::
+
+::: {.offer-body}
+BRC uses the iCrew team management platform to manage registrations, process payments, and obtain all required documentation. The link below will take you to directly to iCrew. Upon your first login you will be required to create a profile prior to registering for any BRC program.  Once registered, either select Independent Rowing or Masters Training and choose the collegiate payment options to make your payment.  Alternatively, you can choose the monthly payment option if rowing will be more or less than the full summer.  Prior to your first practice you will need to e-sign the *Participation Agreement* and *Code of Conduct* affidavits located in the “My Documents” section of your iCrew account.
+
+There may be coaching opportunities during the summer months for collegiate rowers with sufficient experience to help offset the cost of the summer program.
+
+Once you’ve created your iCrew account and registered, or at any time if you have questions, please contact [Info@BelmontRowing.org](mailto:Info@BelmontRowing.org) to find out more.
 
 ::: {.btn-row}
-[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc .btn-brc-lg}
+[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
 :::
+:::
+::::
 :::
 
-::: {.divider}
-:::
-
-<!-- ROWING FOR ACTIVE RECOVERY (ROAR) -->
-::: {.band .band-panel .band-tight}
+<!-- ROWING FOR ACTIVE RECOVERY (ROAR): introduction beside the logo, then the FAQ
+     (shared .faq: each paragraph is a **question:** followed by its answer). -->
+::: {.band .band-white}
 ## ROWING FOR ACTIVE RECOVERY {#roar}
-:::
 
-::: {.band .band-light}
-:::: {.two-col}
+:::: {.two-col .roar-intro}
 ::: {}
-**Rowing for Active Recovery (ROAR) is a learn-to-row program for cancer patients and survivors. ROAR is delivered at no cost to participants. Both indoor rowing machine workouts as well as sessions rowing outdoors on the Catawba River will be offered. ROAR has the goal of empowering cancer patients and survivors to improve their strength, endurance, and ultimately, quality of life through rowing.**
+Rowing for Active Recovery (ROAR) is a learn-to-row program for cancer patients and survivors. ROAR is delivered at no cost to participants. Both indoor rowing machine workouts as well as sessions rowing outdoors on the Catawba River will be offered. ROAR has the goal of empowering cancer patients and survivors to improve their strength, endurance, and ultimately, quality of life through rowing.
 
-**Rowing is a safe, low-impact sport providing a whole-body workout that can help improve physical fitness, energy levels, and self-esteem before, during, or after treatment. ROAR will meet your needs wherever you are. And while knowing how to swim is important, life jackets and flotation devices are always on hand.**
+Rowing is a safe, low-impact sport providing a whole-body workout that can help improve physical fitness, energy levels, and self-esteem before, during, or after treatment. ROAR will meet your needs wherever you are. And while knowing how to swim is important, life jackets and flotation devices are always on hand.
 :::
-::: {}
-![](/images/roar-logo.png){fig-alt="ROAR: Rowing for Active Recovery logo"}
+::: {.framed}
+![](/images/roar-logo.png){fig-alt="ROAR: Rowing for Active Recovery logo" width="572" height="498" loading="lazy"}
 :::
 ::::
 
-**ROAR FAQ**:
+### **ROAR FAQ**:
 
+::: {.faq}
 **Do I need prior rowing experience?:** No experience is required, we welcome people of all athletic abilities!
 
 **Is there a cost for the program?:** Programming will be provided free of charge through the generosity of volunteers and Belmont Rowing Center.
@@ -95,52 +94,52 @@ price_table("collegiate")
 
 **Additional Questions?:** If you have additional questions please feel free to reach out via email at [ROAR@belmontrowing.org](mailto:ROAR@belmontrowing.org).
 :::
-
-::: {.divider}
 :::
 
-<!-- PRIVATE LESSONS -->
-::: {.band .band-panel .band-tight}
-## PRIVATE LESSONS {#private}
-:::
-
+<!-- PRIVATE LESSONS (same .offer layout as Collegiate) -->
 ::: {.band .band-light}
-::: {.centered}
-**Get one-on-one coaching with a private lesson. Whether you are picking up an oar for the first time or looking to get additional coaching outside of regular program practices for your race lineup, you can get the tailored coaching you need.**
+## PRIVATE LESSONS {#private}
 
-**Each lesson is 90 minutes long. All rowing equipment is provided (eg: boat, oars). Please review What to Bring with you for your lesson. For most students brand new to rowing, we recommend 3-5 lessons to pick up all of the basics.**
+::: {.lead}
+Get one-on-one coaching with a private lesson. Whether you are picking up an oar for the first time or looking to get additional coaching outside of regular program practices for your race lineup, you can get the tailored coaching you need.
+:::
 
+Each lesson is 90 minutes long. All rowing equipment is provided (eg: boat, oars). Please review What to Bring with you for your lesson. For most students brand new to rowing, we recommend 3-5 lessons to pick up all of the basics.
+
+:::: {.offer}
+::: {.price-card}
 ### BRC Private Lesson Pricing
 
 ```{r}
 price_table("private-lessons")
 ```
 
+::: {.price-note}
 Pricing is for 1 rower in a sculling boat. Please contact us for multi-rower options.
-
----
-
-**BRC uses the iCrew team management platform to manage registrations, process payments, and obtain all required documentation. The link below will take you to directly to iCrew. Upon your first login you will be required to create a profile prior to registering for any BRC program.  Once registered, select Private Lesson and choose the appropriate package and make your payment.  Prior to your first practice you will need to e-sign the *Participation Agreement* and *Code of Conduct* affidavits located in the “My Documents” section of your iCrew account.**
-
-**Once you’ve created your iCrew account and registered, or at any time if you have questions, please contact [Coaching@BelmontRowing.org](mailto:Coaching@BelmontRowing.org) to find out more and set up your lesson(s) with one of our coaches.**
 :::
+:::
+
+::: {.offer-body}
+BRC uses the iCrew team management platform to manage registrations, process payments, and obtain all required documentation. The link below will take you to directly to iCrew. Upon your first login you will be required to create a profile prior to registering for any BRC program.  Once registered, select Private Lesson and choose the appropriate package and make your payment.  Prior to your first practice you will need to e-sign the *Participation Agreement* and *Code of Conduct* affidavits located in the “My Documents” section of your iCrew account.
+
+Once you’ve created your iCrew account and registered, or at any time if you have questions, please contact [Coaching@BelmontRowing.org](mailto:Coaching@BelmontRowing.org) to find out more and set up your lesson(s) with one of our coaches.
 
 ::: {.btn-row}
-[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc .btn-brc-lg}
+[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
 :::
 :::
-
-::: {.divider}
+::::
 :::
 
 <!-- INDEPENDENT ROWING -->
-::: {.band .band-panel .band-tight}
+::: {.band .band-white}
 ## INDEPENDENT ROWING {#independent}
+
+::: {.lead}
+Independent Rowing is a good option for qualified masters who want to be able to coordinate their own rowing schedule outside of a structured, coached program. Assessment and approval by the coaching staff is required for participation in this program. All pass holders must:
 :::
 
-::: {.band .band-light}
-**Independent Rowing is a good option for qualified masters who want to be able to coordinate their own rowing schedule outside of a structured, coached program. Assessment and approval by the coaching staff is required for participation in this program. All pass holders must:**
-
+::: {.checklist}
 - pass a flip test
 - pass a swim test
 - pass a tread water & don a lifejacket test
@@ -150,7 +149,9 @@ Pricing is for 1 rower in a sculling boat. Please contact us for multi-rower opt
 - follow all water safety requirements
 - follow all COVID-19 safety protocols (eg: cleaning equipment)
 - use the iCrew Boat Reservation system to note when they’re rowing
+:::
 
+::: {.price-card}
 ### `r season("independent", "year")` Independent Rowing Passes & Fees
 
 If you are interested in this rowing option, please [Contact Us](/contact/index.qmd).
@@ -158,12 +159,17 @@ If you are interested in this rowing option, please [Contact Us](/contact/index.
 ```{r}
 price_table("independent")
 ```
+:::
 
+:::: {.tile-grid}
+::: {.tile}
 ### Equipment Use
 
 - **BRC’s Rowing Equipment:** You must use the Boat Reservation system in iCrew to reserve a date/time for all boats you want to take out. *Note: coached programs get equipment priority.*
 - **Personal/Private Equipment:** To store your equipment at BRC, you must pay an annual Private Storage Fee. Additionally, you must use the Boat Reservation system in iCrew to reserve a date/time when you want to go out and row.
+:::
 
+::: {.tile}
 ### Regattas
 
 All rowers interested in racing under BRC’s banner must hold an active Independent Rowing pass and active [USRowing membership](https://membership.usrowing.org/). Independent Rowers who want to compete in regattas under the BRC banner are responsible for:
@@ -171,11 +177,10 @@ All rowers interested in racing under BRC’s banner must hold an active Indepen
 - registering/paying for their own races and all of their equipment/athlete compliance,
 - coordinating with the [Coaching Director](mailto:programming@belmontrowing.org) if they want to be included on the boat regatta trailer (in the instance that BRC is also attending the regatta), and
 - coordinating with the [Coaching Director](mailto:programming@belmontrowing.org) if they want to use any BRC equipment. *Note: coached programs get equipment/race priority*.
+:::
+::::
 
 ::: {.btn-row}
-[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc .btn-brc-lg}
+[Register Today!](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
 :::
-:::
-
-::: {.divider}
 :::

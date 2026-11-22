@@ -9,34 +9,27 @@ body-classes: page-youth
 source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 ```
 
-<!-- HERO -->
+<!-- PAGE HEADER: photo with the page title over it -->
 ::: {.hero .hero-short}
 ![](/images/hero-youth.jpg){.bg alt="" style="object-position: center 10%"}
-:::
 
-<!-- PAGE TITLE + JUMP LINKS -->
-::: {.band .band-light}
 # Youth Rowing Charlotte, NC
 
 [Belmont Rowing Center - Youth Programs]{.subheading}
+:::
 
-::: {.pill-nav}
+<!-- SUB-NAVIGATION: jump links to the sections below -->
+::: {.pill-nav role="navigation" aria-label="On this page"}
 [YOUTH TEAM](#youth) [SUMMER PROGRAMS](#youthLTR)
-:::
-:::
-
-::: {.divider}
 :::
 
 <!-- YOUTH TEAM -->
-::: {.band .band-panel .band-tight}
-## YOUTH TEAM {#youth}
-:::
-
 ::: {.band .band-light}
-::: {.panel}
+## YOUTH TEAM {#youth}
+
 Our Youth Team is for middle and high school youth (starting ~12 years old) who have some rowing experience. Inexperienced rowers will join our Youth Team after completing a Learn to Row Camp. The Youth Team is a great alternative to school-based athletic programs, where you can engage in athletics, be part of a inclusive team, and develop a skill that can be leveraged in college and throughout life.  At BRC, there are no tryouts or cuts to make the team.  The more athletes we have, the more opportunities we can provide to our community.
 
+::: {.note}
 **Join our Youth Rowing Charlotte area team today or at any time during the season and become part of a vibrant community!**
 
 Special exceptions can be requested using our [contact form](/contact/index.qmd).
@@ -48,11 +41,30 @@ Special exceptions can be requested using our [contact form](/contact/index.qmd)
 We offer financial aid for programs based on need. These scholarships are limited by fund availability. To learn more contact us [here](/contact/index.qmd).
 :::
 
-::: {.centered}
-### `r season("youth", "year")` Youth Team - `r season("youth", "term")` Season
+<!-- WINTER TRAINING (open season card): facts and table from the youth-winter rows of schedule.xlsx -->
+:::: {.season-card}
+::: {.season-head}
+### `r season("youth-winter", "year")` Youth Team - `r season("youth-winter", "term")`
 
 ::: {.btn-row}
-[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+[Register](`r season("youth-winter", "register_link")`){.btn-brc}
+:::
+:::
+
+Welcome to the Youth Winter Training team for `r season("youth-winter", "months")` `r season("youth-winter", "year")`.  `r season("youth-winter", "practice_days")`
+
+```{r}
+weekly_table("youth-winter")
+```
+::::
+
+<!-- FALL SEASON (completed season card: a status note instead of the Register button) -->
+:::: {.season-card}
+::: {.season-head}
+### `r season("youth", "year")` Youth Team - `r season("youth", "term")` Season
+
+::: {.status-note}
+The season has completed. Please stay tuned for 2027 scheduling.
 :::
 :::
 
@@ -62,33 +74,32 @@ The `r season("youth", "year")` Youth `r season("youth", "term")` Season starts 
 weekly_table("youth")
 ```
 
+::: {.table-note}
 On race weeks, Friday’s practice is moved to Thursdays
-
-::: {.centered}
-### `r season("youth", "regatta_season")` Regattas
 :::
+::::
+
+### `r season("youth", "regatta_season")` Regattas
 
 ```{r}
 regatta_table("youth")
 ```
 
+::: {.table-note}
 Above schedule are potential regattas the Youth Team may attend, based on coach/parental input
 :::
-
-::: {.divider}
 :::
 
-<!-- YOUTH SUMMER PROGRAMS -->
-::: {.band .band-panel .band-tight}
+<!-- YOUTH SUMMER PROGRAMS (completed: status note, then the camps) -->
+::: {.band .band-white}
 ## YOUTH SUMMER PROGRAMS {#youthLTR}
-:::
 
-::: {.band .band-light}
-::: {.centered}
-### Click the Register Button for General Registration or Click on the Individual Program Links Below
-
-::: {.btn-row}
-[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+<!-- Completed season card: no heading of its own (the section heading above is its title).
+     It folds up behind the status note (see CLAUDE.md, "Season card"). -->
+:::::: {.season-card}
+::: {.season-head}
+::: {.status-note}
+The season has completed. Please stay tuned for 2027 scheduling.
 :::
 :::
 
@@ -96,22 +107,31 @@ Rowing is a great team-oriented sport that is low-impact, provides a full-body w
 
 ### `r season("youth-summer", "year")` Summer Camp Offerings
 
+<!-- CAMP CARDS: description, then the session dates and prices from schedule.xlsx -->
+::::: {.tile-grid}
+:::: {.tile}
 #### Learn-To-Row:
 
-For Youth age 12 and older, these sessions will focus on teaching the fundamentals of rowing techniques, boat handling, and water safety. The camp provides a safe, supportive environment where students can develop their skills, build teamwork, and enhance their physical fitness. This program not only introduces the sport, but also encourages a love for outdoor activities and nurtures a sense of accomplishment among the young athletes.  Click on below links to register.
+For Youth age 12 and older, these sessions will focus on teaching the fundamentals of rowing techniques, boat handling, and water safety. The camp provides a safe, supportive environment where students can develop their skills, build teamwork, and enhance their physical fitness. This program not only introduces the sport, but also encourages a love for outdoor activities and nurtures a sense of accomplishment among the young athletes.
 
+::: {.date-list}
 ```{r}
-session_links("youth-learn-to-row")
+session_links("youth-learn-to-row", links = FALSE)
 ```
+:::
+::::
 
+:::: {.tile}
 #### Development Program:
 
 This is a more specialized program designed to refine LTR and experienced Youth’s skills and push their limits. The camps focus on advanced rowing techniques, race strategy, and endurance training. Participants will engage in more rigorous on-water practices, complemented by strength conditioning and technical drills to enhance their overall performance. The program also includes video analysis sessions to help rowers analyze their technique and make precise adjustments. Ideal for those who have previously rowed at BRC or want to row in the fall season, these camps aim to prepare young rowes for competitive rowing, fostering both individual prowess and team cohesion (and we’ll also have fun!).
 
+::: {.date-list}
 ```{r}
-session_links("youth-development")
+session_links("youth-development", links = FALSE)
 ```
 :::
-
-::: {.divider}
+::::
+:::::
+::::::
 :::

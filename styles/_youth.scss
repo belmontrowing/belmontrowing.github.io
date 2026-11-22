@@ -1,6 +1,8 @@
-// Page-specific styles for the youth page ONLY.
+// Page-specific styles for the YOUTH page only.
 // Every rule here must start with .page-youth so it cannot affect other pages.
-// (The page sets `body-classes: page-youth` in its front matter.)
-// Shared looks belong in theme.scss; this file is usually empty.
-// Example:
-//   .page-youth .my-thing { margin-top: 2rem; }
+// Shared looks belong in theme.scss.
+
+// YOUTH TEAM: the Financial Aid callout sits between the introduction and the
+// open Winter Training card (the club's order); give it the same breathing room
+// as the cards so the three read as deliberate steps.
+.page-youth #youth > .info-box { margin: 2.5rem 0 0; }

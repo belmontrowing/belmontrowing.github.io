@@ -1,0 +1,11 @@
+// Page-specific styles for the HOME page only (index.qmd).
+// Every rule here must start with .page-home so it cannot affect other pages.
+// Shared looks belong in theme.scss.
+
+// Intro: big club name + motto on the left, the one-line summary on the right,
+// then (same white band) the CLUB PROGRAMMING heading and photo cards.
+.page-home .home-intro > .two-col {
+  margin: 0 0 clamp(3rem, 6vw, 4.5rem);
+  align-items: end;
+  .lead { margin: 0; }
+}
