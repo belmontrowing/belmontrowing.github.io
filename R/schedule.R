@@ -38,7 +38,7 @@
     required = c("program", "item", "value"),
     datelike = character(0),
     allowed  = list(
-      program = c("youth", "masters-training", "masters-skills", "masters",
+      program = c("youth", "youth-winter", "masters-training", "masters-skills", "masters",
                   "adult-learn-to-row", "youth-summer", "collegiate", "independent"),
       item    = c("year", "term", "start", "end", "fee", "practice_days", "groups",
                   "meets", "regatta_season", "months", "register_link"))),
@@ -46,7 +46,7 @@
     columns  = c("program", "day", "time", "activity", "groups"),
     required = c("program", "day", "time", "activity"),
     datelike = c("time"),
-    allowed  = list(program = c("youth", "masters-training", "masters-skills"),
+    allowed  = list(program = c("youth", "youth-winter", "masters-training", "masters-skills"),
                     day = .brc_days)),
   regattas = list(
     columns  = c("program", "date", "regatta", "location"),

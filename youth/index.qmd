@@ -48,11 +48,26 @@ Special exceptions can be requested using our [contact form](/contact/index.qmd)
 We offer financial aid for programs based on need. These scholarships are limited by fund availability. To learn more contact us [here](/contact/index.qmd).
 :::
 
+<!-- WINTER TRAINING: facts and table from the youth-winter rows of schedule.xlsx -->
+::: {.centered}
+### `r season("youth-winter", "year")` Youth Team - `r season("youth-winter", "term")`
+
+::: {.btn-row}
+[Register](`r season("youth-winter", "register_link")`){.btn-brc}
+:::
+:::
+
+Welcome to the Youth Winter Training team for `r season("youth-winter", "months")` `r season("youth-winter", "year")`.  Practices will be held weekday evenings at 5:30PM and will run Monday, Tuesday, Wednesday and Friday.  Weekend practices will be on Saturday and Sunday at 9:30AM.
+
+```{r}
+weekly_table("youth-winter")
+```
+
 ::: {.centered}
 ### `r season("youth", "year")` Youth Team - `r season("youth", "term")` Season
 
-::: {.btn-row}
-[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+::: {.status-note}
+The season has completed. Please stay tuned for 2027 scheduling.
 :::
 :::
 
@@ -85,10 +100,8 @@ Above schedule are potential regattas the Youth Team may attend, based on coach/
 
 ::: {.band .band-light}
 ::: {.centered}
-### Click the Register Button for General Registration or Click on the Individual Program Links Below
-
-::: {.btn-row}
-[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+::: {.status-note}
+The season has completed. Please stay tuned for 2027 scheduling.
 :::
 :::
 
