@@ -108,7 +108,7 @@ website in the same order as in the tab. Fully blank rows are ignored.
 | `regattas` | `program`, `date`, `regatta`, `location` | Youth and Masters regatta tables. |
 | `sessions` | `program`, `dates`, `time`, `price`, `link` | Adult Learn To Row Date/Time table and session count; Youth Learn-To-Row and Development linked lines (these need `price` and `link`). |
 | `prices` | `table`, `item`, `dates`, `price` | The three pricing tables on the Other page (`dates` only for `independent`). |
-| `home_events` | `heading`, `link`, `line`, `bold` | "Upcoming Events" on the home page: one row per line; rows with the same `heading` form one block (same `link` on each), `bold` = `yes` makes a line bold. |
+| `home_events` | `heading`, `link`, `line`, `bold`, `register` | "Upcoming Events" on the home page: one row per line; rows with the same `heading` form one block (same `link` on each), `bold` = `yes` makes a line bold, a `register` link (on one row of the block) adds a green Register button under it. |
 
 Allowed names (the workbook has dropdowns with exactly these; `R/schedule.R` lists them in `.brc_tabs`):
 

@@ -64,7 +64,7 @@
     datelike = c("dates"),
     allowed  = list(table = c("collegiate", "private-lessons", "independent"))),
   home_events = list(
-    columns  = c("heading", "link", "line", "bold"),
+    columns  = c("heading", "link", "line", "bold", "register"),
     required = c("heading", "link", "line"),
     datelike = character(0),
     allowed  = list(bold = c("yes")))
@@ -218,6 +218,12 @@ brc_project_root <- function(start = getwd()) {
         problems <- c(problems, paste0("Tab 'home_events': the heading '", hd,
                                        "' has different links on different rows (", paste(links, collapse = " and "),
                                        "). Use the same link on every row of that heading."))
+      }
+      regs <- unique(stats::na.omit(h$register[h$heading %in% hd]))
+      if (length(regs) > 1) {
+        problems <- c(problems, paste0("Tab 'home_events': the heading '", hd,
+                                       "' has different register links on different rows (", paste(regs, collapse = " and "),
+                                       "). Put the register link on one row of that heading only."))
       }
     }
   }
@@ -408,6 +414,7 @@ price_table <- function(table) {
 
 #' The "Upcoming Events" blocks on the home page: one block per heading (in the
 #' order headings first appear), its lines in row order, "bold = yes" lines in bold.
+#' A "register" link on any row of a heading adds a green Register button under it.
 home_events <- function() {
   h <- .brc_data()$home_events
   if (is.null(h) || nrow(h) == 0) .brc_stop("The 'home_events' tab has no rows. Add at least one event line.")
@@ -416,8 +423,10 @@ home_events <- function() {
     lines <- .brc_md(gsub("\n", " ", rows$line, fixed = TRUE))
     bold <- !is.na(rows$bold) & rows$bold == "yes"
     lines[bold] <- paste0("**", lines[bold], "**")
+    reg <- stats::na.omit(rows$register)
+    button <- if (length(reg)) paste0("\n\n::: {.btn-row}\n[Register](", reg[1], "){.btn-brc}\n:::") else ""
     paste0("::: {.event}\n### [", .brc_md(hd), "](", rows$link[1], ")\n\n",
-           paste(lines, collapse = "\\\n"), "\n:::")
+           paste(lines, collapse = "\\\n"), button, "\n:::")
   }, "")
   knitr::asis_output(paste(c("", ":::: {.events}", "", paste(blocks, collapse = "\n\n"), "", "::::", ""),
                            collapse = "\n"))
