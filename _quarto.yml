@@ -9,11 +9,12 @@ project:
     - "*.qmd"
   resources:
     - images/          # copy every image into docs/, even ones only used in CSS
+    - CNAME            # tells GitHub Pages the site's address is www.belmontrowing.org
 
 website:
   title: "Belmont Rowing Center"
   description: "Charlotte rowing at its finest - join Belmont Rowing Center where we offer competitive and recreational programs for all ages and skills"
-  site-url: "https://belmontrowing.github.io"
+  site-url: "https://www.belmontrowing.org"
   repo-url: "https://github.com/belmontrowing/belmontrowing.github.io"
   favicon: images/favicon.png
   search: false
