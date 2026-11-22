@@ -553,6 +553,11 @@ Raw HTML is allowed only for this (and a future form; see "Contact form"). Copy 
 ::::
 ```
 
+For a bigger showcase of cards (the home page "Our Values"), use
+`:::: {.tile-grid .tile-grid-featured}`: three equal cards per row with a shorter last
+row centred (5 = 3 + 2), a blue stripe on top, centred headings and slightly larger text.
+Two per row on tablets, one on phones. Plain `.tile-grid` is unchanged.
+
 ### Text helpers
 
 ```markdown

@@ -118,7 +118,7 @@ home_events()
 
 ## Our Values
 
-:::: {.tile-grid}
+:::: {.tile-grid .tile-grid-featured}
 
 ::: {.tile}
 ### Education

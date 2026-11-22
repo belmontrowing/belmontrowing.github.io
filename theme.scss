@@ -627,6 +627,35 @@ h1.display-heading, h2.display-heading {
   > :last-child { margin-bottom: 0; }
 }
 
+// Featured tile grid (home page "Our Values"): add .tile-grid-featured to the grid.
+//   :::: {.tile-grid .tile-grid-featured}
+// Three equal cards per row; a shorter last row is centred (5 cards = 3 + 2).
+// Each card gets a blue stripe on top, a centred heading and slightly larger text.
+// Two per row on tablets, one per row on phones.
+.tile-grid.tile-grid-featured {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  > .tile {
+    flex: 0 1 calc((100% - 3rem) / 3);   // 3 across (two 1.5rem gaps)
+    border-top: 5px solid $brc-blue;
+    padding: 1.5rem 1.6rem 1.6rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    h3, h4 {
+      text-align: center;
+      font-size: 1.4rem;
+      padding-bottom: .65rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba($brc-ink, .1);
+    }
+    li + li { margin-top: .5rem; }
+  }
+  @media (max-width: 991.98px) { > .tile { flex-basis: calc((100% - 1.5rem) / 2); } }
+  @media (max-width: 767.98px) { > .tile { flex-basis: 100%; } }
+}
+
 // Upcoming events list (home page; content comes from the home_events tab of schedule.xlsx).
 .events {
   display: grid;
