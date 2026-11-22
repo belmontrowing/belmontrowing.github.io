@@ -57,7 +57,7 @@ We offer financial aid for programs based on need. These scholarships are limite
 :::
 :::
 
-Welcome to the Youth Winter Training team for `r season("youth-winter", "months")` `r season("youth-winter", "year")`.  Practices will be held weekday evenings at 5:30PM and will run Monday, Tuesday, Wednesday and Friday.  Weekend practices will be on Saturday and Sunday at 9:30AM.
+Welcome to the Youth Winter Training team for `r season("youth-winter", "months")` `r season("youth-winter", "year")`.  Practices will be held weekday evenings at 5:30PM and will run Monday, Tuesday, Wednesday and Friday.  Cross-Fit Training with Coach Q is on Thursday at 6:45PM.  Weekend practices will be on Saturday and Sunday at 9:30AM.
 
 ```{r}
 weekly_table("youth-winter")
