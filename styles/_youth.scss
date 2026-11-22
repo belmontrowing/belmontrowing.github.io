@@ -1,0 +1,6 @@
+// Page-specific styles for the youth page ONLY.
+// Every rule here must start with .page-youth so it cannot affect other pages.
+// (The page sets `body-classes: page-youth` in its front matter.)
+// Shared looks belong in theme.scss; this file is usually empty.
+// Example:
+//   .page-youth .my-thing { margin-top: 2rem; }

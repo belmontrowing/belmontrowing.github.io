@@ -1,0 +1,117 @@
+---
+title: "Youth Rowing Charlotte NC"
+description: "Providing youth rowing Charlotte NC area programs, Belmont Rowing Center offers rowers ages 12+ of all skill levels to join an inclusive and supportive team"
+body-classes: page-youth
+---
+
+```{r}
+#| include: false
+source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
+```
+
+<!-- HERO -->
+::: {.hero .hero-short}
+![](/images/hero-youth.jpg){.bg alt="" style="object-position: center 10%"}
+:::
+
+<!-- PAGE TITLE + JUMP LINKS -->
+::: {.band .band-light}
+# Youth Rowing Charlotte, NC
+
+[Belmont Rowing Center - Youth Programs]{.subheading}
+
+::: {.pill-nav}
+[YOUTH TEAM](#youth) [SUMMER PROGRAMS](#youthLTR)
+:::
+:::
+
+::: {.divider}
+:::
+
+<!-- YOUTH TEAM -->
+::: {.band .band-panel .band-tight}
+## YOUTH TEAM {#youth}
+:::
+
+::: {.band .band-light}
+::: {.panel}
+Our Youth Team is for middle and high school youth (starting ~12 years old) who have some rowing experience. Inexperienced rowers will join our Youth Team after completing a Learn to Row Camp. The Youth Team is a great alternative to school-based athletic programs, where you can engage in athletics, be part of a inclusive team, and develop a skill that can be leveraged in college and throughout life.  At BRC, there are no tryouts or cuts to make the team.  The more athletes we have, the more opportunities we can provide to our community.
+
+**Join our Youth Rowing Charlotte area team today or at any time during the season and become part of a vibrant community!**
+
+Special exceptions can be requested using our [contact form](/contact/index.qmd).
+:::
+
+::: {.info-box}
+### Financial Aid Available
+
+We offer financial aid for programs based on need. These scholarships are limited by fund availability. To learn more contact us [here](/contact/index.qmd).
+:::
+
+::: {.centered}
+### `r season("youth", "year")` Youth Team - `r season("youth", "term")` Season
+
+::: {.btn-row}
+[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+:::
+:::
+
+The `r season("youth", "year")` Youth `r season("youth", "term")` Season starts on `r season("youth", "start")`. For the `r season("youth", "term")`, BRC is offering programming for `r season("youth", "groups")`, with more frequent rowing days for the older and more experienced youth rowers.  The season consists of on-the-water practices (weather permitting) on `r season("youth", "practice_days")`.  There is a weekly, optional but recommended, strength training session at the Riverside Athletic Club, across from Belmont Rowing Center. Our Youth Parent Liaison(s) will help organize directly with Coach Q. Fees are paid up-front for the season or on a monthly payment schedule through our club management system – iCrew. The fee for the `r season("youth", "term")` season is `r season("youth", "fee")`.  Fee/costs for Regattas and Strength Training are handled and paid separately.
+
+```{r}
+weekly_table("youth")
+```
+
+On race weeks, Friday’s practice is moved to Thursdays
+
+::: {.centered}
+### `r season("youth", "regatta_season")` Regattas
+:::
+
+```{r}
+regatta_table("youth")
+```
+
+Above schedule are potential regattas the Youth Team may attend, based on coach/parental input
+:::
+
+::: {.divider}
+:::
+
+<!-- YOUTH SUMMER PROGRAMS -->
+::: {.band .band-panel .band-tight}
+## YOUTH SUMMER PROGRAMS {#youthLTR}
+:::
+
+::: {.band .band-light}
+::: {.centered}
+### Click the Register Button for General Registration or Click on the Individual Program Links Below
+
+::: {.btn-row}
+[Register](https://www.icrew.club/register?clubkey=1626fb75-9eb1-b24b-4202-b008f5af5980){.btn-brc}
+:::
+:::
+
+Rowing is a great team-oriented sport that is low-impact, provides a full-body workout, and teaches focus & drive. Each of our summer camps teaches the fundamentals of rowing, understanding that campers have probably never touched an oar before. Experienced members of our youth team assist the learn to row camps, mentoring new rowers. Rowers should be at least 12 years old or in 6th grade
+
+### `r season("youth-summer", "year")` Summer Camp Offerings
+
+#### Learn-To-Row:
+
+For Youth age 12 and older, these sessions will focus on teaching the fundamentals of rowing techniques, boat handling, and water safety. The camp provides a safe, supportive environment where students can develop their skills, build teamwork, and enhance their physical fitness. This program not only introduces the sport, but also encourages a love for outdoor activities and nurtures a sense of accomplishment among the young athletes.  Click on below links to register.
+
+```{r}
+session_links("youth-learn-to-row")
+```
+
+#### Development Program:
+
+This is a more specialized program designed to refine LTR and experienced Youth’s skills and push their limits. The camps focus on advanced rowing techniques, race strategy, and endurance training. Participants will engage in more rigorous on-water practices, complemented by strength conditioning and technical drills to enhance their overall performance. The program also includes video analysis sessions to help rowers analyze their technique and make precise adjustments. Ideal for those who have previously rowed at BRC or want to row in the fall season, these camps aim to prepare young rowes for competitive rowing, fostering both individual prowess and team cohesion (and we’ll also have fun!).
+
+```{r}
+session_links("youth-development")
+```
+:::
+
+::: {.divider}
+:::

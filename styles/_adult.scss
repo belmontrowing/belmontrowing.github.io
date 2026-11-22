@@ -1,0 +1,6 @@
+// Page-specific styles for the adult page ONLY.
+// Every rule here must start with .page-adult so it cannot affect other pages.
+// (The page sets `body-classes: page-adult` in its front matter.)
+// Shared looks belong in theme.scss; this file is usually empty.
+// Example:
+//   .page-adult .my-thing { margin-top: 2rem; }

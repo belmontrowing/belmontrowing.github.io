@@ -1,0 +1,15 @@
+---
+title: "Page Not Found"
+---
+
+::: {.band .band-light}
+::: {.centered}
+# Page Not Found
+
+Sorry, we couldn't find that page.
+
+::: {.btn-row}
+[Back to Home](/index.qmd){.btn-brc}
+:::
+:::
+:::

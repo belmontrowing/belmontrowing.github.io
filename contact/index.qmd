@@ -1,0 +1,102 @@
+---
+title: "Contact Information"
+description: "BRC is located on the Catawba River in Belmont, NC. The site is an old mill property offering BRC use of the shoreline and river, grounds for boat storage,"
+body-classes: page-contact
+---
+
+<!-- HERO: the club's logo mark, as on the old site -->
+::: {.hero .hero-short}
+![](/images/icrew-mark.jpg){.bg alt=""}
+:::
+
+<!-- PAGE TITLE + ADDRESSES -->
+::: {.band .band-light}
+::: {.centered}
+# Contact Information
+
+BRC is located on the Catawba River in Belmont, NC. The site is an old mill property offering BRC use of the shoreline and river, grounds for boat storage, and indoor space for boat repair and erg training
+:::
+
+<!-- Three columns: address | map | mailing address (stacks on phones) -->
+:::: {.three-col .text-center}
+::: {}
+**Physical Location:**\
+1500 River Drive\
+Belmont, NC 28012\
+[Get Directions](https://www.google.com/maps/dir//35.2373424,-81.0156972/@35.2366652,-81.0164385,17.49z/data=!4m2!4m1!3e0)
+:::
+
+::: {}
+![](/images/location-map.png){fig-alt="Map showing the location of Belmont Rowing Center at 1500 River Drive, Belmont, NC, on the Catawba River"}
+:::
+
+::: {}
+**Mailing Address:**\
+Belmont Rowing Center\
+PO Box 1401\
+Belmont, NC 28012
+:::
+::::
+:::
+
+::: {.divider}
+:::
+
+<!-- CONTACT FORM -->
+::: {.band .band-panel .band-tight}
+## Contact Us Using the Form Below
+:::
+
+::: {.band .band-light}
+```{=html}
+<!--
+  This form opens the visitor's own email program, addressed to info@belmontrowing.org.
+  To send it through a form service instead (Formspree or Web3Forms), follow
+  "Contact form" in CLAUDE.md: it changes the <form ...> line below.
+-->
+<form class="site-form" action="mailto:info@belmontrowing.org" method="post" enctype="text/plain">
+<fieldset class="form-field">
+<legend>Name <span class="form-required" aria-hidden="true">*</span></legend>
+<div class="form-row">
+<div class="form-field">
+<input type="text" id="contact-first" name="First name" autocomplete="given-name" required>
+<label class="form-sublabel" for="contact-first">First</label>
+</div>
+<div class="form-field">
+<input type="text" id="contact-last" name="Last name" autocomplete="family-name" required>
+<label class="form-sublabel" for="contact-last">Last</label>
+</div>
+</div>
+</fieldset>
+<div class="form-field">
+<label for="contact-email">Email <span class="form-required" aria-hidden="true">*</span></label>
+<input type="email" id="contact-email" name="Email" autocomplete="email" spellcheck="false" required>
+</div>
+<fieldset class="form-field form-choices">
+<legend>Is there a specific program you are interested in?</legend>
+<div class="form-check">
+<input type="checkbox" id="contact-program-youth" name="Program" value="Youth Rowing">
+<label for="contact-program-youth">Youth Rowing</label>
+</div>
+<div class="form-check">
+<input type="checkbox" id="contact-program-masters" name="Program" value="Masters (Adult) Rowing">
+<label for="contact-program-masters">Masters (Adult) Rowing</label>
+</div>
+<div class="form-check">
+<input type="checkbox" id="contact-program-events" name="Program" value="Events and Programming">
+<label for="contact-program-events">Events and Programming</label>
+</div>
+</fieldset>
+<div class="form-field">
+<label for="contact-message">Comment or Message <span class="form-required" aria-hidden="true">*</span></label>
+<textarea id="contact-message" name="Message" rows="6" required></textarea>
+</div>
+<div class="form-actions">
+<button type="submit" class="btn-brc">Submit</button>
+</div>
+</form>
+```
+:::
+
+::: {.divider}
+:::

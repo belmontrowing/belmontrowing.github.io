@@ -1,0 +1,105 @@
+# Site configuration for belmontrowing.org (Quarto website).
+# Render from this folder with:  quarto render
+# The finished site is written to docs/ (served by GitHub Pages).
+
+project:
+  type: website
+  output-dir: docs
+  render:              # only .qmd files are pages (README.md / CLAUDE.md are not)
+    - "*.qmd"
+  resources:
+    - images/          # copy every image into docs/, even ones only used in CSS
+
+website:
+  title: "Belmont Rowing Center"
+  description: "Charlotte rowing at its finest - join Belmont Rowing Center where we offer competitive and recreational programs for all ages and skills"
+  # site-url: "https://<github-user>.github.io/<repo>/"   # set once the GitHub repo exists
+  favicon: images/favicon.png
+  search: false
+  page-navigation: false
+  open-graph: true
+
+  navbar:
+    logo: images/logo.jpg
+    logo-alt: "Belmont Rowing Center home"
+    title: false
+    collapse-below: lg
+    right:
+      - text: Home
+        href: index.qmd
+      - text: About
+        href: about/index.qmd
+      - text: Youth
+        href: youth/index.qmd
+      - text: Adults
+        href: adult/index.qmd
+      - text: Other
+        href: other/index.qmd
+      - text: Contact
+        href: contact/index.qmd
+      - text: BRC Swag
+        href: "https://teamlocker.squadlocker.com/#/lockers/belmont-rowing-center-313909?_k=cnluax"
+      - text: Social
+        menu:
+          - text: Instagram
+            icon: instagram
+            href: https://www.instagram.com/belmontrowing
+          - text: Facebook
+            icon: facebook
+            href: https://www.facebook.com/BelmontRowing/
+          - text: YouTube
+            icon: youtube
+            href: https://www.youtube.com/channel/UCXFYUbRCOyXJPg2Ow2NLszQ
+          - text: Concept 2
+            icon: activity
+            href: https://log.concept2.com/team/8472
+
+  page-footer:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: About
+        href: about/index.qmd
+      - text: Youth
+        href: youth/index.qmd
+      - text: Adults
+        href: adult/index.qmd
+      - text: Other
+        href: other/index.qmd
+      - text: Contact
+        href: contact/index.qmd
+      - text: BRC Swag
+        href: "https://teamlocker.squadlocker.com/#/lockers/belmont-rowing-center-313909?_k=cnluax"
+    center: |
+      [Donate To Support Our Growth](https://www.zeffy.com/donation-form/support-the-growing-sport-of-rowing-at-belmont-rowing-center){.footer-donate}
+    right:
+      - icon: instagram
+        href: https://www.instagram.com/belmontrowing
+        aria-label: Instagram
+      - icon: facebook
+        href: https://www.facebook.com/belmontrowing
+        aria-label: Facebook
+      - icon: youtube
+        href: https://www.youtube.com/channel/UCXFYUbRCOyXJPg2Ow2NLszQ
+        aria-label: YouTube
+
+# R code in pages (the seasonal tables read from schedule.xlsx via R/schedule.R):
+# never show the code, warnings or messages; `output: asis` inserts the generated
+# markdown as if it had been typed into the page (no extra wrappers or table classes).
+execute:
+  echo: false
+  warning: false
+  message: false
+  output: asis
+
+format:
+  html:
+    theme: [cosmo, theme.scss]
+    page-layout: custom        # no Quarto grid: sections run edge to edge
+    title-block-style: none    # each page shows its own hero heading instead
+    toc: false
+    anchor-sections: false
+    link-external-newwindow: true
+    lang: en
+    filters:
+      - _filters/main-landmark.lua

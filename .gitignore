@@ -1,0 +1,24 @@
+# Quarto
+/.quarto/
+/_freeze/
+
+# R / RStudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# knitr / Quarto intermediate files (left behind only if a render is interrupted)
+*.knit.md
+*.rmarkdown
+*_files/
+*_cache/
+# ...but never ignore anything inside the published site
+!/docs/**
+
+# macOS
+.DS_Store
+._*
+
+# Office temp files
+~$*
