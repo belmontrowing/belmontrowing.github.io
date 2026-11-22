@@ -3,6 +3,12 @@ title: "Home"
 pagetitle: "Charlotte Rowing at Belmont Rowing Center Near Uptown on the Catawba"
 description: "Charlotte rowing at its finest - join Belmont Rowing Center where we offer competitive and recreational programs for all ages and skills"
 body-classes: page-home
+# Old WordPress news-post addresses. Anyone following an old link to one of
+# these lands on the home page instead of "Page Not Found".
+aliases:
+  - /2026/03/29/return-to-rowing-day-may-15th/
+  - /2026/03/29/youth-summer-camps-starting-jun-aug/
+  - /2026/03/29/adult-learn-to-row-april-23/
 ---
 
 ```{r}
