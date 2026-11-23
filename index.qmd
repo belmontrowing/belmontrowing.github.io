@@ -22,7 +22,7 @@ source("R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
      The headline looks like a heading but is not one: the page's one # heading is the
      club name in the intro below (see "Search engines" in CLAUDE.md). -->
 ::: {.hero}
-![](/images/hero-home.jpg){.bg alt="" style="object-position: center 100%"}
+![](/images/hero-home-quad.jpg){.bg alt="" style="object-position: center 100%"}
 
 [LOCATED ON THE CALM WATERS OF THE CATAWBA RIVER, JUST 10 MILES WEST OF UPTOWN CHARLOTTE]{.tagline}
 

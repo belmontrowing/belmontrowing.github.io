@@ -11,7 +11,7 @@ source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 
 <!-- PAGE HEADER: photo with the page title over it -->
 ::: {.hero .hero-short}
-![](/images/hero-youth.jpg){.bg alt="" style="object-position: center 10%"}
+![](/images/hero-youth-medals.jpg){.bg alt="" style="object-position: center 10%"}
 
 # Youth Rowing Charlotte, NC
 
