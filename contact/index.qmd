@@ -13,6 +13,11 @@ body-classes: page-contact
 
 <!-- LOCATION: intro, then the address cards beside the site map (shared .location) -->
 ::: {.band .band-white}
+::: {.oars-row}
+![](/images/oars-long-on-white.svg){alt=""}
+![](/images/oars-long-on-white.svg){alt=""}
+:::
+
 ::: {.lead}
 BRC is located on the Catawba River in Belmont, NC. The site is an old mill property offering BRC use of the shoreline and river, grounds for boat storage, and indoor space for boat repair and erg training
 :::

@@ -26,6 +26,11 @@ source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 <!-- MASTERS TRAINING TEAM: introduction, then the open Winter Training card and the
      completed Fall season card (season cards: see CLAUDE.md "Season card") -->
 ::: {.band .band-light}
+::: {.oars-row}
+![](/images/oars-long-on-paper.svg){alt=""}
+![](/images/oars-long-on-paper.svg){alt=""}
+:::
+
 ## MASTERS TRAINING TEAM {#masters}
 
 BRC’s Masters Training Team is appropriate for current BRC Masters rowers; it may also be appropriate for rowers with significant previous experience who would like to refine their technique and increase fitness in a structured environment. This program meets `r season("masters-training", "meets")`.

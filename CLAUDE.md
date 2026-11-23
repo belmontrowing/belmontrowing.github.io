@@ -910,6 +910,33 @@ Always `alt=""`: it is decorative, no words. Three components:
   :::
   ```
 
+  The same row also **leads the first section of each sub-page** (About, Youth, Adult,
+  Other, Contact): first thing inside the first band, above its `##` (on Contact, above
+  the intro `.lead`). There the band's top padding shrinks and the row sits snug above the
+  heading (`.band > .oars-row:first-child` in `theme.scss`). Paper band / white band:
+
+  ```markdown
+  ::: {.band .band-light}
+  ::: {.oars-row}
+  ![](/images/oars-long-on-paper.svg){alt=""}
+  ![](/images/oars-long-on-paper.svg){alt=""}
+  :::
+
+  ## COACHES {#coaches}
+  ```
+
+  ```markdown
+  ::: {.band .band-white}
+  ::: {.oars-row}
+  ![](/images/oars-long-on-white.svg){alt=""}
+  ![](/images/oars-long-on-white.svg){alt=""}
+  :::
+  ```
+
+  (With the row first, the band no longer starts with its `##`, so Quarto emits
+  `<div class="band">` holding the row and a plain `<section id="coaches">`; the band rules
+  in `theme.scss` cover both shapes.)
+
 - **Oars divider** (top of the 404 page): one regular pair, centred, a hairline either side
   (about 240px wide on a phone, 430px on a laptop).
 

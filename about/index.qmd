@@ -18,6 +18,11 @@ body-classes: page-about
 
 <!-- COACHES: the head coach as a wide card, then the other coaches two per row -->
 ::: {.band .band-light}
+::: {.oars-row}
+![](/images/oars-long-on-paper.svg){alt=""}
+![](/images/oars-long-on-paper.svg){alt=""}
+:::
+
 ## COACHES {#coaches}
 
 Our amazing coaches are the heart of our family here at Belmont Rowing Center! They are passionate about rowing and committed to carrying out our mission to promote the growing sport of rowing through educational, competitive, and inclusive programs. We are lucky to have coaches with a wide variety of experience and expertise who are ready to help you reach your goals!

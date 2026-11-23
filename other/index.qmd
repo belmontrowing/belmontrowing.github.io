@@ -24,6 +24,11 @@ source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 <!-- COLLEGIATE SUMMER ROWING
      .offer = price card (left) beside "how to sign up" text and button (right). -->
 ::: {.band .band-light}
+::: {.oars-row}
+![](/images/oars-long-on-paper.svg){alt=""}
+![](/images/oars-long-on-paper.svg){alt=""}
+:::
+
 ## COLLEGIATE SUMMER ROWING {#collegiate}
 
 ::: {.lead}

@@ -25,6 +25,11 @@ source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 
 <!-- YOUTH TEAM -->
 ::: {.band .band-light}
+::: {.oars-row}
+![](/images/oars-long-on-paper.svg){alt=""}
+![](/images/oars-long-on-paper.svg){alt=""}
+:::
+
 ## YOUTH TEAM {#youth}
 
 Our Youth Team is for middle and high school youth (starting ~12 years old) who have some rowing experience. Inexperienced rowers will join our Youth Team after completing a Learn to Row Camp. The Youth Team is a great alternative to school-based athletic programs, where you can engage in athletics, be part of a inclusive team, and develop a skill that can be leveraged in college and throughout life.  At BRC, there are no tryouts or cuts to make the team.  The more athletes we have, the more opportunities we can provide to our community.

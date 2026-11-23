@@ -2225,6 +2225,11 @@ h1.display-heading, h2.display-heading {
   &:first-child { margin-top: 0; }
   &:last-child { margin-bottom: 0; }
 }
+// An oars row that LEADS a band (top of the first section on the sub-pages, above its ##):
+// the band starts closer to the jump-link bar, and the row sits snug above the heading.
+// (With a div before the ##, Quarto emits <div class="band"> <div class="oars-row"> <section>.)
+.band:has(> .oars-row:first-child) { padding-top: clamp(2.25rem, 5vw, 4rem); }
+.band > .oars-row:first-child { margin-bottom: clamp(1.75rem, 4vw, 3rem); }
 
 // .oars-divider: ONE regular pair, centred, with a hairline either side (the 404 page).
 //   ::: {.oars-divider}
