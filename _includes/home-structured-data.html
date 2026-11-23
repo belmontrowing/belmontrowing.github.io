@@ -1,0 +1,59 @@
+<!--
+  CLUB DETAILS FOR GOOGLE (home page only; added to the page's <head> by
+  `include-in-header:` in index.qmd). Visitors never see this; search engines read it
+  to know the club's name, address, email, map position and social accounts.
+  Keep it in step with the footer in _quarto.yml: if the address, email or a social
+  link changes there, change it here too. It is JSON: keep every "quote", comma and
+  bracket; no comma after the last item in a list. See "Search engines" in CLAUDE.md.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SportsClub",
+      "@id": "https://www.belmontrowing.org/#club",
+      "name": "Belmont Rowing Center",
+      "alternateName": "BRC",
+      "url": "https://www.belmontrowing.org/",
+      "logo": "https://www.belmontrowing.org/images/logo.jpg",
+      "image": "https://www.belmontrowing.org/images/share.jpg",
+      "description": "Charlotte rowing at its finest - join Belmont Rowing Center where we offer competitive and recreational programs for all ages and skills",
+      "sport": "Rowing",
+      "email": "info@belmontrowing.org",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1500 River Drive",
+        "addressLocality": "Belmont",
+        "addressRegion": "NC",
+        "postalCode": "28012",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 35.2364488,
+        "longitude": -81.0158554
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Charlotte, NC" },
+        { "@type": "City", "name": "Belmont, NC" }
+      ],
+      "nonprofitStatus": "https://schema.org/Nonprofit501c3",
+      "taxID": "46-4057146",
+      "sameAs": [
+        "https://www.instagram.com/belmontrowing",
+        "https://www.facebook.com/belmontrowing",
+        "https://www.youtube.com/channel/UCXFYUbRCOyXJPg2Ow2NLszQ",
+        "https://log.concept2.com/team/8472"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.belmontrowing.org/#website",
+      "name": "Belmont Rowing Center",
+      "url": "https://www.belmontrowing.org/",
+      "publisher": { "@id": "https://www.belmontrowing.org/#club" }
+    }
+  ]
+}
+</script>

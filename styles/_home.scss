@@ -11,3 +11,9 @@
 }
 // The oars row under the intro sets the space to CLUB PROGRAMMING itself.
 .page-home .home-intro > .two-col:has(+ :is(.oars-row, .oars-divider)) { margin-bottom: 0; }
+// The club name + motto is the page's one h1. Below 992px Quarto puts 1rem above the
+// first h2 of a page section, and the club name was an h2 until it became the h1: keep
+// that same 1rem so the intro sits exactly where it did.
+@media (max-width: 991.98px) {
+  .page-home .home-intro h1.display-heading { margin-top: 1rem; }
+}

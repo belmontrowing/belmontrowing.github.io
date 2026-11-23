@@ -291,8 +291,9 @@ img { max-width: 100%; height: auto; }
 
 // Page content sits in <div id="main-content"> (added by _filters/main-landmark.lua).
 #quarto-content > #main-content { padding-top: 0; }
-// Each page shows its own heading (in a hero), so Quarto's title block is hidden.
-#title-block-header { display: none; }
+// Quarto's own title block (a second, hidden h1) is not written at all: _quarto.yml
+// points `template-partials` at the empty _partials/title-block.html. Each page shows
+// its own heading instead (see "Search engines" in CLAUDE.md).
 
 // Keep a short token on one line: [501(c)(3)]{.nowrap}
 .nowrap { white-space: nowrap; }
@@ -769,12 +770,21 @@ body:has(.band-cta) .nav-footer a.footer-donate {
       linear-gradient(to right, rgba($brc-navy-900, .6) 0%, rgba($brc-navy-900, 0) 70%);
   }
   > section, > p, > div { max-width: 64rem; }
-  h1 {
+  // The # title; on the home page the headline is [..]{.hero-title} (looks the same, but
+  // is not a heading: the home page's one h1 is the club name in the intro).
+  h1, .hero-title {
     color: $brc-white;
     font-size: $brc-size-hero;
     line-height: .95;
     letter-spacing: .005em;
     margin: 0 0 1rem;
+  }
+  .hero-title {                  // the rest of the h1 look (the shared "h1, h2" rules)
+    display: block;
+    font-family: $brc-font-display;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-wrap: balance;
   }
   p {
     font-family: $brc-font-display;
@@ -2140,7 +2150,8 @@ section.cta-card {
   text-align: center;
   > p, > section > p { margin-left: auto; margin-right: auto; }
 }
-// Motto line (home page "Charlotte Rowing At It's Best").
+// Motto line (home page "Charlotte Rowing At Its Best"), inside the club-name heading:
+//   # Belmont Rowing Center [Charlotte Rowing At Its Best]{.motto} {#belmont-rowing-center .display-heading}
 .motto {
   display: block;
   font-family: $brc-font-display;
@@ -2150,6 +2161,8 @@ section.cta-card {
   text-transform: uppercase;
   color: $brc-blue;
   margin-top: .5rem;
+  line-height: $line-height-base;   // body line spacing and wrapping, not the heading's
+  text-wrap: pretty;
 }
 // Subtitle under an inner page's # title (a paragraph, not a heading).
 .subheading {
@@ -2159,8 +2172,8 @@ section.cta-card {
   line-height: 1.4;
   color: $brc-muted;
 }
-// Extra-large heading (home page "Belmont Rowing Center"). Style heading classes as
-// h2.class, never .class (the class is copied onto the surrounding <section>).
+// Extra-large heading (home page "Belmont Rowing Center", the page's one h1). Style heading
+// classes as h1.class / h2.class, never .class (the class is copied onto the surrounding <section>).
 h1.display-heading, h2.display-heading {
   font-size: clamp(2.75rem, 7vw, 5.5rem);
   line-height: .92;

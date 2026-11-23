@@ -35,6 +35,9 @@ season update, read "Updating the schedule each season" below first.
 | `images/share.jpg` | The picture shown when a page is shared (1200×630; set in `_quarto.yml`). |
 | `images/oars-on-*.svg`, `images/oars-long-on-*.svg` | The oars ornament: regular and long-handled pairs, three surface versions each (see "Oars ornament"). |
 | `_tools/make-oars.py` | Draws the six oars files (see "Oars ornament"). Not published. |
+| `_tools/clean-sitemap.lua` | Runs by itself after every render: tidies the addresses in `docs/sitemap.xml` (see "Search engines"). Don't edit. |
+| `_partials/title-block.html` | Empty on purpose: stops Quarto writing a second, hidden `<h1>` on every page (see "Search engines"). Don't delete. |
+| `_includes/home-structured-data.html` | The club's details for Google (address, map position, email, social links), added to the home page only (see "Search engines"). |
 | `docs/` | **Generated** website. Never edit by hand; it is rebuilt by `quarto render`. |
 | `belmontrowing.Rproj` | Lets the folder open as a project in RStudio. |
 
@@ -356,8 +359,9 @@ Section text…
 :::
 ```
 
-- `title:` sets the browser-tab title; Quarto's automatic title is hidden, so the
-  page shows its own `#` heading (exactly one per page), inside the page header.
+- `title:` sets the browser-tab title (and the title in Google's results); Quarto's automatic
+  title is not written into the page, so the page shows its own `#` heading (exactly one per
+  page), inside the page header. See "Search engines".
 - `body-classes: page-<name>` lets `styles/_<name>.scss` target this page only. Those
   files hold only what one page can ever need (About: the letter; Youth: the spacing of the
   Financial Aid callout; Other: the price-card-beside-text layout and the
@@ -409,7 +413,7 @@ faces (Youth `center 10%`, Adult `center 30%`).
 
 [LOCATED ON THE CALM WATERS OF THE CATAWBA RIVER, JUST 10 MILES WEST OF UPTOWN CHARLOTTE]{.tagline}
 
-# Row Together, Grow Together
+[Row Together, Grow Together]{.hero-title}
 
 Your Seat Is Waiting!
 
@@ -418,6 +422,10 @@ Your Seat Is Waiting!
 :::
 :::
 ```
+
+The headline is `[...]{.hero-title}`, not a `#` heading: it looks exactly like one, but the
+home page's one `#` heading is the club name and motto in the intro below it (see "Search
+engines"). Inner pages keep their `#` title in the page header.
 
 The club's photo is only 1200px wide, so the theme caps the hero at 720px tall, darkens it a
 little, and zooms/positions the crop per screen size so the headline never sits on the
@@ -973,9 +981,7 @@ Always `alt=""`: it is decorative, no words. Three components:
 Short centred block: a heading + a button. Not for paragraphs.
 :::
 
-## Belmont Rowing Center {.display-heading}
-
-[Charlotte Rowing At It's Best]{.motto}
+# Belmont Rowing Center [Charlotte Rowing At Its Best]{.motto} {#belmont-rowing-center .display-heading}
 
 [Belmont Rowing Center - Youth Programs]{.subheading}
 
@@ -1082,6 +1088,41 @@ message:
   `.form-check` (checkbox + label), `fieldset.form-field` with a `<legend>` for groups.
 - Do not use `action="mailto:…"`: it only works for visitors with an email app set up.
 
+## Search engines (Google)
+
+What Google reads is mostly set up once and works by itself. The parts a person may change:
+
+- **Page title and description.** At the top of each page, `title:` is the title in the
+  browser tab and in Google's results; Quarto adds " – Belmont Rowing Center" after it.
+  The home page uses `pagetitle:` instead (its `title:` "Home" is only an internal name), so
+  its tab reads "Charlotte Rowing for Youth & Adults – Belmont Rowing Center". Keep titles
+  short (Google cuts them off after about 60 characters, suffix included) and put the most
+  important words first. `description:` is the line Google may show under the title: one
+  or two plain sentences.
+- **One `#` heading per page.** Each page has exactly one top-level `#` heading, the
+  page's main title: on inner pages the title in the page header, on the home page the
+  club name with the motto (`# Belmont Rowing Center [Charlotte Rowing At Its Best]{.motto}
+  {#belmont-rowing-center .display-heading}`). Everything else is `##` or smaller. The home
+  hero headline "Row Together, Grow Together" is deliberately not a heading
+  (`[...]{.hero-title}`). Quarto's own hidden title heading is switched off for every page
+  by the empty `_partials/title-block.html` (`template-partials:` in `_quarto.yml`); leave
+  both in place.
+- **The club's details for Google** are in `_includes/home-structured-data.html` (the home
+  page loads it with `include-in-header:`). Visitors never see it; Google uses it for the
+  club's name, logo, address, map position, email, 501(c)(3) status and social accounts.
+  **Update it whenever the address, email, logo or a social link changes** in the footer,
+  and keep it in step with the footer. It is JSON: keep the quotes, commas and brackets
+  exactly as they are, and use only facts that are also on the website. After a change,
+  render and paste the home page address into Google's Rich Results Test
+  (https://search.google.com/test/rich-results) once the site is published.
+- **Automatic, nothing to do:** every page gets a "canonical" address (the short form,
+  `https://www.belmontrowing.org/about/`, set by `canonical-url: true` in `_quarto.yml`), and
+  `docs/sitemap.xml` lists every page by that same short address
+  (`_tools/clean-sitemap.lua` runs after every render; Quarto itself would write
+  `/about/index.html`). A new page appears in both on the next render. The old news-post
+  addresses under `aliases:` in `index.qmd` stay out of the sitemap and still send visitors
+  to the home page.
+
 ## Where to change common things
 
 | Task | Where |
@@ -1096,8 +1137,10 @@ message:
 | Donate link (Zeffy) | Search for `zeffy.com` (home, about, and the header button and footer in `_quarto.yml`) |
 | Sharing preview picture | `images/share.jpg` + `image:` / `image-alt:` in `_quarto.yml` |
 | Winter practice times | `schedule.xlsx`, `seasons` → `practice_days` for `youth-winter` / `masters-winter` |
-| Address / mailing address | `contact/index.qmd`, `about/index.qmd` (Location), `index.qmd` (Find Us) and the footer in `_quarto.yml` |
-| Contact email address | `contact/index.qmd`, the "Contact Us" section (see "Contact form") |
+| Address / mailing address | `contact/index.qmd`, `about/index.qmd` (Location), `index.qmd` (Find Us), the footer in `_quarto.yml` and the club details for Google in `_includes/home-structured-data.html` |
+| Social media links | The Social menu and the footer's Follow column in `_quarto.yml`, and `sameAs` in `_includes/home-structured-data.html` |
+| Page title and description in Google | `title:` / `pagetitle:` and `description:` at the top of each page (see "Search engines") |
+| Contact email address | `contact/index.qmd`, the "Contact Us" section (see "Contact form"), the footer in `_quarto.yml` and `_includes/home-structured-data.html` |
 | Colours, fonts, sizes, spacing | Design tokens at the top of `theme.scss` (see "Design tokens") |
 | Logo / favicon | `images/logo.jpg`, `images/favicon.png` (set in `_quarto.yml`) |
 

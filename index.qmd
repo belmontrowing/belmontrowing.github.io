@@ -1,8 +1,10 @@
 ---
 title: "Home"
-pagetitle: "Charlotte Rowing at Belmont Rowing Center Near Uptown on the Catawba"
+pagetitle: "Charlotte Rowing for Youth & Adults"
 description: "Charlotte rowing at its finest - join Belmont Rowing Center where we offer competitive and recreational programs for all ages and skills"
 body-classes: page-home
+# Club details for Google (name, address, map position, social links): see CLAUDE.md, "Search engines".
+include-in-header: _includes/home-structured-data.html
 # Old WordPress news-post addresses. Anyone following an old link to one of
 # these lands on the home page instead of "Page Not Found".
 aliases:
@@ -16,13 +18,15 @@ aliases:
 source("R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 ```
 
-<!-- HERO: photo, eyebrow line, headline, sub-line, buttons -->
+<!-- HERO: photo, eyebrow line, headline, sub-line, buttons.
+     The headline looks like a heading but is not one: the page's one # heading is the
+     club name in the intro below (see "Search engines" in CLAUDE.md). -->
 ::: {.hero}
 ![](/images/hero-home.jpg){.bg alt="" style="object-position: center 100%"}
 
 [LOCATED ON THE CALM WATERS OF THE CATAWBA RIVER, JUST 10 MILES WEST OF UPTOWN CHARLOTTE]{.tagline}
 
-# Row Together, Grow Together
+[Row Together, Grow Together]{.hero-title}
 
 Your Seat Is Waiting!
 
@@ -31,13 +35,12 @@ Your Seat Is Waiting!
 :::
 :::
 
-<!-- INTRO (club name + motto | one-line summary) and CLUB PROGRAMMING (four photo cards) -->
+<!-- INTRO (club name + motto | one-line summary) and CLUB PROGRAMMING (four photo cards).
+     The club name and motto together are the page's one # heading. -->
 ::: {.band .band-white .home-intro}
 :::: {.two-col}
 ::: {}
-## Belmont Rowing Center {.display-heading}
-
-[Charlotte Rowing At It's Best]{.motto}
+# Belmont Rowing Center [Charlotte Rowing At Its Best]{.motto} {#belmont-rowing-center .display-heading}
 :::
 
 ::: {.lead}
@@ -104,7 +107,7 @@ home_events()
 Our mission is to offer affordable and inclusive rowing programs for youth and adults to encourage physical activity, support health and wellness, foster teamwork, and promote the sport of rowing
 :::
 
-We offer a variety of rowing opportunities for youth (12+) and adults, including Summer Camps, Learn to Scull/Sweep, Indoor Rowing and Strength Training, and year-round youth and adult rowing teams. Whether you are looking for competitive rowing opportunities, want to improve your skills and fitness at a recreational pace, or have no prior experience and would like to try something new, come experience the beauty of the Catawba River and the supportive community of BRC rowers!
+We offer a variety of rowing opportunities for youth (12+) and adults in Charlotte, Belmont, and the surrounding area, including Summer Camps, Learn to Scull/Sweep, Indoor Rowing and Strength Training, and year-round youth and adult rowing teams. Whether you are looking for competitive rowing opportunities, want to improve your skills and fitness at a recreational pace, or have no prior experience and would like to try something new, come experience the beauty of the Catawba River and the supportive community of BRC rowers!
 :::
 ::::
 

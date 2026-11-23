@@ -11,6 +11,8 @@ project:
     - images/          # copy every image into docs/, even ones only used in CSS
     - scripts/         # scripts/site.js (the one small script; see CLAUDE.md)
     - CNAME            # tells GitHub Pages the site's address is www.belmontrowing.org
+  # After every render: sitemap.xml lists /about/ rather than /about/index.html (see CLAUDE.md, "Search engines").
+  post-render: _tools/clean-sitemap.lua
 
 website:
   title: "Belmont Rowing Center"
@@ -100,7 +102,7 @@ website:
       [Belmont Rowing Center]{.footer-brand}
       :::
 
-      [Charlotte Rowing At It's Best]{.footer-motto}
+      [Charlotte Rowing At Its Best]{.footer-motto}
 
       Belmont Rowing Center is registered as a [501(c)(3)]{.nowrap} non-profit organization.
 
@@ -154,6 +156,9 @@ format:
     theme: [cosmo, theme.scss]
     page-layout: custom        # no Quarto grid: sections run edge to edge
     title-block-style: none    # each page shows its own hero heading instead
+    template-partials:         # ...and Quarto's hidden title <h1> is not written at all (one h1 per page)
+      - _partials/title-block.html
+    canonical-url: true        # <link rel="canonical"> with the short address, e.g. https://www.belmontrowing.org/about/
     toc: false
     anchor-sections: false
     link-external-newwindow: true
