@@ -34,7 +34,9 @@
   }
 }
 
-// Name-only board members: three in one row from tablets up.
+// Name-only coaches and board members: three columns from small tablets up, so a
+// lone tile (e.g. one name-only coach) keeps the same width as the board tiles.
 .page-about .tile-grid:has(> .person-tile) {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  @media (max-width: 575.98px) { grid-template-columns: 1fr; }
 }

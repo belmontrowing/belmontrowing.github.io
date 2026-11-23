@@ -823,7 +823,7 @@ One wide card (portrait 4:5 left, text right):
 
 ::: {.person-body}
 ### Johanna Niederbroker
-[BRC Head Coach]{.role} [she/her]{.pronouns}
+[BRC Head Coach]{.role}
 
 Johanna brings 20 years of competitive rowing experience …
 
@@ -833,7 +833,7 @@ Johanna brings 20 years of competitive rowing experience …
 ```
 
 Several people: wrap their `.person` cards in `:::: {.people-grid}` … `::::` for **compact
-cards** two per row (small portrait beside name/role/pronouns, the bio below, the email at
+cards** two per row (small portrait beside name and role, the bio below, the email at
 the bottom above a hairline; one per row on phones). Every `.person` becomes compact on
 phones. Portraits are cropped 4:5 from the top: for an action photo, make a tight crop first
 (e.g. `images/staff/kristin-sherman-portrait.jpg`). No photo: `::: {.person .no-photo}`.
