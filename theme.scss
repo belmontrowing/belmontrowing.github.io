@@ -799,30 +799,24 @@ body:has(.band-cta) .nav-footer a.footer-donate {
   .btn-row > p { justify-content: flex-start; font-size: 1rem; }
 }
 
-// Home hero only. The photo (an eight on the Catawba, 1023x529) has the boat right at
-// its bottom edge (about 85-96% down) and dark trees above it, so here the words sit at
-// the TOP of the hero over the trees, the navy shade is strongest at the top, and the
-// photo is anchored at the bottom so the boat always stays in view below the words.
+// Home hero only. The photo (an eight passing a lakeside house, 1206x1332, taller than
+// wide) has the boat about 56-65% down. The words sit at the bottom over the water, as on
+// the inner pages; the crop is set here (not on the photo in index.qmd) so it can change
+// per screen size and keep the boat above the words.
 .hero:not(.hero-short) {
-  justify-content: flex-start;
-  padding-top: clamp(3rem, 6vw, 4.5rem);
-  padding-bottom: 12rem;           // room for the boat under the words
-  img.bg { filter: saturate(.95); object-position: center 100%; }
-  &::before {
-    background:
-      linear-gradient(to bottom, rgba($brc-navy-900, .85) 0%, rgba($brc-navy-900, .6) 45%, rgba($brc-navy-900, .1) 72%, rgba($brc-navy-900, 0) 100%),
-      linear-gradient(to right, rgba($brc-navy-900, .5) 0%, rgba($brc-navy-900, 0) 70%);
-  }
+  img.bg { object-position: center 80%; }
+  // Very wide screens show a thinner slice of this tall photo: aim a little higher.
+  @media (min-width: 1600px) { img.bg { object-position: center 74%; } }
 }
-// Phones: the whole photo sits on top uncovered, the words below on navy.
+// Phones: the photo is shown at its natural shape, raised so the sky is cut off and the
+// boat sits at the top; the words start on the water below it and the photo fades to navy.
 @media (max-width: 575.98px) {
   .hero:not(.hero-short) {
     min-height: 0;
-    padding-top: calc(51.7vw + 1.75rem);
-    padding-bottom: 2.5rem;
-    img.bg { height: 51.7vw; object-position: center; }
+    padding-top: 42vw;
+    img.bg { top: -40vw; height: 110.4vw; object-position: center; }
     &::before {
-      background: linear-gradient(to bottom, rgba($brc-navy-900, 0) 0, rgba($brc-navy-900, 0) 51.7vw, $brc-navy-900 51.7vw);
+      background: linear-gradient(to bottom, rgba($brc-navy-900, .05) 0, rgba($brc-navy-900, .05) 30vw, rgba($brc-navy-900, .8) 50vw, $brc-navy-900 70vw);
     }
     .btn-row .btn-brc-lg { width: 100%; }
   }

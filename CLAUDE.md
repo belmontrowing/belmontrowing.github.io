@@ -437,13 +437,13 @@ The headline is `[...]{.hero-title}`, not a `#` heading: it looks exactly like o
 home page's one `#` heading is the club name and motto in the intro below it (see "Search
 engines"). Inner pages keep their `#` title in the page header.
 
-The home photo (an eight on the Catawba) is only 1023px wide and the boat runs along its
-bottom edge, so on laptops and tablets the words sit at the TOP of the hero over the trees
-(navy shade strongest at the top) and the photo is anchored at the bottom so the boat stays
-clear below them (`.hero:not(.hero-short)` in `theme.scss`, section 5). On phones the whole
-photo sits above the words. A replacement photo with the boat higher up may need the words
-back at the bottom; it should be at least 1920px wide. Recheck the crop at 1920, 1440, 1024,
-768 and 390 (the side-by-side preview in "Render and preview" helps).
+The home photo (an eight passing a lakeside house) is 1206x1332, taller than wide, with the
+boat about 60% down. The words sit at the bottom over the water; the crop is set in
+`theme.scss` (`.hero:not(.hero-short)`, section 5), not on the photo in `index.qmd`, because a
+`style=` on the photo would override the per-screen crops. On phones the photo is raised so
+the sky is cut off, the boat sits at the top and the words start on the water below it. A
+replacement photo should be at least 1920px wide. Recheck the crop at 1920, 1440, 1024, 768
+and 390 (the side-by-side preview in "Render and preview" helps).
 
 ### Sub-navigation (in-page jump links)
 
