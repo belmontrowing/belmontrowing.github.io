@@ -154,17 +154,23 @@ Glen began rowing on the water at the Belmont Rowing Center in 2024, inspired by
 [Treasurer@belmontrowing.org](mailto:treasurer@belmontrowing.org){.email}
 :::
 :::
+
+::: {.person}
+![](/images/staff/toni-keating-portrait.jpg){.person-photo loading="lazy" alt="Toni Keating"}
+
+::: {.person-body}
+### Toni Keating
+[Parent Liaison]{.role}
+
+Toni and her husband John moved to Gastonia, NC 15 years ago with their four children. While each one of their children attended the learn-to-row camps at BRC, the youngest child was the first to latch onto the sport. Toni began rowing as an independent rower when her youngest joined the BRC youth team 3 years ago. She has since joined the Master rowers and really enjoys jumping back into the learn-to- row boats to mentor other adults beginning their rowing journey. Toni holds a BS in Health, Sport and Leisure studies with an emphasis in Therapeutic Recreation. She practices equine therapy at  Bit of Hope Ranch in Gastonia. This ranch serves all people with disabilities. Outside of work and rowing, Toni also enjoys singing in choir, practicing her fiddle, and leatherwork specific to the equine industry. Toni hopes that one day her daughter will agree to row in a parent/child class at a regatta.
+:::
+:::
 ::::
 
 :::: {.tile-grid}
 ::: {.tile .person-tile}
 ### Clair Kettle
 [Secretary]{.role}
-:::
-
-::: {.tile .person-tile}
-### Toni Keating
-[Parent Liaison]{.role}
 :::
 
 ::: {.tile .person-tile}
