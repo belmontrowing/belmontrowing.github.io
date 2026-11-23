@@ -23,15 +23,6 @@
   border-radius: 2px;
   background: $brc-rule-short;
 }
-// Phones: everything a little closer together, so the club name, motto, summary and the
-// oars all show on the first screen.
-@media (max-width: 575.98px) {
-  .page-home .home-intro { padding-top: 1.5rem; }
-  .page-home .home-intro h1.display-heading::before { margin-bottom: .75rem; }
-  .page-home .home-intro > .two-col { gap: 1rem; }
-  .page-home .home-intro > .oars-row { margin-top: 1.25rem; }
-}
-
 // Intro: big club name + motto on the left, the one-line summary on the right,
 // then (same white band) the CLUB PROGRAMMING heading and photo cards.
 .page-home .home-intro > .two-col {
@@ -44,6 +35,18 @@
 // The club name + motto is the page's one h1. Below 992px Quarto puts 1rem above the
 // first h2 of a page section, and the club name was an h2 until it became the h1: keep
 // that same 1rem so the intro sits exactly where it did.
-@media (min-width: 576px) and (max-width: 991.98px) {
+@media (max-width: 991.98px) {
   .page-home .home-intro h1.display-heading { margin-top: 1rem; }
+}
+
+// Phones: the oars come between the club name and the one-line summary. The band becomes
+// one column whose pieces are put in this order: club name, oars, summary, then the rest
+// (CLUB PROGRAMMING). Only the order on screen changes; the page itself is unchanged.
+@media (max-width: 575.98px) {
+  .page-home .home-intro { display: flex; flex-direction: column; }
+  .page-home .home-intro > * { order: 4; }
+  .page-home .home-intro > .two-col { display: contents; }
+  .page-home .home-intro > .two-col > section { order: 1; }
+  .page-home .home-intro > .oars-row { order: 2; margin: 2rem 0; }
+  .page-home .home-intro > .two-col > .lead { order: 3; margin: 0 0 3rem; }
 }

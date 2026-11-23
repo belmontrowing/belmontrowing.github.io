@@ -821,16 +821,16 @@ body:has(.band-cta) .nav-footer a.footer-donate {
 @media (max-width: 575.98px) {
   .hero:not(.hero-short) {
     min-height: 0;
-    padding-top: 33vw;
-    padding-bottom: 1.25rem;
-    img.bg { top: -47vw; height: 110.4vw; object-position: center; }
+    padding-top: 38vw;
+    padding-bottom: 1.75rem;
+    img.bg { top: -42vw; height: 110.4vw; object-position: center; }
     .tagline { margin-bottom: .75rem; line-height: 1.5; }
     &::before {
-      background: linear-gradient(to bottom, rgba($brc-navy-900, .05) 0, rgba($brc-navy-900, .05) 25vw, rgba($brc-navy-900, .8) 45vw, $brc-navy-900 65vw);
+      background: linear-gradient(to bottom, rgba($brc-navy-900, .05) 0, rgba($brc-navy-900, .05) 30vw, rgba($brc-navy-900, .8) 50vw, $brc-navy-900 70vw);
     }
     // The two buttons share one row (half each) to keep the header short.
-    .btn-row { margin-top: 1.25rem; }
-    .btn-row .btn-brc-lg { width: auto; flex: 1 1 0; min-height: 48px; padding: .6rem .75rem; font-size: 1rem; white-space: nowrap; }
+    .btn-row { margin-top: 1.5rem; }
+    .btn-row .btn-brc-lg { width: auto; flex: 1 1 0; padding-left: .75rem; padding-right: .75rem; font-size: 1rem; white-space: nowrap; }
   }
 }
 
