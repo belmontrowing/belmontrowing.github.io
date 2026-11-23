@@ -11,7 +11,7 @@ source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 
 <!-- PAGE HEADER: photo with the page title over it -->
 ::: {.hero .hero-short}
-![](/images/hero-adult.jpg){.bg alt="" style="object-position: center 30%"}
+![](/images/hero-adult-mist.jpg){.bg alt="" style="object-position: center 55%"}
 
 # Adult Rowing Charlotte, NC
 

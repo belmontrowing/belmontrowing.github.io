@@ -77,6 +77,10 @@
   }
   document.getElementById("reload").onclick = () => show(current);
   window.addEventListener("resize", fit);
+  window.addEventListener("hashchange", () => {   // a link like side-by-side.html#Adult
+    const name = location.hash.slice(1);
+    if (pages[name] !== undefined && name !== current) show(name);
+  });
   fit(); show(pages[current] !== undefined ? current : "Home");
 </script>
 </body>

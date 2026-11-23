@@ -1,4 +1,13 @@
 // Page-specific styles for the ADULT page only.
 // Every rule here must start with .page-adult so it cannot affect other pages.
-// Shared looks belong in theme.scss. (Nothing page-specific is needed at the moment:
+// Shared looks belong in theme.scss. (Only the header photo crop on phones, below;
 // the season cards, phone tables, tiles and checklists are all shared components.)
+
+// Header photo (the quad in the morning mist): on phones the header is about as tall as the
+// photo, so the title would sit on the boat. There the photo is enlarged and anchored at the
+// bottom, which lifts the boat into the top of the header, above the title; 70% across centres
+// the four rowers (they sit right of the middle of the photo). !important: it must beat the
+// object-position written on the photo in adult/index.qmd.
+@media (max-width: 575.98px) {
+  .page-adult .hero-short img.bg { top: auto; bottom: 0; height: 165%; object-position: 70% 55% !important; }
+}
