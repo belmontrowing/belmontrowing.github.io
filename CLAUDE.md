@@ -35,6 +35,7 @@ season update, read "Updating the schedule each season" below first.
 | `images/share.jpg` | The picture shown when a page is shared (1200×630; set in `_quarto.yml`). |
 | `images/oars-on-*.svg`, `images/oars-long-on-*.svg` | The oars ornament: regular and long-handled pairs, three surface versions each (see "Oars ornament"). |
 | `_tools/make-oars.py` | Draws the six oars files (see "Oars ornament"). Not published. |
+| `_tools/side-by-side.html` | Local preview of the rendered site as a laptop and a phone side by side (see "Render and preview"). Not published. |
 | `_tools/clean-sitemap.lua` | Runs by itself after every render: tidies the addresses in `docs/sitemap.xml` (see "Search engines"). Don't edit. |
 | `_partials/title-block.html` | Empty on purpose: stops Quarto writing a second, hidden `<h1>` on every page (see "Search engines"). Don't delete. |
 | `_includes/home-structured-data.html` | The club's details for Google (address, map position, email, social links), added to the home page only (see "Search engines"). |
@@ -61,6 +62,15 @@ or use the copy bundled with RStudio:
 ```
 
 (If `quarto` is on the PATH, just use `quarto render` / `quarto preview`.)
+
+**Side-by-side preview (laptop + phone at once).** After `quarto render`, from the project folder:
+
+```bash
+python3 -m http.server 8765
+```
+
+then open http://localhost:8765/_tools/side-by-side.html in a browser. Buttons along the top
+switch pages; press **Reload** after each new render. Stop the server with Ctrl+C.
 A render must finish with no errors before anything is committed.
 
 ## Deploying
@@ -427,11 +437,13 @@ The headline is `[...]{.hero-title}`, not a `#` heading: it looks exactly like o
 home page's one `#` heading is the club name and motto in the intro below it (see "Search
 engines"). Inner pages keep their `#` title in the page header.
 
-The club's photo is only 1200px wide, so the theme caps the hero at 720px tall, darkens it a
-little, and zooms/positions the crop per screen size so the headline never sits on the
-rowers (`.hero:not(.hero-short)` in `theme.scss`, section 5). On phones the photo sits above
-the words. A replacement home photo should be at least 1920px wide; recheck the crop at
-1920, 1440, 1024, 768 and 390.
+The home photo (an eight on the Catawba) is only 1023px wide and the boat runs along its
+bottom edge, so on laptops and tablets the words sit at the TOP of the hero over the trees
+(navy shade strongest at the top) and the photo is anchored at the bottom so the boat stays
+clear below them (`.hero:not(.hero-short)` in `theme.scss`, section 5). On phones the whole
+photo sits above the words. A replacement photo with the boat higher up may need the words
+back at the bottom; it should be at least 1920px wide. Recheck the crop at 1920, 1440, 1024,
+768 and 390 (the side-by-side preview in "Render and preview" helps).
 
 ### Sub-navigation (in-page jump links)
 

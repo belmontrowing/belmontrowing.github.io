@@ -799,25 +799,30 @@ body:has(.band-cta) .nav-footer a.footer-donate {
   .btn-row > p { justify-content: flex-start; font-size: 1rem; }
 }
 
-// Home hero only. The photo (a quad on the Catawba, 2016x1512) is held to a modest
-// height, darkened a touch, and its crop moves per screen size so the headline never
-// sits on the rowers (their heads are about 66% down the photo, the hull about 71%).
+// Home hero only. The photo (an eight on the Catawba, 1023x529) has the boat right at
+// its bottom edge (about 85-96% down) and dark trees above it, so here the words sit at
+// the TOP of the hero over the trees, the navy shade is strongest at the top, and the
+// photo is anchored at the bottom so the boat always stays in view below the words.
 .hero:not(.hero-short) {
-  img.bg { filter: saturate(.9); object-position: center 100%; }
-  // From small tablets up the photo is zoomed (its box is taller than the hero and
-  // anchored at the bottom) so the boat sits above the words instead of behind them.
-  @media (min-width: 576px) {
-    img.bg { top: auto; bottom: 0; height: max(100%, 86rem); object-position: center 100%; }
+  justify-content: flex-start;
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+  padding-bottom: 12rem;           // room for the boat under the words
+  img.bg { filter: saturate(.95); object-position: center 100%; }
+  &::before {
+    background:
+      linear-gradient(to bottom, rgba($brc-navy-900, .85) 0%, rgba($brc-navy-900, .6) 45%, rgba($brc-navy-900, .1) 72%, rgba($brc-navy-900, 0) 100%),
+      linear-gradient(to right, rgba($brc-navy-900, .5) 0%, rgba($brc-navy-900, 0) 70%);
   }
 }
-// Phones: the photo sits on top uncovered, the words below on navy.
+// Phones: the whole photo sits on top uncovered, the words below on navy.
 @media (max-width: 575.98px) {
   .hero:not(.hero-short) {
     min-height: 0;
-    padding-top: calc(66vw + 1.5rem);
-    img.bg { height: 70vw; object-position: center 65%; }
+    padding-top: calc(51.7vw + 1.75rem);
+    padding-bottom: 2.5rem;
+    img.bg { height: 51.7vw; object-position: center; }
     &::before {
-      background: linear-gradient(to bottom, rgba($brc-navy-900, 0) 0, rgba($brc-navy-900, 0) calc(70vw - 9rem), $brc-navy-900 70vw);
+      background: linear-gradient(to bottom, rgba($brc-navy-900, 0) 0, rgba($brc-navy-900, 0) 51.7vw, $brc-navy-900 51.7vw);
     }
     .btn-row .btn-brc-lg { width: 100%; }
   }

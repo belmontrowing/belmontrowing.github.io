@@ -6,7 +6,7 @@ body-classes: page-about
 
 <!-- PAGE HEADER: photo with the page title over it -->
 ::: {.hero .hero-short}
-![](/images/hero-about-medals.jpg){.bg alt="" style="object-position: center 10%"}
+![](/images/hero-about-team.jpg){.bg alt="" style="object-position: center 60%"}
 
 # ABOUT BELMONT ROWING CENTER
 :::
