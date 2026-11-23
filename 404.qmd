@@ -4,6 +4,10 @@ title: "Page Not Found"
 
 ::: {.band .band-light}
 ::: {.centered}
+::: {.oars-divider}
+![](/images/oars-on-paper.svg){alt=""}
+:::
+
 # Page Not Found
 
 Sorry, we couldn't find that page.

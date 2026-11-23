@@ -45,6 +45,12 @@ Belmont Rowing Center promotes the growing sport of rowing through educational, 
 :::
 ::::
 
+<!-- ORNAMENT: two long pairs of oars between the intro and the programmes (one on phones) -->
+::: {.oars-row}
+![](/images/oars-long-on-white.svg){alt=""}
+![](/images/oars-long-on-white.svg){alt=""}
+:::
+
 <!-- CLUB PROGRAMMING: four photo cards -->
 ## CLUB PROGRAMMING
 

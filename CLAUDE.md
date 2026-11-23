@@ -33,6 +33,8 @@ season update, read "Updating the schedule each season" below first.
 | `_filters/season-collapse.lua` | Folds completed season cards (see "Season card") and adds the `<script>` tag for `scripts/site.js` to every page. |
 | `scripts/site.js` | The one small script (see "The one script"). Copied into `docs/` on render. |
 | `images/share.jpg` | The picture shown when a page is shared (1200×630; set in `_quarto.yml`). |
+| `images/oars-on-*.svg`, `images/oars-long-on-*.svg` | The oars ornament: regular and long-handled pairs, three surface versions each (see "Oars ornament"). |
+| `_tools/make-oars.py` | Draws the six oars files (see "Oars ornament"). Not published. |
 | `docs/` | **Generated** website. Never edit by hand; it is rebuilt by `quarto render`. |
 | `belmontrowing.Rproj` | Lets the folder open as a project in RStudio. |
 
@@ -245,21 +247,33 @@ All in the `scss:defaults` part at the top of `theme.scss`. Change a token there
 colour or size inside a rule or a page. The look is called **"early water"**: deep navy,
 crisp condensed headings, generous space, photos doing the emotional work.
 
-| Token | Value | Used for |
+**The club's colours.** The two official colours of the club, measured from the logo, are
+the signature accents: **club blue `#00B0F0`** and **club green `#80C040`**. Navy, white
+and paper stay the base; the two club colours always play the same roles (below).
+
+**They are light colours. Never use them as text, or for thin marks that carry meaning, on
+white or paper** (club blue on white is 2.4:1, club green 2.2:1), **and never put white text
+on them.** On light backgrounds they are fills, rules, borders and shapes, with NAVY text on
+them. On navy they may also be text (links, labels: 6.6:1 and 7.5:1). Text, links and icons
+on light backgrounds use `$brc-blue`, a deep shade of the same club blue.
+
+| Token | Value | Role |
 |---|---|---|
-| `$brc-navy-900` | `#0A1F3C` | footer, navy bands, photo overlays, open season-card heads |
+| `$brc-club-blue` | `#00B0F0` | OFFICIAL club blue: card/footer rules, secondary-button outline and hover fill, links, icons and column labels on navy, photo-card arrow on hover |
+| `$brc-club-green` | `#80C040` | OFFICIAL club green: primary buttons (navy words), current page/section underlines, checklist discs, bullets, `.note` rule, the motto on navy |
+| `$brc-club-green-600` | `#6FA83A` | primary button hover (navy words) |
+| `$brc-navy-900` | `#0A1F3C` | footer, navy bands, photo overlays, open season-card heads; the words on club-colour buttons |
 | `$brc-navy-800` | `#10305A` | secondary dark (gradients on navy) |
-| `$brc-blue` | `#045CB4` | brand blue (logo): links, small labels, focus rings |
-| `$brc-blue-700` | `#034A91` | link hover |
-| `$brc-blue-50` | `#EEF4FB` | callout and table-header tint |
-| `$brc-sky` | `#9CC9F5` | links on navy |
-| `$brc-green` | `#2A8436` | primary buttons (white text passes WCAG AA) |
-| `$brc-green-700` | `#226E2C` | button hover |
-| `$brc-green-accent` | `#7DBA3F` | logo green: thin rules and dots ONLY, never text, never behind text |
+| `$brc-blue` | `#00698F` | deep club blue: links, small labels, icons, table day names, focus rings on light surfaces |
+| `$brc-blue-700` | `#005270` | link hover |
+| `$brc-blue-50` | `#E8F8FE` | pale club-blue tint: callouts, table headers, icon discs |
 | `$brc-paper` | `#F6F7F4` | page background (`.band-light`) |
 | `$brc-white` | `#FFFFFF` | cards, `.band-white` |
 | `$brc-ink` / `$brc-text` / `$brc-muted` | `#14202E` / `#33414F` / `#5B6B7C` | headings / body text / secondary text |
 | `$brc-hairline` | `rgba(10,31,60,.12)` | borders and dividers |
+| `$brc-rule` | club blue → club green | the long rule across titled cards, season-card heads and the top of the footer |
+| `$brc-rule-short` | half club blue, half club green | the short two-tone mark under every section heading and before the hero eyebrow (like the two halves of the club's blades) |
+| `$brc-btn-*`, `$brc-btn2-*` | (from the above) | button colours, primary and secondary, in one place |
 
 - **Fonts** (Google Fonts, `display=swap`, only these weights): **Barlow Condensed** 600/700
   for headings, buttons and labels (uppercase, slightly tracked: boat lettering / regatta
@@ -276,8 +290,8 @@ crisp condensed headings, generous space, photos doing the emotional work.
   is the blue-to-green rule across the top of titled cards.
 - **Motion**: every hover, colour and photo-zoom transition is `$brc-ease` (.18s); all of it
   is switched off for visitors who ask for reduced motion.
-- **Focus**: every link, button and the embedded map shows a solid 3px ring: brand blue on
-  light surfaces, white on dark ones (hero, navy bands, open season-card heads, the CTA card,
+- **Focus**: every link, button and the embedded map shows a solid 3px ring: deep club blue
+  (`$brc-blue`, 5.7:1 on paper) on light surfaces, white on dark ones (hero, navy bands, open season-card heads, the CTA card,
   the footer). Mixin `brc-focus-ring`.
 - **Tap targets**: buttons, sub-nav links, footer links, card links, emails and menu items
   are at least 44px tall. Links inside sentences are exempt.
@@ -439,7 +453,7 @@ Text…
 ```
 
 `.band-light` (paper), `.band-white`, `.band-navy` (only for the Donate band). Every `##` in
-a band is left-aligned, uppercase, with a short light-green rule under it. Sub-heads
+a band is left-aligned, uppercase, with a short two-tone rule under it (club blue | club green). Sub-heads
 (`###`) sit stacked above their content.
 
 ### Donate band (call to action: Home and About)
@@ -489,8 +503,9 @@ Email us at [info@belmontrowing.org](mailto:info@belmontrowing.org)
 [More details](/adult/index.qmd#adultltr){.btn-brc-outline}
 ```
 
-`.btn-brc` = green (the main action), `.btn-brc-outline` = outline (blue on light, white on
-photos and navy), `.btn-brc-lg` = bigger, ONLY in heroes and CTA bands. Labels are set in
+`.btn-brc` = club green with navy words (the main action; darker green on hover),
+`.btn-brc-outline` = club-blue outline (navy words on light surfaces, white words on photos and
+navy; fills club blue with navy words on hover), `.btn-brc-lg` = bigger, ONLY in heroes and CTA bands. Labels are set in
 uppercase condensed type by the theme; type them as the club wrote them. A row of buttons:
 
 ```markdown
@@ -499,7 +514,7 @@ uppercase condensed type by the theme; type them as the club wrote them. A row o
 :::
 ```
 
-The header's own green **Register** button is the last `navbar:` item in `_quarto.yml`;
+Never put white words on a club-colour button. The header's own green **Register** button is the last `navbar:` item in `_quarto.yml`;
 `theme.scss` (section 2) recognises it by its `icrew.club/register` address.
 
 ### Season card (a programme's season, with Register or a "completed" status)
@@ -868,6 +883,62 @@ Content…
 - `:::: {.two-col}` (two equal columns, stacked below 768px) is used for the home intro and
   the ROAR introduction beside its logo; `::: {.framed}` frames an inline image.
 
+### Oars ornament
+
+The club's mark: two crossed oars, each hatchet blade at the raised end hanging down over
+the other oar's handle; blades in the club paint (blue along the shaft side, green on the
+outer side, a white stripe from the neck to the far tip corner), a sleeve with a club-green
+collar on each shaft. Navy line on light surfaces, white line on navy. It is an ornament,
+not wallpaper. Two drawings, three surface versions each:
+
+| Files | Drawing | Use |
+|---|---|---|
+| `oars-on-white.svg`, `oars-on-paper.svg`, `oars-on-navy.svg` | regular pair (about 3.85:1) | a single centred pair |
+| `oars-long-on-white.svg`, `oars-long-on-paper.svg`, `oars-long-on-navy.svg` | long handles (about 7.66:1) | the home row and the footer |
+
+Pick the surface: `-on-white` on a `.band-white`, `-on-paper` on a `.band-light`,
+`-on-navy` on navy (the shafts are filled with the surface colour so the crossing reads).
+Always `alt=""`: it is decorative, no words. Three components:
+
+- **Oars row** (home page, between the intro and CLUB PROGRAMMING): two long pairs side by
+  side, filling the content width; one pair below 576px.
+
+  ```markdown
+  ::: {.oars-row}
+  ![](/images/oars-long-on-white.svg){alt=""}
+  ![](/images/oars-long-on-white.svg){alt=""}
+  :::
+  ```
+
+- **Oars divider** (top of the 404 page): one regular pair, centred, a hairline either side
+  (about 240px wide on a phone, 430px on a laptop).
+
+  ```markdown
+  ::: {.oars-divider}
+  ![](/images/oars-on-paper.svg){alt=""}
+  :::
+  ```
+
+- **Footer lockup** (every page, in `_quarto.yml`): the long white-line pair above the club
+  name, exactly as wide as the name (kept on one line; it may wrap only on phones narrower
+  than 360px). On a page whose content starts with an oars divider (the 404 page) the
+  footer drops its oars, so two marks never share a screen.
+
+  ```markdown
+  ::: {.footer-lockup}
+  ![](/images/oars-long-on-navy.svg){.footer-mark alt=""}
+
+  [Belmont Rowing Center]{.footer-brand}
+  :::
+  ```
+
+- **Placement rule**: at most one or two per page, at a natural pause; never between every
+  section, never inside a page header, a button, a card or a season card.
+- **Size**: set by width in `theme.scss`; the height follows the drawing.
+- **Redrawing**: run `python3 _tools/make-oars.py` from the project folder (needs Python
+  with Pillow, and Google Chrome). It rewrites the six files in `images/` under the same
+  names, so pages and `theme.scss` need no change. Then `quarto render`.
+
 ### Text helpers
 
 ```markdown
@@ -900,7 +971,7 @@ home hero's eyebrow line. `.text-center` and `.small` come from Bootstrap.
     Social items also carry `icon:` (a Bootstrap Icons name).
   - Navigation labels for the adult page say **Adult** (parallel with Youth), here and in
     the footer. Page content ("Adult Rowing Charlotte, NC", "Adult Programs") is unchanged.
-  - **Donate** (outlined, quieter) and **Register** (green, the main action) are the last two
+  - **Donate** (the secondary button: club-blue outline) and **Register** (the primary: club green) are the last two
     entries, in that order. `theme.scss` styles them as buttons by their addresses
     (`zeffy.com` and `icrew.club/register`); both open in a new tab. From 992 to 1199px the
     menu spacing tightens so everything stays on one line.
@@ -917,7 +988,7 @@ home hero's eyebrow line. `.text-center` and `.small` come from Bootstrap.
   same preview picture, as an absolute `https://www.belmontrowing.org/...` address. A page
   can use its own picture with `image: /images/x.jpg` in its front matter (1200×630 is best).
 - **Footer**: navy, written in `_quarto.yml` under `page-footer:` as three markdown slots:
-  `left` (club name `{.footer-brand}`, motto `{.footer-motto}`, the 501(c)(3) line, the Donate
+  `left` (the `::: {.footer-lockup}` block: long oars `{.footer-mark}` above the club name `{.footer-brand}`, see "Oars ornament"; then motto `{.footer-motto}`, the 501(c)(3) line, the Donate
   link `{.footer-donate}`), `center` (two `::: {.footer-col}` blocks: Visit = addresses +
   email, Explore = Home, About Us, Youth, Adult, Other, Contact, BRC Swag) and `right` (Follow = social links). Column labels are
   `[Visit]{.footer-label}`. Write our own pages as `/about/index.qmd` (Quarto makes them

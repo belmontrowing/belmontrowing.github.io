@@ -17,6 +17,7 @@
 //      7  Buttons                    17  Call to action (band + card)
 //      8  Photo cards (home)         18  Text helpers
 //      9  Cards (tiles, value cards) 19  Forms (unused for now)
+//                                    (18 also holds the oars ornament)
 //     10  Callouts, notes and lists  20  Page-specific files (styles/_<page>.scss)
 //   Full copy-paste snippets for every component are in CLAUDE.md.
 //
@@ -33,21 +34,41 @@
 // =============================================================================
 
 // ---- Colour tokens ------------------------------------------------------------
-$brc-navy-900:    #0A1F3C;  // footer, navy bands, photo overlays, season-card heads
+// Base: navy, white and paper. Signature accents: the club's two OFFICIAL colours,
+// measured from the logo. They are LIGHT colours, so:
+//   on white/paper  -> fills, rules, borders and shapes only, with NAVY text on them;
+//                      never as text, never behind white text
+//   on navy         -> also fine as text (links, labels): 6.6:1 and 7.5:1
+// Text and links on light backgrounds use $brc-blue, a deep shade of the club blue.
+$brc-club-blue:      #00B0F0;  // OFFICIAL club blue (logo): rules, tints, secondary buttons, links/labels on navy
+$brc-club-green:     #80C040;  // OFFICIAL club green (logo): primary buttons, current-page marks, checks, bullets
+$brc-club-green-600: #6FA83A;  // primary button hover (navy text still 5.8:1)
+$brc-navy-900:    #0A1F3C;  // footer, navy bands, photo overlays, season-card heads; text on club colours
 $brc-navy-800:    #10305A;  // secondary dark (gradients on navy)
-$brc-blue:        #045CB4;  // brand blue (from the logo): links, labels, focus rings
-$brc-blue-700:    #034A91;  // link hover
-$brc-blue-50:     #EEF4FB;  // pale blue tint (callouts, table header)
-$brc-sky:         #9CC9F5;  // links on navy
-$brc-green:       #2A8436;  // action green: primary buttons (white text passes AA)
-$brc-green-700:   #226E2C;  // button hover
-$brc-green-accent:#7DBA3F;  // logo's light green: thin rules and dots ONLY (never text, never behind text)
+$brc-blue:        #00698F;  // deep club blue (same hue): links, small labels, icons, focus rings on light
+$brc-blue-700:    #005270;  // link hover
+$brc-blue-50:     #E8F8FE;  // pale club-blue tint (callouts, table headers, icon discs)
 $brc-paper:       #F6F7F4;  // page background
 $brc-white:       #FFFFFF;  // cards, alternate bands
 $brc-ink:         #14202E;  // headings, strong text
 $brc-text:        #33414F;  // body text
 $brc-muted:       #5B6B7C;  // secondary text (roles, captions, notes)
 $brc-hairline:    rgba(10, 31, 60, .12);  // borders and dividers
+
+// ---- Button colours -----------------------------------------------------------
+// Primary (.btn-brc, header Register): club green with NAVY words (7.5:1; never white).
+// Secondary (.btn-brc-outline, header Donate): club-blue outline with navy words on light
+// surfaces, white words on photos and navy; fills club blue (navy words) on hover.
+$brc-btn-bg:           $brc-club-green;
+$brc-btn-fg:           $brc-navy-900;
+$brc-btn-hover-bg:     $brc-club-green-600;
+$brc-btn2-bg:          rgba($brc-club-blue, .08);
+$brc-btn2-fg:          $brc-navy-900;
+$brc-btn2-border:      $brc-club-blue;
+$brc-btn2-hover-bg:    $brc-club-blue;
+$brc-btn2-hover-fg:    $brc-navy-900;
+$brc-btn2-border-dark: $brc-club-blue;
+$brc-btn2-hover-dark:  $brc-club-blue;
 
 // ---- Type tokens --------------------------------------------------------------
 // Two families from Google Fonts, only the weights used:
@@ -79,7 +100,8 @@ $brc-radius:      12px;                        // cards, photos, tables
 $brc-radius-sm:   8px;                         // buttons, small things
 $brc-shadow:      0 1px 2px rgba(10, 31, 60, .06), 0 8px 24px rgba(10, 31, 60, .08);
 $brc-shadow-lift: 0 2px 4px rgba(10, 31, 60, .08), 0 16px 36px rgba(10, 31, 60, .16);
-$brc-rule:        linear-gradient(to right, $brc-blue, $brc-blue 70%, $brc-green-accent); // card top rule
+$brc-rule:        linear-gradient(to right, $brc-club-blue, $brc-club-blue 40%, $brc-club-green); // card top rule, footer top
+$brc-rule-short:  linear-gradient(to right, $brc-club-blue 0 50%, $brc-club-green 50% 100%);       // two-tone mark under headings (like the blades)
 $brc-ease:        .18s ease;                   // every hover/colour/zoom transition
 $brc-header-h:    76px;                        // header height on computers
 $brc-header-h-sm: 64px;                        // header height on phones/tablets
@@ -98,7 +120,7 @@ $headings-font-family: $brc-font-display;
 $headings-font-weight: 700;
 $headings-color: $brc-ink;
 $primary: $brc-blue;
-$success: $brc-green;
+$success: $brc-club-green;
 $border-radius: $brc-radius-sm;
 $navbar-bg: $brc-white;
 $navbar-fg: $brc-ink;
@@ -179,7 +201,7 @@ $footer-fg: rgba(255, 255, 255, .78);
     left: 0; top: .62em;
     width: 6px; height: 6px;
     border-radius: 50%;
-    background-color: $brc-green-accent;
+    background-color: $brc-club-green;
   }
   li ul { margin: .45rem 0 .2rem; }
   li li { font-size: $brc-size-small; color: $brc-muted; padding-left: 1rem; }
@@ -343,7 +365,7 @@ img { max-width: 100%; height: auto; }
       left: .7rem; right: .7rem; bottom: .1rem;
       height: 2px;
       border-radius: 2px;
-      background-color: $brc-green-accent;
+      background-color: $brc-club-green;
     }
   }
 }
@@ -363,7 +385,7 @@ img { max-width: 100%; height: auto; }
     left: .7rem; right: 1.55rem; bottom: .1rem;
     height: 2px;
     border-radius: 2px;
-    background-color: $brc-green-accent;
+    background-color: $brc-club-green;
   }
 }
 .page-youth .navbar .dropdown-item[href$="youth/index.html"],
@@ -373,40 +395,41 @@ img { max-width: 100%; height: auto; }
   color: $brc-blue;
   font-weight: 600;
   background-color: $brc-blue-50;
-  box-shadow: inset 3px 0 0 $brc-green-accent;
+  box-shadow: inset 3px 0 0 $brc-club-green;
 }
 
-// The Donate button (the Zeffy link in the navbar): outlined and quieter, just before Register.
+// The Donate button (the Zeffy link in the navbar): the secondary button, just before Register.
 .navbar .navbar-nav .nav-link[href*="zeffy.com"] {
   margin-left: .75rem;
   padding: .5rem 1.05rem !important;
-  border: 1.5px solid rgba($brc-green, .6);
+  border: 2px solid $brc-btn2-border;
   border-radius: $brc-radius-sm;
-  color: $brc-green !important;
+  background-color: $brc-btn2-bg;
+  color: $brc-btn2-fg !important;
   font-family: $brc-font-display;
   font-weight: 700;
   font-size: 1.0625rem;
   text-transform: uppercase;
   letter-spacing: .06em;
   line-height: 1.2;
-  &:hover { background-color: rgba($brc-green, .08); border-color: $brc-green; color: $brc-green-700 !important; }
+  &:hover { background-color: $brc-btn2-hover-bg; border-color: $brc-btn2-hover-bg; color: $brc-btn2-hover-fg !important; }
 }
 .navbar .nav-item:has(> .nav-link[href*="zeffy.com"]) + .nav-item > .nav-link[href*="icrew.club/register"] { margin-left: .5rem; }
 
-// The Register button (the iCrew link in the navbar).
+// The Register button (the iCrew link in the navbar): the primary button.
 .navbar .navbar-nav .nav-link[href*="icrew.club/register"] {
   margin-left: .75rem;
   padding: .6rem 1.25rem !important;
   border-radius: $brc-radius-sm;
-  background-color: $brc-green;
-  color: $brc-white !important;
+  background-color: $brc-btn-bg;
+  color: $brc-btn-fg !important;
   font-family: $brc-font-display;
   font-weight: 700;
   font-size: 1.0625rem;
   text-transform: uppercase;
   letter-spacing: .06em;
   line-height: 1.2;
-  &:hover { background-color: $brc-green-700; color: $brc-white !important; }
+  &:hover { background-color: $brc-btn-hover-bg; color: $brc-btn-fg !important; }
 }
 
 .navbar .dropdown-menu {
@@ -478,7 +501,7 @@ img { max-width: 100%; height: auto; }
     justify-content: center;
     text-align: center;
     padding: .8rem 1rem !important;
-    border-bottom: 1.5px solid rgba($brc-green, .6);
+    border-bottom: 2px solid $brc-btn2-border;
     border-radius: $brc-radius-sm;
   }
   .navbar .navbar-nav .nav-link[href*="icrew.club/register"] {
@@ -502,7 +525,7 @@ img { max-width: 100%; height: auto; }
 
 // =============================================================================
 // 3. FOOTER (navy). Content is set in _quarto.yml under page-footer:
-//    left = club name, motto, 501(c)(3) line, Donate button
+//    left = oars + club name (.footer-lockup), motto, 501(c)(3) line, Donate button
 //    center = two columns: [Visit] addresses + email, [Explore] page links
 //    right = [Follow] social links
 // =============================================================================
@@ -516,7 +539,8 @@ footer.footer .nav-footer {
   text-align: left;
   background-color: $brc-navy-900;
   color: rgba($brc-white, .78);
-  border-top: 3px solid $brc-green-accent;
+  border-top: 3px solid;
+  border-image: $brc-rule 1;          // the blue-to-green club rule along the top
   @include brc-container-padding;
   padding-top: clamp(3.5rem, 6vw, 5rem);
   padding-bottom: clamp(3rem, 5vw, 4.5rem);
@@ -526,7 +550,7 @@ footer.footer .nav-footer {
   > div { margin: 0 !important; min-height: 0 !important; text-align: left !important; font-size: inherit !important; order: 0 !important; }
   p { margin: 0 0 1rem; }
   a { color: $brc-white; text-decoration: none; transition: color $brc-ease; }
-  a:hover { color: $brc-sky; text-decoration: underline; }
+  a:hover { color: $brc-club-blue; text-decoration: underline; }
   strong { color: $brc-white; font-weight: 600; }
   ul { list-style: none; padding: 0; margin: 0; }
   // Links: 44px tall tap targets (they sit flush, so the list keeps its rhythm).
@@ -537,7 +561,7 @@ footer.footer .nav-footer {
     min-width: 44px;
   }
   li + li { margin-top: 0; }
-  .bi { margin-right: .5rem; font-size: 1.05rem; color: $brc-sky; }
+  .bi { margin-right: .5rem; font-size: 1.05rem; color: $brc-club-blue; }
 
   .nav-footer-center {
     display: grid;
@@ -546,6 +570,10 @@ footer.footer .nav-footer {
   }
   // Tablets: club block on top, then Visit | Explore | Follow.
   // Phones: club block, Visit, then Explore | Follow side by side.
+  // Desktop: the first column may grow to the one-line club name (see .footer-lockup).
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(min-content, 1.25fr) minmax(0, 2fr) minmax(0, .9fr);
+  }
   @media (max-width: 991.98px) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2.5rem 2rem;
@@ -557,6 +585,34 @@ footer.footer .nav-footer {
     .footer-col:first-child { grid-column: 1 / -1; }
   }
 }
+// Club lockup: the long oars (oars-long-on-navy.svg, white line) above the club name,
+// EXACTLY as wide as the name. The lockup shrinks to the name (kept on one line); the mark
+// fills the lockup without widening it (width 0 + min-width 100%).
+//   ::: {.footer-lockup}
+//   ![](/images/oars-long-on-navy.svg){.footer-mark alt=""}
+//
+//   [Belmont Rowing Center]{.footer-brand}
+//   :::
+.footer-lockup {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  .footer-brand { white-space: nowrap; }
+  @media (max-width: 359.98px) { .footer-brand { white-space: normal; } }   // very narrow phones: let it wrap
+}
+.footer-mark {
+  display: block;
+  width: 11rem;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1.1rem;
+}
+.footer-lockup .footer-mark { width: 0; min-width: 100%; max-width: none; }
+// A page whose content STARTS with the oars ornament (the 404 page) drops the footer's
+// mark (and the paragraph holding it, so no gap is left), so two marks never share a screen.
+body:has(.centered > .oars-divider:first-child) .footer-lockup > p:has(> .footer-mark),
+body:has(.centered > .oars-divider:first-child) .footer-mark { display: none; }
 .footer-brand {
   display: block;
   font-family: $brc-font-display;
@@ -574,7 +630,7 @@ footer.footer .nav-footer {
   font-size: 1.125rem;
   letter-spacing: .04em;
   text-transform: uppercase;
-  color: $brc-green-accent;
+  color: $brc-club-green;
   margin-top: -.25rem;
 }
 // Small uppercase column labels ("Visit", "Explore", "Follow").
@@ -584,7 +640,7 @@ footer.footer .nav-footer {
   font-size: .75rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba($brc-white, .6);
+  color: $brc-club-blue;             // 6.6:1 on navy
 }
 .nav-footer a.footer-donate {
   display: inline-flex;
@@ -592,7 +648,7 @@ footer.footer .nav-footer {
   min-height: 48px;
   margin-top: .5rem;
   padding: .7rem 1.25rem;
-  border: 1.5px solid rgba($brc-white, .55);
+  border: 2px solid $brc-club-blue;
   border-radius: $brc-radius-sm;
   font-family: $brc-font-display;
   font-weight: 700;
@@ -601,7 +657,7 @@ footer.footer .nav-footer {
   text-transform: uppercase;
   line-height: 1.2;
   transition: background-color $brc-ease, color $brc-ease, border-color $brc-ease;
-  &:hover { background-color: $brc-white; color: $brc-navy-900; border-color: $brc-white; text-decoration: none; }
+  &:hover { background-color: $brc-club-blue; color: $brc-navy-900; border-color: $brc-club-blue; text-decoration: none; }
 }
 // A page that already ends with the Donate band: the footer's Donate is a plain link.
 body:has(.band-cta) .nav-footer a.footer-donate {
@@ -615,9 +671,9 @@ body:has(.band-cta) .nav-footer a.footer-donate {
   letter-spacing: 0;
   text-transform: none;
   text-decoration: underline;
-  text-decoration-color: $brc-green-accent;
+  text-decoration-color: $brc-club-green;
   text-underline-offset: .25em;
-  &:hover { background: none; color: $brc-sky; }
+  &:hover { background: none; color: $brc-club-blue; }
 }
 
 
@@ -646,18 +702,18 @@ body:has(.band-cta) .nav-footer a.footer-donate {
   background-color: $brc-navy-900;
   color: rgba($brc-white, .86);
   h1, h2, h3, h4, h5, h6, strong { color: $brc-white; }
-  a:not([class*="btn-brc"]) { color: $brc-sky; }
+  a:not([class*="btn-brc"]) { color: $brc-club-blue; }
 }
 
-// Section heading: a short light-green rule under every ## in a band.
+// Section heading: a short two-tone club rule (blue | green, like the blades) under every ## in a band.
 .band h2::after {
   content: "";
   display: block;
-  width: 3rem;
-  height: 3px;
+  width: 3.5rem;
+  height: 4px;
   margin-top: 1rem;
   border-radius: 2px;
-  background-color: $brc-green-accent;
+  background: $brc-rule-short;
 }
 .centered h2::after, .band-cta h2::after { margin-left: auto; margin-right: auto; }
 // Sub-heads inside a section (### Expectations, ### What To Bring ...) sit stacked above
@@ -790,10 +846,10 @@ body:has(.band-cta) .nav-footer a.footer-donate {
   &::before {
     content: "";
     flex: none;
-    width: 1.5rem;
-    height: 2px;
+    width: 2rem;
+    height: 3px;
     transform: translateY(-.3em);
-    background-color: $brc-green-accent;
+    background: $brc-rule-short;
   }
   @media (max-width: 575.98px) { font-size: .75rem; letter-spacing: .04em; &::before { display: none; } }
 }
@@ -846,7 +902,7 @@ body:has(.band-cta) .nav-footer a.footer-donate {
       left: 0; right: 0; bottom: 0;
       height: 2px;
       border-radius: 2px;
-      background-color: $brc-green-accent;
+      background-color: $brc-club-green;
       transform: scaleX(0);
       transform-origin: left;
       transition: transform $brc-ease;
@@ -900,24 +956,24 @@ body:has(.band-cta) .nav-footer a.footer-donate {
 }
 .btn-brc {
   @extend %brc-button-base;
-  background-color: $brc-green;
-  color: $brc-white !important;
-  box-shadow: 0 1px 2px rgba($brc-navy-900, .15), 0 6px 16px -6px rgba($brc-green, .6);
-  &:hover { background-color: $brc-green-700; color: $brc-white !important; }
+  background-color: $brc-btn-bg;
+  color: $brc-btn-fg !important;
+  box-shadow: 0 1px 2px rgba($brc-navy-900, .15), 0 6px 16px -8px rgba($brc-btn-bg, .45);
+  &:hover { background-color: $brc-btn-hover-bg; color: $brc-btn-fg !important; }
 }
 button.btn-brc { cursor: pointer; }
 .btn-brc-outline {
   @extend %brc-button-base;
-  background-color: transparent;
-  color: $brc-blue !important;
-  border-color: rgba($brc-blue, .55);
-  &:hover { background-color: $brc-blue; border-color: $brc-blue; color: $brc-white !important; }
+  background-color: $brc-btn2-bg;
+  color: $brc-btn2-fg !important;
+  border-color: $brc-btn2-border;
+  &:hover { background-color: $brc-btn2-hover-bg; border-color: $brc-btn2-hover-bg; color: $brc-btn2-hover-fg !important; }
 }
-// On photos and navy: a white "ghost" outline.
+// On photos and navy: white words in a club-blue outline.
 .hero .btn-brc-outline, .band-navy .btn-brc-outline {
   color: $brc-white !important;
-  border-color: rgba($brc-white, .7);
-  &:hover { background-color: $brc-white; border-color: $brc-white; color: $brc-navy-900 !important; }
+  border-color: $brc-btn2-border-dark;
+  &:hover { background-color: $brc-btn2-hover-dark; border-color: $brc-btn2-hover-dark; color: $brc-navy-900 !important; }
 }
 .hero .btn-brc-outline { backdrop-filter: blur(2px); background-color: rgba($brc-navy-900, .15); }
 .btn-brc-lg { font-size: 1.3125rem; padding: .95rem 2.25rem; min-height: 56px; }
@@ -998,7 +1054,7 @@ button.btn-brc { cursor: pointer; }
     }
     &::after { content: ""; position: absolute; inset: 0; }   // the whole card is clickable
   }
-  &:hover a::before { transform: translateX(3px); background-color: $brc-white; border-color: $brc-white; color: $brc-navy-900 !important; }
+  &:hover a::before { transform: translateX(3px); background-color: $brc-club-blue; border-color: $brc-club-blue; color: $brc-navy-900 !important; }
 
   // Phones: 2 x 2 squares so all four programmes fit in one swipe.
   @media (max-width: 575.98px) {
@@ -1065,7 +1121,7 @@ button.btn-brc { cursor: pointer; }
 .info-box {
   position: relative;
   background-color: $brc-blue-50;
-  border: 1px solid rgba($brc-blue, .16);
+  border: 1px solid rgba($brc-club-blue, .35);
   border-radius: $brc-radius;
   padding: 1.5rem 1.75rem 1.5rem 4.25rem;
   margin: 2rem 0;
@@ -1108,7 +1164,7 @@ div.lead {
   max-width: $brc-measure;
   margin: 1.5rem 0;
   padding: .15rem 0 .15rem 1.1rem;
-  border-left: 3px solid $brc-green-accent;
+  border-left: 3px solid $brc-club-green;
   p { margin: 0; }
   p + p { margin-top: .5rem; font-size: $brc-size-small; color: $brc-muted; }
 }
@@ -1170,8 +1226,8 @@ div.lead {
       width: 1.375rem;
       height: 1.375rem;
       border-radius: 50%;
-      background-color: rgba($brc-green, .12);
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3e%3cpath d='M6.5 11.5l3 3 6-7' fill='none' stroke='%232A8436' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+      background-color: $brc-club-green;     // club-green disc, navy tick (7.5:1)
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3e%3cpath d='M6.5 11.5l3 3 6-7' fill='none' stroke='%230A1F3C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
       background-size: 100% 100%;
     }
   }
@@ -1203,7 +1259,7 @@ div.lead {
     transition: border-color $brc-ease, box-shadow $brc-ease, color $brc-ease;
     &::before { @include brc-icon("\F38B"); font-size: 1.35rem; color: $brc-blue; flex: none; }          // bi-file-earmark-text
     &::after { @include brc-icon("\F1C5"); font-size: .9rem; color: $brc-muted; margin-left: auto; flex: none; } // bi-box-arrow-up-right
-    &:hover { border-color: rgba($brc-blue, .45); box-shadow: $brc-shadow; color: $brc-blue; }
+    &:hover { border-color: $brc-club-blue; box-shadow: $brc-shadow; color: $brc-blue; }
   }
   strong { font-weight: inherit; color: inherit; }
 }
@@ -1251,7 +1307,7 @@ div.lead {
       top: 1.3rem;
       font-size: 1.15rem;
       line-height: 1.4;
-      color: $brc-green;
+      color: $brc-blue;
     }
   }
   strong { display: block; font-size: 1.0625rem; line-height: 1.45; margin-bottom: .3rem; }
@@ -1437,7 +1493,7 @@ div.lead {
         font-size: .9rem;
         transition: transform $brc-ease, border-color $brc-ease;
       }
-      &:hover { .status-note { color: $brc-ink; } &::after { border-color: rgba($brc-blue, .5); } }
+      &:hover { .status-note { color: $brc-ink; } &::after { border-color: $brc-club-blue; } }
       &:focus-visible { outline: 3px solid $brc-blue; outline-offset: -3px; }
     }
     &:first-child > summary { padding-top: .95rem; }   // no heading above (Youth summer)
@@ -1544,7 +1600,7 @@ div.lead {
     letter-spacing: .12em;
     text-transform: uppercase;
     border: 0;
-    border-bottom: 1px solid rgba($brc-blue, .18);
+    border-bottom: 2px solid rgba($brc-club-blue, .45);
     padding: .9rem 1.25rem;
     white-space: nowrap;
   }
@@ -2041,7 +2097,7 @@ section.cta-card {
   align-items: center;
   gap: 0 clamp(2rem, 5vw, 4rem);
   background-color: $brc-navy-900;
-  background-image: linear-gradient(115deg, rgba($brc-navy-800, 0) 35%, rgba($brc-blue, .35) 100%);
+  background-image: linear-gradient(115deg, rgba($brc-navy-800, 0) 35%, rgba($brc-club-blue, .22) 100%);
   border-radius: $brc-radius;
   box-shadow: $brc-shadow;
   padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
@@ -2054,8 +2110,8 @@ section.cta-card {
     font-size: $brc-size-lead;
     line-height: 1.4;
     overflow-wrap: anywhere;
-    a { color: $brc-white; font-weight: 600; text-decoration-color: $brc-green-accent; text-decoration-thickness: 2px; }
-    a:hover { color: $brc-sky; }
+    a { color: $brc-white; font-weight: 600; text-decoration-color: $brc-club-green; text-decoration-thickness: 2px; }
+    a:hover { color: $brc-club-blue; }
   }
   .btn-row {
     grid-area: button;
@@ -2136,6 +2192,61 @@ h1.display-heading, h2.display-heading {
     gap: 0;
     h2 { margin-bottom: 1.5rem; }
   }
+}
+
+
+// Oars ornament: two crossed oars (hatchet blades in the club colours hanging down over the
+// other oar's handle), navy line on light surfaces, white line on navy. An ornament, not
+// wallpaper: at most ONE OR TWO per page (plus the footer's), never between every section,
+// never inside headers, buttons or cards. Files are made by _tools/make-oars.py; pick the one
+// for the surface (the shafts are filled with it so the crossing reads):
+//   oars-on-white.svg / oars-on-paper.svg / oars-on-navy.svg            regular pair (~3.85:1)
+//   oars-long-on-white.svg / oars-long-on-paper.svg / oars-long-on-navy.svg   long handles (~7.66:1)
+// Both components are sized by WIDTH (height follows the drawing).
+//
+// .oars-row (home page): two long pairs side by side filling the content width; one on phones.
+//   ::: {.oars-row}
+//   ![](/images/oars-long-on-white.svg){alt=""}
+//   ![](/images/oars-long-on-white.svg){alt=""}
+//   :::
+// Quarto wraps the two images in one <p>, which is the flex row.
+.oars-row {
+  margin: clamp(2.5rem, 6vw, 4rem) 0;
+  > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    margin: 0;
+    line-height: 0;
+  }
+  img { flex: 1 1 0; min-width: 0; max-width: 36rem; height: auto; }
+  @media (max-width: 575.98px) { img + img { display: none; } }
+  &:first-child { margin-top: 0; }
+  &:last-child { margin-bottom: 0; }
+}
+
+// .oars-divider: ONE regular pair, centred, with a hairline either side (the 404 page).
+//   ::: {.oars-divider}
+//   ![](/images/oars-on-paper.svg){alt=""}
+//   :::
+.oars-divider {
+  display: flex;
+  align-items: center;
+  gap: clamp(.75rem, 2.5vw, 1.5rem);
+  max-width: 52rem;
+  margin: clamp(2.5rem, 6vw, 4rem) auto;
+  &::before, &::after {
+    content: "";
+    flex: 1 1 0;
+    min-width: 1.5rem;
+    height: 1px;
+    background-color: rgba($brc-navy-900, .16);
+  }
+  > p { flex: 0 1 auto; margin: 0; line-height: 0; }
+  img { display: block; width: clamp(15rem, 32vw, 27rem); max-width: 100%; height: auto; }   // ~240px phone, 430px laptop (a wide, low drawing)
+  &:first-child { margin-top: 0; }
+  &:last-child { margin-bottom: 0; }
 }
 
 

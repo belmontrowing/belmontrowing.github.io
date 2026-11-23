@@ -9,3 +9,5 @@
   align-items: end;
   .lead { margin: 0; }
 }
+// The oars row under the intro sets the space to CLUB PROGRAMMING itself.
+.page-home .home-intro > .two-col:has(+ :is(.oars-row, .oars-divider)) { margin-bottom: 0; }

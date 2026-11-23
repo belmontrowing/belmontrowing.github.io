@@ -88,13 +88,17 @@ website:
         rel: noopener
 
   # Navy footer in three slots (styled in theme.scss, section 3):
-  #   left = club name, 501(c)(3) line, Donate;  center = addresses + page links;
+  #   left = oars + club name (.footer-lockup), motto, 501(c)(3) line, Donate;  center = addresses + page links;
   #   right = social links. Links to our own pages are written /page/index.qmd so
   #   Quarto makes them work from every folder. Outside links carry
   #   target="_blank" rel="noopener" so they open in a new tab.
   page-footer:
     left: |
+      ::: {.footer-lockup}
+      ![](/images/oars-long-on-navy.svg){.footer-mark alt=""}
+
       [Belmont Rowing Center]{.footer-brand}
+      :::
 
       [Charlotte Rowing At It's Best]{.footer-motto}
 

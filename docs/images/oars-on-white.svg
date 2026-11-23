@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1092" height="284" viewBox="554 112 1092 284">
+<defs><filter id="wash" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter>
+<filter id="ink" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.4"/></filter></defs>
+<g transform="translate(1100.0,260.0)" filter="url(#ink)"><g transform="rotate(12) scale(-1,-1)"><path d="M -385,0 L 222,0" fill="none" stroke="#FFFFFF" stroke-width="30.25"/>
+  <g transform="translate(0,0)"><clipPath id="bL"><path d="M 236,8 C 300,14 400,26 478,30 Q 502,31 502,9 L 497,-96 Q 496,-118 474,-118 C 420,-118 364,-115 330,-106 C 286,-94 276,-34 236,-8 Z"/></clipPath>
+  <path d="M 236,8 C 300,14 400,26 478,30 Q 502,31 502,9 L 497,-96 Q 496,-118 474,-118 C 420,-118 364,-115 330,-106 C 286,-94 276,-34 236,-8 Z" fill="#FFFFFF"/>
+  <g transform="translate(3,3)" filter="url(#wash)"><g clip-path="url(#bL)">
+    <polygon points="230,-10.5 520,-133.5 520,-260 230,-260" fill="#80C040"/>
+    <polygon points="230,10.5 520,-112.5 520,160 230,160" fill="#00B0F0"/></g></g>
+  <path d="M 236,8 C 300,14 400,26 478,30 Q 502,31 502,9 L 497,-96 Q 496,-118 474,-118 C 420,-118 364,-115 330,-106 C 286,-94 276,-34 236,-8 Z" fill="none" stroke="#0A1F3C" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="216" y="-11" width="26" height="22" rx="6" fill="#0A1F3C"/>
+  <path d="M 236,-4.5 L 404,-1 Q 412,0 404,1 L 236,4.5 Z" fill="#0A1F3C"/></g>
+  <path d="M -392,-6.5 L 226,-5 L 226,5 L -392,6.5 Z" fill="#0A1F3C" stroke="#0A1F3C" stroke-width="2.75" stroke-linejoin="round"/>
+  <rect x="-545" y="-12.5" width="160" height="25" rx="12.5" fill="#0A1F3C"/>
+  <rect x="-290.78" y="-10.5" width="122" height="21" rx="4" fill="#FFFFFF" stroke="#0A1F3C" stroke-width="4.4"/>
+  <rect x="-272.78" y="-20" width="17" height="40" rx="5" fill="#80C040" stroke="#0A1F3C" stroke-width="4.4"/></g><g transform="rotate(-12) scale(1,-1)"><path d="M -385,0 L 222,0" fill="none" stroke="#FFFFFF" stroke-width="30.25"/>
+  <g transform="translate(0,0)"><clipPath id="bR"><path d="M 236,8 C 300,14 400,26 478,30 Q 502,31 502,9 L 497,-96 Q 496,-118 474,-118 C 420,-118 364,-115 330,-106 C 286,-94 276,-34 236,-8 Z"/></clipPath>
+  <path d="M 236,8 C 300,14 400,26 478,30 Q 502,31 502,9 L 497,-96 Q 496,-118 474,-118 C 420,-118 364,-115 330,-106 C 286,-94 276,-34 236,-8 Z" fill="#FFFFFF"/>
+  <g transform="translate(3,3)" filter="url(#wash)"><g clip-path="url(#bR)">
+    <polygon points="230,-10.5 520,-133.5 520,-260 230,-260" fill="#80C040"/>
+    <polygon points="230,10.5 520,-112.5 520,160 230,160" fill="#00B0F0"/></g></g>
+  <path d="M 236,8 C 300,14 400,26 478,30 Q 502,31 502,9 L 497,-96 Q 496,-118 474,-118 C 420,-118 364,-115 330,-106 C 286,-94 276,-34 236,-8 Z" fill="none" stroke="#0A1F3C" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="216" y="-11" width="26" height="22" rx="6" fill="#0A1F3C"/>
+  <path d="M 236,-4.5 L 404,-1 Q 412,0 404,1 L 236,4.5 Z" fill="#0A1F3C"/></g>
+  <path d="M -392,-6.5 L 226,-5 L 226,5 L -392,6.5 Z" fill="#0A1F3C" stroke="#0A1F3C" stroke-width="2.75" stroke-linejoin="round"/>
+  <rect x="-545" y="-12.5" width="160" height="25" rx="12.5" fill="#0A1F3C"/>
+  <rect x="-290.78" y="-10.5" width="122" height="21" rx="4" fill="#FFFFFF" stroke="#0A1F3C" stroke-width="4.4"/>
+  <rect x="-272.78" y="-20" width="17" height="40" rx="5" fill="#80C040" stroke="#0A1F3C" stroke-width="4.4"/></g></g></svg>
