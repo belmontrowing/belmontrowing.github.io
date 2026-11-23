@@ -804,21 +804,33 @@ body:has(.band-cta) .nav-footer a.footer-donate {
 // the inner pages; the crop is set here (not on the photo in index.qmd) so it can change
 // per screen size and keep the boat above the words.
 .hero:not(.hero-short) {
-  img.bg { object-position: center 80%; }
+  // Shorter than the standard hero so the club name below shows on the first screen.
+  min-height: clamp(460px, calc(66svh - var(--brc-header-h)), 600px);
+  img.bg { object-position: center 82%; }
   // Very wide screens show a thinner slice of this tall photo: aim a little higher.
   @media (min-width: 1600px) { img.bg { object-position: center 74%; } }
+  // Tablets and small laptops: a fixed 520px header, the photo held at least 1060px tall and
+  // anchored at the bottom, which keeps the boat above the words at every width here.
+  @media (min-width: 576px) and (max-width: 1199.98px) {
+    min-height: 520px;
+    img.bg { top: auto; bottom: 0; height: max(100%, 1060px); object-position: center 100%; }
+  }
 }
 // Phones: the photo is shown at its natural shape, raised so the sky is cut off and the
 // boat sits at the top; the words start on the water below it and the photo fades to navy.
 @media (max-width: 575.98px) {
   .hero:not(.hero-short) {
     min-height: 0;
-    padding-top: 42vw;
-    img.bg { top: -40vw; height: 110.4vw; object-position: center; }
+    padding-top: 33vw;
+    padding-bottom: 1.25rem;
+    img.bg { top: -47vw; height: 110.4vw; object-position: center; }
+    .tagline { margin-bottom: .75rem; line-height: 1.5; }
     &::before {
-      background: linear-gradient(to bottom, rgba($brc-navy-900, .05) 0, rgba($brc-navy-900, .05) 30vw, rgba($brc-navy-900, .8) 50vw, $brc-navy-900 70vw);
+      background: linear-gradient(to bottom, rgba($brc-navy-900, .05) 0, rgba($brc-navy-900, .05) 25vw, rgba($brc-navy-900, .8) 45vw, $brc-navy-900 65vw);
     }
-    .btn-row .btn-brc-lg { width: 100%; }
+    // The two buttons share one row (half each) to keep the header short.
+    .btn-row { margin-top: 1.25rem; }
+    .btn-row .btn-brc-lg { width: auto; flex: 1 1 0; min-height: 48px; padding: .6rem .75rem; font-size: 1rem; white-space: nowrap; }
   }
 }
 

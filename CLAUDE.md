@@ -442,8 +442,10 @@ boat about 60% down. The words sit at the bottom over the water; the crop is set
 `theme.scss` (`.hero:not(.hero-short)`, section 5), not on the photo in `index.qmd`, because a
 `style=` on the photo would override the per-screen crops. On phones the photo is raised so
 the sky is cut off, the boat sits at the top and the words start on the water below it. A
-replacement photo should be at least 1920px wide. Recheck the crop at 1920, 1440, 1024, 768
-and 390 (the side-by-side preview in "Render and preview" helps).
+hero is kept shorter than the standard one (and the intro band starts closer to it, in
+`styles/_home.scss`) so the club name shows on the first screen; on phones the two buttons
+share one row. A replacement photo should be at least 1920px wide. Recheck the crop at
+1920, 1440, 1024, 768 and 390 (the side-by-side preview in "Render and preview" helps).
 
 ### Sub-navigation (in-page jump links)
 
