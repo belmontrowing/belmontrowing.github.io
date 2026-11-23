@@ -1,6 +1,6 @@
 ---
-title: "Contact Information"
-description: "BRC is located on the Catawba River in Belmont, NC. The site is an old mill property offering BRC use of the shoreline and river, grounds for boat storage,"
+title: "Contact & Directions, Belmont NC"
+description: "Find Belmont Rowing Center at 1500 River Drive, Belmont, NC, on the Catawba River 10 miles west of Uptown Charlotte. Get directions or email us."
 body-classes: page-contact
 ---
 

@@ -321,7 +321,7 @@ side-by-side "split" layout is only for the home page's editorial sections.)
 
 ```markdown
 ---
-title: "Adult Rowing Charlotte NC"
+title: "Charlotte Adult Rowing & Learn to Row"
 description: "One-sentence summary for search engines."
 body-classes: page-adult
 ---

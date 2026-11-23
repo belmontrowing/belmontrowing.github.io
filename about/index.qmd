@@ -1,6 +1,6 @@
 ---
-title: "About Us"
-description: "Our amazing coaches are the heart of our family here at Belmont Rowing Center! They are passionate about rowing and committed to carrying out our mission to promote the growing sport of rowing through educational, competitive, and inclusive programs."
+title: "Our Coaches, Board & History"
+description: "Meet the coaches and board of Belmont Rowing Center, a nonprofit rowing club on the Catawba River near Charlotte, NC, established in 2013."
 body-classes: page-about
 ---
 

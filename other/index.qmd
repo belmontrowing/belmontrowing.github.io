@@ -1,6 +1,6 @@
 ---
-title: "Other Programs"
-description: "Charlotte Rowing at Belmont Rowing Center offers other programs like private rowing lessons, independent rowing passes and learn-to-row programs to help aid in cancer recovery"
+title: "Private Lessons, College Rowing & ROAR"
+description: "Private rowing lessons, summer rowing for college athletes, independent rowing passes, and ROAR, a free program for cancer patients and survivors."
 body-classes: page-other
 ---
 

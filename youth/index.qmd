@@ -1,6 +1,6 @@
 ---
-title: "Youth Rowing Charlotte NC"
-description: "Providing youth rowing Charlotte NC area programs, Belmont Rowing Center offers rowers ages 12+ of all skill levels to join an inclusive and supportive team"
+title: "Charlotte Youth Rowing & Summer Camps"
+description: "Youth rowing near Charlotte, NC for ages 12 and up. Join our year-round team, or start with a summer Learn to Row camp on the Catawba River."
 body-classes: page-youth
 ---
 

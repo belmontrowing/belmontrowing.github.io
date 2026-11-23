@@ -1,6 +1,6 @@
 ---
-title: "Adult Rowing Charlotte NC"
-description: "Providing adult rowing Charlotte NC programs, Belmont Rowing Center offers programs to support rowers at all levels - from those who have never rowed before to advance rowers looking to hone their skills"
+title: "Charlotte Adult Rowing & Learn to Row"
+description: "Adult rowing near Charlotte, NC for every level: Learn to Row sessions for beginners and Masters teams for experienced rowers, on the Catawba River."
 body-classes: page-adult
 ---
 
