@@ -179,7 +179,9 @@ Claire and her husband, Miller, live in Belmont with their two dogs. She is grat
 :::
 :::
 
-::: {.person .no-photo}
+::: {.person}
+![](/images/staff/emily-lyons.jpg){.person-photo loading="lazy" alt="Emily Lyons"}
+
 ::: {.person-body}
 ### Emily Lyons
 [Member-At-Large]{.role}
