@@ -76,7 +76,7 @@ David rowed with the UNC Men’s Rowing Club as an undergraduate before stepping
 ::::
 :::
 
-<!-- BOARD MEMBERS: the President's letter, then the board bios two per row, then name-only members -->
+<!-- BOARD MEMBERS: the President’s letter, then the board bios two per row -->
 ::: {.band .band-white}
 ## BOARD MEMBERS {#boardmembers}
 
@@ -165,17 +165,29 @@ Glen began rowing on the water at the Belmont Rowing Center in 2024, inspired by
 Toni and her husband John moved to Gastonia, NC 15 years ago with their four children. While each one of their children attended the learn-to-row camps at BRC, the youngest child was the first to latch onto the sport. Toni began rowing as an independent rower when her youngest joined the BRC youth team 3 years ago. She has since joined the Master rowers and really enjoys jumping back into the learn-to- row boats to mentor other adults beginning their rowing journey. Toni holds a BS in Health, Sport and Leisure studies with an emphasis in Therapeutic Recreation. She practices equine therapy at  Bit of Hope Ranch in Gastonia. This ranch serves all people with disabilities. Outside of work and rowing, Toni also enjoys singing in choir, practicing her fiddle, and leatherwork specific to the equine industry. Toni hopes that one day her daughter will agree to row in a parent/child class at a regatta.
 :::
 :::
-::::
 
-:::: {.tile-grid}
-::: {.tile .person-tile}
-### Clair Kettle
+::: {.person}
+![](/images/staff/claire-kettle.jpg){.person-photo loading="lazy" alt="Claire Kettle"}
+
+::: {.person-body}
+### Claire Kettle
 [Secretary]{.role}
+
+Claire joined the Learn to Row in Spring of 2026. As someone relatively new to the sport, she is enjoying building her skillset and embracing all that rowing has to offer. She loves spending time on the Catawba River where she can enjoy the beautiful scenery, do a little bird watching, and get in a great workout all at the same time.
+
+Claire and her husband, Miller, live in Belmont with their two dogs. She is grateful for the friendships, camaraderie, and opportunities that come with being part of the rowing center and she looks forward to helping support the club’s continued growth.
+:::
 :::
 
-::: {.tile .person-tile}
+::: {.person .no-photo}
+::: {.person-body}
 ### Emily Lyons
 [Member-At-Large]{.role}
+
+Emily began rowing over 30 years ago as a walk-on in college at Harvard. She is proof that this sport gets in your system. There is something magical about being part of a team where you get to exercise on pretty bodies of water, exert insane amounts of individual effort as well as strive for synchronicity with a boat full of teammates, and where thanks to age handicaps, you can be competitive your entire life.
+
+Emily moved to Charlotte in 2025 and is enjoying the community within BRC and the beautiful water on the Catawba River. She brings experience to the Board from rowing clubs around the country (CA, GA, and TX) and the expertise gained from running businesses at both Fortune 10 companies and small startups.
+:::
 :::
 ::::
 :::

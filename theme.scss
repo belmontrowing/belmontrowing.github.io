@@ -1964,7 +1964,8 @@ $brc-days: "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
 // Compact person card (used by .people-grid, and by every .person on phones).
 @mixin brc-person-compact {
   grid-template-columns: 7.5rem minmax(0, 1fr);
-  grid-template-rows: auto auto 1fr auto;
+  // rows: name, role, up to 3 bio paragraphs, stretch, email (so a 2nd paragraph follows the 1st)
+  grid-template-rows: auto auto auto auto auto 1fr auto;
   column-gap: 1.5rem;
   row-gap: 0;
   > p:has(> img) { grid-column: 1; grid-row: 1 / span 2; align-self: center; margin-bottom: 1.25rem; }
@@ -1975,7 +1976,7 @@ $brc-days: "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
   h3 + p { grid-column: 2; grid-row: 2; align-self: start; margin-bottom: 1.25rem; }
   h3 + p .pronouns { margin-bottom: 0; margin-top: .2rem; }
   h3 ~ p:not(:first-of-type) { grid-column: 1 / -1; }
-  h3 ~ p:has(> .email) { align-self: end; margin: .5rem 0 0; padding-top: .75rem; border-top: 1px solid $brc-hairline; }
+  h3 ~ p:has(> .email) { grid-row: 7; align-self: end; margin: .5rem 0 0; padding-top: .75rem; border-top: 1px solid $brc-hairline; }
   @media (max-width: 575.98px) {
     grid-template-columns: 6rem minmax(0, 1fr);
     column-gap: 1.1rem;
@@ -2006,7 +2007,10 @@ $brc-days: "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
   .person-body > :last-child { margin-bottom: 0; }
   @media (max-width: 767.98px) { @include brc-person-compact; }
 }
-.person.no-photo { grid-template-columns: 1fr; }
+.person.no-photo,
+.people-grid > .person.no-photo { grid-template-columns: 1fr;   // no portrait: name, role and bio use the full width
+  h3, h3 + p { grid-column: 1; }
+}
 
 .people-grid {
   display: grid;

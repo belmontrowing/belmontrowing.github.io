@@ -865,7 +865,7 @@ phones. Portraits are cropped 4:5 from the top: for an action photo, make a tigh
 ```markdown
 :::: {.tile-grid}
 ::: {.tile .person-tile}
-### Clair Kettle
+### Claire Kettle
 [Secretary]{.role}
 :::
 ::::
