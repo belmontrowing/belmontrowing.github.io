@@ -5,7 +5,8 @@
 --      <div class="season-card is-complete">
 --        head (the heading stays a real heading, outside the fold)
 --        <details class="season-more">
---          <summary><span class="status-note">The season has completed...</span></summary>
+--          <summary><span class="status-note">The season has completed...</span>
+--                   <span class="season-toggle">Show / Hide season details</span></summary>
 --          ...the season's sentence and tables...
 --        </details>
 --      </div>
@@ -34,6 +35,10 @@ local function fold(card)
   if #head.content > 0 then out:insert(head) end  -- heading (if any) stays outside
   out:insert(pandoc.RawBlock("html", '<details class="season-more"><summary>'))
   out:insert(pandoc.Plain{ pandoc.Span(label, { class = "status-note" }) })
+  -- a visible "Show / Hide season details" button (CSS shows the right one)
+  out:insert(pandoc.RawBlock("html",
+    '<span class="season-toggle"><span class="when-closed">Show season details</span>' ..
+    '<span class="when-open">Hide season details</span></span>'))
   out:insert(pandoc.RawBlock("html", "</summary>"))
   for i = 2, #card.content do out:insert(card.content[i]) end
   out:insert(pandoc.RawBlock("html", "</details>"))

@@ -1161,6 +1161,24 @@ button.btn-brc { cursor: pointer; }
   @media (max-width: 575.98px) { padding: 1.25rem 1.25rem 1.25rem 3.5rem; &::before { left: 1.1rem; top: 1.25rem; } }
 }
 
+// Open-enrollment note (top of Youth / Adult while a season is open): the same Callout
+// with a calendar mark, a club-green rule at the left and a bold "see below" link.
+//   ::: {.info-box .info-open}
+//   ### Winter Training Is Open for Enrollment
+//   ... [See the details and registration below.](#youthwinter)
+//   :::
+.info-box.info-open {
+  border-left: 5px solid $brc-club-green;
+  margin: 0 0 2.5rem;
+  &::before { content: "\F214" / ""; }   // bi-calendar-check-fill
+  a {
+    font-weight: 600;
+    white-space: nowrap;
+    &::after { @include brc-icon("\F128"); margin-left: .35rem; font-size: .85em; }   // bi-arrow-down
+  }
+  @media (max-width: 575.98px) { a { white-space: normal; } }
+}
+
 // Lead: the FIRST paragraph of a section only, and only when it is 4 lines or
 // fewer on a laptop. Everything else is body size.
 //   ::: {.lead}
@@ -1499,26 +1517,44 @@ div.lead {
       cursor: pointer;
       list-style: none;
       &::-webkit-details-marker { display: none; }
+      flex-wrap: wrap;
       .status-note { margin: 0; padding: 0; border: 0; background: none; width: auto; transition: color $brc-ease; }
-      &::after {                    // round chevron at the right; turns over when open
-        @include brc-icon("\F282"); // bi-chevron-down
+      // "Show season details" / "Hide season details" with a chevron, written by the filter.
+      // Looks like a small outline button so it is clear the bar opens the details.
+      .season-toggle {
         flex: none;
-        display: grid;
-        place-items: center;
-        width: 2.25rem;
-        height: 2.25rem;
-        border-radius: 50%;
-        border: 1px solid $brc-hairline;
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        min-height: 40px;
+        padding: .35rem .65rem .35rem 1rem;
+        border: 1px solid rgba($brc-blue, .45);
+        border-radius: $brc-radius-sm;
         background-color: $brc-white;
         color: $brc-blue;
-        font-size: .9rem;
-        transition: transform $brc-ease, border-color $brc-ease;
+        font-family: $brc-font-display;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        line-height: 1;
+        transition: background-color $brc-ease, border-color $brc-ease, color $brc-ease;
+        &::after { @include brc-icon("\F282"); font-size: .8rem; transition: transform $brc-ease; }   // bi-chevron-down
       }
-      &:hover { .status-note { color: $brc-ink; } &::after { border-color: $brc-club-blue; } }
+      .when-open { display: none; }
+      &:hover {
+        .status-note { color: $brc-ink; }
+        .season-toggle { border-color: $brc-club-blue; background-color: $brc-blue-50; color: $brc-ink; }
+      }
       &:focus-visible { outline: 3px solid $brc-blue; outline-offset: -3px; }
     }
     &:first-child > summary { padding-top: .95rem; }   // no heading above (Youth summer)
-    &[open] > summary { border-bottom: 1px solid $brc-hairline; &::after { transform: rotate(180deg); } }
+    &[open] > summary {
+      border-bottom: 1px solid $brc-hairline;
+      .when-closed { display: none; }
+      .when-open { display: inline; }
+      .season-toggle::after { transform: rotate(180deg); }
+    }
 
     @include brc-season-body;
     // Body one step quieter (muted text stays above 4.5:1 on white and paper),
@@ -1549,7 +1585,7 @@ div.lead {
 // Printing: folded seasons print open (browsers that support ::details-content).
 @media print {
   details.season-more::details-content { content-visibility: visible; display: contents; }
-  details.season-more > summary::after { display: none; }
+  details.season-more > summary .season-toggle { display: none; }
 }
 
 // Status note: "The season has completed. Please stay tuned for 2027 scheduling."

@@ -20,15 +20,22 @@ source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 
 <!-- SUB-NAVIGATION: jump links to the sections below -->
 ::: {.pill-nav role="navigation" aria-label="On this page"}
-[MASTERS TRAINING](#masters) [MASTERS SKILLS](#devo) [LEARN TO ROW](#adultltr) [REGATTAS](#masterregattas)
+[MASTERS TRAINING](#masters) [MASTERS SKILLS](#devo) [WINTER TRAINING](#masterswinter) [LEARN TO ROW](#adultltr) [REGATTAS](#masterregattas)
 :::
 
-<!-- MASTERS TRAINING TEAM: introduction, then the open Winter Training card and the
-     completed Fall season card (season cards: see CLAUDE.md "Season card") -->
+<!-- MASTERS TRAINING TEAM: introduction, then the completed Fall season card
+     (season cards: see CLAUDE.md "Season card") -->
 ::: {.band .band-light}
 ::: {.oars-row}
 ![](/images/oars-long-on-paper.svg){alt=""}
 ![](/images/oars-long-on-paper.svg){alt=""}
+:::
+
+<!-- OPEN ENROLLMENT NOTE: remove this block when Winter Training closes -->
+::: {.info-box .info-open}
+### `r season("masters-winter", "term")` Is Open for Enrollment
+
+Winter Training for the Masters Training and Masters Skills Teams is open now. [See the details and registration below.](#masterswinter)
 :::
 
 ## MASTERS TRAINING TEAM {#masters}
@@ -44,27 +51,6 @@ To determine if you are at the appropriate level, contact us using our contact f
 Masters Training team members can also row outside of structured practices as long as they abide by the [Independent Rowing guidelines](/other/index.qmd#independent) and requirements.
 
 All Masters Training Team lineups (practice and racing) are determined by the Head Coach. Masters Training Team members must hold an active [USRowing membership](https://membership.usrowing.org/).
-
-<!-- WINTER TRAINING (open): facts and table from the masters-winter rows of schedule.xlsx -->
-:::: {.season-card}
-::: {.season-head}
-### `r season("masters-winter", "year")` Masters Team - `r season("masters-winter", "term")`
-
-::: {.btn-row}
-[Register](`r season("masters-winter", "register_link")`){.btn-brc}
-:::
-:::
-
-Welcome to the Masters Winter Training team for `r season("masters-winter", "months")` `r season("masters-winter", "year")`.  `r season("masters-winter", "practice_days")`
-
-```{r}
-weekly_table("masters-winter")
-```
-
-::: {.table-note}
-\*Weekend practices will be on the water, weather permitting.
-:::
-::::
 
 <!-- FALL SEASON (completed) -->
 :::: {.season-card}
@@ -136,8 +122,36 @@ weekly_table("masters-skills")
 ::::
 :::
 
-<!-- ADULT LEARN TO ROW -->
+<!-- MASTERS WINTER TRAINING (open, for both Masters teams): facts and table from the
+     masters-winter rows of schedule.xlsx -->
 ::: {.band .band-light}
+## MASTERS WINTER TRAINING {#masterswinter}
+
+Winter Training is open to rowers from both the Masters Training Team and the Masters Skills Team.
+
+:::: {.season-card}
+::: {.season-head}
+### `r season("masters-winter", "year")` Masters Team - `r season("masters-winter", "term")`
+
+::: {.btn-row}
+[Register](`r season("masters-winter", "register_link")`){.btn-brc}
+:::
+:::
+
+Welcome to the Masters Winter Training team for `r season("masters-winter", "months")` `r season("masters-winter", "year")`.  `r season("masters-winter", "practice_days")`
+
+```{r}
+weekly_table("masters-winter")
+```
+
+::: {.table-note}
+\*Weekend practices will be on the water, weather permitting.
+:::
+::::
+:::
+
+<!-- ADULT LEARN TO ROW -->
+::: {.band .band-white}
 ## ADULT LEARN TO ROW {#adultltr}
 
 The Learn To Row Session is a 3-day course, starting with an evening session on-land, providing an introduction to rowing, equipment, terminology as well as learning the basic rowing stroke using a rowing machine (referred to as an ergometer or “erg”). The evening introduction is followed by Saturday and Sunday morning sessions that will be on-the-water, providing instruction on rowing safety, getting the boat (or shell) from the rack to the water, getting your oars and body into the boat, and learning to row.
@@ -229,7 +243,7 @@ BRC uses the iCrew team management platform to manage registrations, process pay
 :::
 
 <!-- MASTERS REGATTAS -->
-::: {.band .band-white}
+::: {.band .band-light}
 ## `r season("masters", "regatta_season", case = "upper")` REGATTAS {#masterregattas}
 
 ```{r}

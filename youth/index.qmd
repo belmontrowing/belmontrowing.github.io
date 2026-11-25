@@ -30,6 +30,13 @@ source("../R/schedule.R")   # seasonal facts and tables come from schedule.xlsx
 ![](/images/oars-long-on-paper.svg){alt=""}
 :::
 
+<!-- OPEN ENROLLMENT NOTE: remove this block when Winter Training closes -->
+::: {.info-box .info-open}
+### `r season("youth-winter", "term")` Is Open for Enrollment
+
+Youth Winter Training is open now. [See the details and registration below.](#youthwinter)
+:::
+
 ## YOUTH TEAM {#youth}
 
 Our Youth Team is for middle and high school youth (starting ~12 years old) who have some rowing experience. Inexperienced rowers will join our Youth Team after completing a Learn to Row Camp. The Youth Team is a great alternative to school-based athletic programs, where you can engage in athletics, be part of a inclusive team, and develop a skill that can be leveraged in college and throughout life.  At BRC, there are no tryouts or cuts to make the team.  The more athletes we have, the more opportunities we can provide to our community.
@@ -49,7 +56,7 @@ We offer financial aid for programs based on need. These scholarships are limite
 <!-- WINTER TRAINING (open season card): facts and table from the youth-winter rows of schedule.xlsx -->
 :::: {.season-card}
 ::: {.season-head}
-### `r season("youth-winter", "year")` Youth Team - `r season("youth-winter", "term")`
+### `r season("youth-winter", "year")` Youth Team - `r season("youth-winter", "term")` {#youthwinter}
 
 ::: {.btn-row}
 [Register](`r season("youth-winter", "register_link")`){.btn-brc}

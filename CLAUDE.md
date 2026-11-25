@@ -578,7 +578,9 @@ On race weeks, Friday’s practice is moved to Thursdays
   visible (a real heading), the status note becomes a full-width bar with a round chevron,
   and the sentence and tables sit behind it (a native `<details>`/`<summary>`: click, tap,
   Enter or Space opens it; no JavaScript). Open, the card is quiet (paper head, no shadow,
-  body and tables one step muted). Every word and table stays in the page. Printing shows
+  body and tables one step muted). The bar ends in a small outline button, "Show season
+  details" / "Hide season details" with a chevron (written by the filter; CSS swaps the
+  words). Every word and table stays in the page. Printing shows
   the content open (in browsers that support it). Open seasons (a Register button in the
   head) never fold.
 - A completed season with no heading of its own (Youth Summer Programs, whose title is the
@@ -632,6 +634,22 @@ The season has completed. Please stay tuned for 2027 scheduling.
 ```
 
 #### Marking a season complete, and opening a new one
+
+While a Winter Training season is open, both Youth and Adult start their first band with an
+**open-enrollment note** (above the first `##`, under the oars row), linking down to the
+open card: Youth to `#youthwinter` (an id on the Youth Winter card heading), Adult to the
+**MASTERS WINTER TRAINING** section `#masterswinter` (its own band after Masters Skills,
+because it is for both Masters teams; also in the Adult jump links). Remove the note
+(marked `OPEN ENROLLMENT NOTE` in the page) when that season closes.
+
+```markdown
+::: {.info-box .info-open}
+### `r season("youth-winter", "term")` Is Open for Enrollment
+
+Youth Winter Training is open now. [See the details and registration below.](#youthwinter)
+:::
+```
+
 
 1. **Season over**: in the page, replace that season card's `::: {.btn-row}` [Register] block
    with the `::: {.status-note}` block above (keep the heading, sentence and tables). The
@@ -771,7 +789,7 @@ For college rowers that are living in Charlotte for the summer …
 :::
 ```
 
-`.info-box` = pale-blue Callout. `.note` = a line that must stand out (green rule at the
+`.info-box` = pale-blue Callout (`.info-box .info-open` = the open-enrollment note: calendar mark, green rule at the left). `.note` = a line that must stand out (green rule at the
 left; a second paragraph is small and muted). `.fine-print` = small muted text under a
 hairline. `.lead` = first paragraph of a section only, 4 lines or fewer on a laptop.
 
@@ -1173,8 +1191,8 @@ What Google reads is mostly set up once and works by itself. The parts a person 
 ### Anchors other pages link to (keep these ids)
 
 - about: `coaches`, `boardmembers`, `history1`, `policies`, `location`, `donate`
-- youth: `youth`, `youthLTR` (home page links here)
-- adult: `masters`, `devo`, `adultltr` (home page links here), `masterregattas`
+- youth: `youth`, `youthwinter`, `youthLTR` (home page links here)
+- adult: `masters`, `devo`, `masterswinter`, `adultltr` (home page links here), `masterregattas`
 - other: `collegiate`, `roar`, `private`, `independent` (adult page links to `#independent`)
 
 Ids are case-sensitive: `#adultltr` and `#adultLTR` are different.
